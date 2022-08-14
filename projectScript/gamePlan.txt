@@ -1,0 +1,66 @@
+dnd rpg rouge turn base web game
+components:
+header
+footer
+about
+login page
+signup page
+create charecter page
+select charecter page
+game page
+
+select charecter:
+name
+class: 4 options
+wepone: 6 options
+difficulty: 3 options
+
+charecter db:
+name
+class: string
+wepone(ATK): string
+hp: number
+level: number
+difficulty: string
+
+game mechanics:
+turn options buttons:
+Sskill 1
+Sskill 2 (from level 4)
+Sskill 3 (from level 7)
+attack
+
+skills:
+duoble attack (cooldown 2)
+duoble shield (cooldown 2)
+attack all (cooldown 4) (only player)
+instenc death (cooldown 4) (only player) (not boss)
+stun attack (cooldown 2) 
+electric shield (cooldown 3) (stun and spike)
+poison attack (cooldown 2) (poison)
+
+shop (every level):
++10 refill hp potion
++20 refill hp potion
++50 refill hp potion
+
++10 hp potion
++20 hp potion
++50 hp potion
+
++1 shield potion
++5 shield potion
++10 shield potion
+
++1 attack potion
++5 attack potion
++10 attack potion
+
+game overview:
+every level the player will fight a generate amount of mob with growing powers
+every turn the paler can chose an skill\attck 
+and every mob turn they will randomly use there skill\attck to attck the player
+if lose game over
+if win will get gold for each mob and move to the shop
+in the shop will be able to buy upgrades and save the game
+and then move to the next level

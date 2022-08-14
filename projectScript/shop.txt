@@ -1,0 +1,29 @@
+route: /my_game/shop
+
+shop (every level):
+window open:
+title: shop
+welcoming figure(on the left): crazy old man say "what potion you need"
+table of potions: potions table
+submit btn: buy and drink now!
+
+potions table
+ (light red)
++10 refill hp potion 2 gold
++20 refill hp potion 3 gold
++50 refill hp potion 6 gold (gray antil LVL 5)
+
+ (deep red)
++10 hp potion 5 gold
++20 hp potion 9 gold
++50 hp potion 18 gold (gray antil LVL 5)
+
+ (light blue)
++1 shield potion 4 gold
++5 shield potion 8 gold
++10 shield potion 14 gold (gray antil LVL 5)
+
+ (light orange)
++1 attack potion 4 gold
++5 attack potion 8 gold
++10 attack potion 14 gold (gray antil LVL 5)

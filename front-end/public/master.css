@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+    background-color: rgba(170, 194, 216, 0.647);
+}
+.App{
+    margin-top: 15%;
+}
+header{
+    background-color: rgb(54, 72, 137);
+    text-align: left;
+    height: 3rem;
+}
+#header_h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
