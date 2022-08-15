@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { submitAndGetUser } from "../../actions/apiHandle";
+import { signIn } from "../../actions/apiHandle";
 import { useNavigate } from "react-router-dom";
 
 function SignUp(props){
@@ -16,7 +16,7 @@ function SignUp(props){
     }
     async function handleClick(event){
         event.preventDefault()
-        const res = await submitAndGetUser(user,"signUp")
+        const res = await signIn(user)
         console.log("res", res);
         if(res !== "err"){
             props.setUserState(res);

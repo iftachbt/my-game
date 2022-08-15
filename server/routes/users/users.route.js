@@ -2,6 +2,7 @@ import express from "express";
 import passport from "passport";
 import { signUp } from "./users.service.js";
 import { NotFoundError, ValidationError } from "../../error_handling/error.class.js";
+import { authMid } from "./users.auth.js";
 
 export const UsersRoute = express.Router();
 
@@ -11,5 +12,17 @@ UsersRoute.post("/signUp", async (req, res) => {
 
 UsersRoute.post("/logIn", passport.authenticate("local"), (req, res) => {
   if (!req.user) throw new NotFoundError("not found user");
+  res.send(req.user);
+});
+UsersRoute.get("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      res.status(500).send({ msg: "error while logged out" });
+    }
+    res.status(200).send({ msg: "logged out" });
+  });
+});
+UsersRoute.get("/user", (req, res) => {
+  console.log("req.user", req.user);
   res.send(req.user);
 });

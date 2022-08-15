@@ -1,8 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import style from "./startPage.module.css"
-import {
-    useNavigate
-  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function StartPage(props){
     const navigate = useNavigate();

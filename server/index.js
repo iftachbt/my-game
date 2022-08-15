@@ -4,14 +4,18 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
 import { connectRoutes } from "./routes/index.routes.js";
 import { connectDB } from "./mongoDB/DB.js";
 import { sessionConfig } from "./routes/users/users.auth.js";
+import { corsOptions } from "./cors.service.js";
 
 const app = express();
 
 app.use(express.static("public"));
-app.use(cors());
+app.use(cookieParser(process.env.AUTH_SESSION_SECRET));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session(sessionConfig()));

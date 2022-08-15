@@ -2,6 +2,7 @@ import "dotenv/config";
 import passport from "passport";
 import { User } from "../../mongoDB/DB.js";
 import { UnAuthriseError } from "../../error_handling/error.class.js";
+import MongoStore from "connect-mongo";
 
 export function security(User) {
   return (
@@ -13,8 +14,9 @@ export function security(User) {
 export function sessionConfig() {
   return {
     secret: process.env.AUTH_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: "mongodb://localhost:27017/gameDB" }),
   };
 }
 
@@ -24,7 +26,7 @@ export function registerUser(user, req, res) {
   return User.register({ username: userName, fname, lname, email }, password, (err, user) => {
     if (err) throw new UnAuthriseError("error in registerAuthentication");
     res.send(user);
-    // passport.authenticate("local")(req, res, function () {});
+    passport.authenticate("local")(req, res, function () {});
   });
 }
 

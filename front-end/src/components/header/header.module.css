@@ -10,13 +10,15 @@
 .tab{
     height: 100%;
     width: 100px;
-    background: aquamarine;
+    /* background: aquamarine; */
+    border: 10px solid;
+    border-image: url(./image/btn_haeding.png);
+    border-image-slice: 120;
 }
 
 .tab p{
     padding: 11px;
     margin: 0;
 }
-.logIn{
-
+.bottom_border{
 }

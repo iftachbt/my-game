@@ -3,6 +3,7 @@ import style from "./homepage.module.css"
 import {
     useNavigate
   } from "react-router-dom";
+import { logout, testTemp } from "../../actions/apiHandle";
 
 function HomePage(props){
     const navigate = useNavigate();
@@ -14,6 +15,8 @@ function HomePage(props){
 
     return(
         <div className={style.homePage}>
+                <div onClick={ () =>  testTemp()}>temp test</div>
+                <div onClick={ () =>  logout()}>logout</div>
             <div className={style.background}></div>
             <h1>My-Game</h1>
             <div>
