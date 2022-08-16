@@ -13,6 +13,9 @@ function StartPage(props){
                 <button className="btn" onClick={() => navigate('/createCharacter')} name="newGame">new game</button>
             </div>
             <div>
+                <button className="btn" onClick={() => navigate('/mainGame')} name="newGame">play</button>
+            </div>
+            <div>
                 <button className="btn" onClick={() => navigate('/game')} name="continueGame">continue</button>
             </div>
             <div>

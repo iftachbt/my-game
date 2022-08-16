@@ -9,6 +9,7 @@ import SignUp from "../signup/signup";
 import LogIn from "../login/login";
 import UserProflie from "../user/user";
 import CreateCharacter from "../createCharacter/createCharacter";
+import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
 import StartPage from "../startPage/startPage";
 import "./master.css"
@@ -65,6 +66,10 @@ function Master(){
              />} />
             <Route path="/createCharacter" element={
             <CreateCharacter 
+              user={user}
+             />} />
+            <Route path="/mainGame" element={
+            <MainGamePage 
               user={user}
              />} />
         </Routes>

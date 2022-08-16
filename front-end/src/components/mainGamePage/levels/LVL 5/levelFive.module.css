@@ -1,0 +1,9 @@
+.background{
+    background-image: url(https://66.media.tumblr.com/49528ca4af8ebf4bb76e47f6ed84ae4b/tumblr_mugu1zCf9v1rfjowdo1_500.gif);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}

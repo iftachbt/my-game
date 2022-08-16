@@ -1,5 +1,5 @@
 .main{
-    background-color: aqua;
+    background-color: #b8942f94;
     width: 100%;
     height: 40px;
     display: flex;
@@ -10,8 +10,8 @@
 .tab{
     height: 100%;
     width: 100px;
-    /* background: aquamarine; */
     border: 10px solid;
+    border-top-width: 0;
     border-image: url(./image/btn_haeding.png);
     border-image-slice: 120;
 }

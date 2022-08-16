@@ -19,6 +19,12 @@ import style from "./createCharacter.module.css"
             <h1>hello {props.user.username}</h1>
             <button className="btn" onClick={() => navigate(-1)} >back</button>
             <div className={style.charBox}><p onClick={() => {navigate("/")}}>home page</p></div>
+            <select name="difficulty" >
+                <option value="" disabled selected>difficulty</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+            </select>
             <div>
                 <h1>select class</h1>
                 <div className={style.charBox}><p>human</p></div>
