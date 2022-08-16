@@ -2,12 +2,11 @@ import express from "express";
 import passport from "passport";
 import { signUp } from "./users.service.js";
 import { NotFoundError, ValidationError } from "../../error_handling/error.class.js";
-import { authMid } from "./users.auth.js";
 
 export const UsersRoute = express.Router();
 
-UsersRoute.post("/signUp", async (req, res) => {
-  await signUp(req, res);
+UsersRoute.post("/signUp", (req, res) => {
+  signUp(req, res);
 });
 
 UsersRoute.post("/logIn", passport.authenticate("local"), (req, res) => {

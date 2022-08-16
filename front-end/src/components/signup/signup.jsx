@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp(props){
 
-    useEffect(() => {if(props.auth) navigate("/startPage")})
+    useEffect(() => {if(props.user) navigate("/startPage")})
     const navigate = useNavigate();
     const [user,setUser]=useState({fname:"",lname:"",password:"",userName:"",email:""})
 
@@ -19,9 +19,8 @@ function SignUp(props){
         const res = await signIn(user)
         console.log("res", res);
         if(res !== "err"){
-            props.setUserState(res);
-                props.setAuth(true);
-                navigate('/startPage')
+            props.setUser(res);
+            navigate('/startPage')
         }
         else console.log(`res ${res}: something went wrong!`);
 

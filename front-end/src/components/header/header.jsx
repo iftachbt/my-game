@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./header.module.css"
-import {
-    useNavigate
-  } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 function Header(props){
+
     const navigate = useNavigate();
    
+    function handleClick(){
+        props.user ?navigate("/userProflie") :navigate("/login")
+    }
     return(
         <div className={style.main}>
             <div className={style.tab}><p onClick={() => {navigate("/")}}>home page</p></div>
@@ -13,11 +16,11 @@ function Header(props){
             <div className={style.tab}><p>tab 2</p></div>
             <div className={style.tab}><p>tab 3</p></div>
             <div className={style.tab}><p>tab 4</p></div>
-            <div className={style.tab}></div>
-            <div className={style.tab}></div>
-            <div className={style.tab}></div>
-            <div className={style.tab}></div>
-            <div className={[style.tab,style.logIn].join(" ")}><p>user</p></div>
+            <div className={style.tab_hidden}></div>
+            <div className={style.tab_hidden}></div>
+            <div className={style.tab_hidden}></div>
+            <div className={style.tab_hidden}></div>
+            <div className={style.tab} onClick={handleClick}><p>{props.user ?"user" :"login"}</p></div>
         </div>
     )
 }

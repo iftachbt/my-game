@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
-    BrowserRouter as Router,
     Routes,
     Route,
     useNavigate
@@ -8,35 +7,68 @@ import {
 import Header from "../header/header";
 import SignUp from "../signup/signup";
 import LogIn from "../login/login";
+import UserProflie from "../user/user";
+import CreateCharacter from "../createCharacter/createCharacter";
 import HomePage from "../homePage/homePage";
 import StartPage from "../startPage/startPage";
 import "./master.css"
+import { fetchUser } from "../../actions/user";
 
 
 function Master(){
-  const [userState, setUserState]=useState(false)
-  const [auth, setAuth]=useState(false)
+  const [user, setUser] = useState(false)
 
-  console.log("res", userState);
+  const navigate = useNavigate();
   
+    useEffect(() => {
+      fetchUserHandler()  
+  },[])
+  
+  const fetchUserHandler = async () => {
+    if(!user){
+      const user_ = await fetchUser()
+      if(!user_ || user_ === "") navigate("/")
+      else{
+        setUser(user_)
+      }
+    }
+  }
     
   return(
-    <Router>
-        <Header />
+    <div>
+        <Header user={user} />
         <Routes>
-            <Route exact path="/" element={<HomePage auth={auth} />} />
-            <Route path="/login" element={<LogIn 
-            setUserState ={setUserState} 
-            setAuth ={setAuth}
-            auth ={auth} />} />
-            <Route path="/sigup" element={<SignUp 
-            setUserState ={setUserState}
-            setAuth ={setAuth}/>} />
-            <Route path="/startPage" element={<StartPage 
-            userState={userState}
-            auth={auth} />} />
+            <Route exact path="/" element={
+            <HomePage 
+              setUser ={setUser}
+              user ={user}
+              />}
+             />
+            <Route path="/login" element={
+            <LogIn 
+              setUser ={setUser} 
+              user ={user} />}
+             />
+            <Route path="/userProflie" element={
+            <UserProflie 
+              setUser ={setUser} 
+              user ={user} />}
+             />
+            <Route path="/sigup" element={
+            <SignUp 
+              setUser ={setUser}
+              user ={user}/>}
+             />
+            <Route path="/startPage" element={
+            <StartPage 
+              user={user}
+             />} />
+            <Route path="/createCharacter" element={
+            <CreateCharacter 
+              user={user}
+             />} />
         </Routes>
-    </Router>
+    </div>
     )
 }
 

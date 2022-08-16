@@ -7,7 +7,7 @@ function LogIn(props){
 
     const navigate = useNavigate();
 
-    useEffect(() => {if(props.auth) navigate("/startPage")})
+    useEffect(() => {if(props.user) navigate("/startPage")})
 
     const [outPutUser,setOutputUser] = useState({password:"",username:""})
 
@@ -19,8 +19,7 @@ function LogIn(props){
         event.preventDefault()
         const res = await logIn(outPutUser)
         if(res !== "err") {
-            props.setUserState(res);
-            props.setAuth(true);
+            props.setUser(res);
             navigate('/startPage')
             }
         else console.log(`res ${res}: could not found`);

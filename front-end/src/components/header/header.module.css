@@ -15,6 +15,11 @@
     border-image: url(./image/btn_haeding.png);
     border-image-slice: 120;
 }
+.tab_hidden{
+    height: 100%;
+    width: 100px;
+    display: hidden
+}
 
 .tab p{
     padding: 11px;
