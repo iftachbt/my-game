@@ -7,7 +7,6 @@ import {
 import Header from "../header/header";
 import SignUp from "../signup/signup";
 import LogIn from "../login/login";
-import UserProflie from "../user/user";
 import CreateCharacter from "../createCharacter/createCharacter";
 import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
@@ -21,8 +20,9 @@ function Master(){
 
   const navigate = useNavigate();
   
-    useEffect(() => {
-      fetchUserHandler()  
+  useEffect(() => {
+    fetchUserHandler()  
+    // eslint-disable-next-line 
   },[])
   
   const fetchUserHandler = async () => {
@@ -37,7 +37,9 @@ function Master(){
     
   return(
     <div>
-        <Header user={user} />
+        <Header 
+        user={user} 
+        setUser={setUser} />
         <Routes>
             <Route exact path="/" element={
             <HomePage 
@@ -47,11 +49,6 @@ function Master(){
              />
             <Route path="/login" element={
             <LogIn 
-              setUser ={setUser} 
-              user ={user} />}
-             />
-            <Route path="/userProflie" element={
-            <UserProflie 
               setUser ={setUser} 
               user ={user} />}
              />

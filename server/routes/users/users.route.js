@@ -21,7 +21,8 @@ UsersRoute.get("/logout", (req, res) => {
     res.status(200).send({ msg: "logged out" });
   });
 });
+
 UsersRoute.get("/user", (req, res) => {
-  console.log("req.user", req.user);
+  console.log("/user | req.user", req.user);
   res.send(req.user);
 });
