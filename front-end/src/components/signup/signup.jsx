@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { signIn } from "../../actions/apiHandle";
+import { signIn } from "../../actions/user";
 import { useNavigate } from "react-router-dom";
 
 function SignUp(props){

@@ -1,5 +1,5 @@
 import React from "react";
-import { logout } from "../../actions/apiHandle";
+import { logout } from "../../actions/user";
 import { useNavigate } from "react-router-dom";
 
  function UserProfile(props){
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
     function logoutHandler(){
         logout()
         props.setUser(false)
+        navigate('/')
     }
     
     return(
