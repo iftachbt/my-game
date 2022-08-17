@@ -13,5 +13,6 @@ export function signIn(info) {
 }
 
 export async function logout() {
+  console.log("test");
   await sendGet("logout");
 }
