@@ -18,11 +18,6 @@ potions table
 +20 hp potion 9 gold
 +50 hp potion 18 gold (gray antil LVL 5)
 
- (light blue)
-+1 shield potion 4 gold
-+5 shield potion 8 gold
-+10 shield potion 14 gold (gray antil LVL 5)
-
  (light orange)
 +1 attack potion 4 gold
 +5 attack potion 8 gold
