@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import { signUp } from "./users.service.js";
-import { NotFoundError, ValidationError } from "../../error_handling/error.class.js";
+import { NotFoundError } from "../../error_handling/error.class.js";
 
 export const UsersRoute = express.Router();
 
