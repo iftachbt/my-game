@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState} from "react";
 import {
     AppBar,
@@ -41,7 +42,7 @@ const Header = (props) => {
   };
   function logoutHandler(){
     logout()
-    props.setUser(false)
+    props.setUser(null)
     navigate('/')
 }
 
