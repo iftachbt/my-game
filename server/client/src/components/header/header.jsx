@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import {
     AppBar,
     Box,
@@ -32,6 +32,7 @@ const Header = (props) => {
   function handlePageClick(event){
     const val = event.target.getAttribute('value')
     if(val === "pause") props.setHeaderState("pause")
+    handleOpenNavMenu(event)
   };
 
   const handleOpenNavMenu = (event) => {
@@ -134,8 +135,9 @@ const Header = (props) => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+                onClick={handlePageClick} 
+                value={page}
                 key={page}
-                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
