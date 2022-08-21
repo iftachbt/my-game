@@ -3,6 +3,7 @@ import style from "./startPage.module.css"
 import { useNavigate } from "react-router-dom";
 
 function StartPage(props){
+    props.setLocation("startPage")
     const navigate = useNavigate();
     
     return(

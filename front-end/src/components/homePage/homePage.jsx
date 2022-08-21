@@ -3,11 +3,11 @@ import style from "./homepage.module.css"
 import {useNavigate} from "react-router-dom";
 
 function HomePage(props){
+    props.setLocation("homePage")
     const navigate = useNavigate();
 
     function handleClick(event){
-        if(!props.auth) navigate('/' + event.target.name)
-        else navigate('/startPage')
+        navigate('/' + event.target.name)
     }
 
     return(

@@ -8,7 +8,7 @@ export function logIn(info) {
   return sendPost("logIn", info);
 }
 
-export function signIn(info) {
+export function signUp(info) {
   return sendPost("signUp", info);
 }
 

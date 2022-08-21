@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import { saveCharacter } from "../../actions/character/character";
 import { characterBuild } from "../../actions/character/character.build";
 import { SelectClass } from "./selectClass";
 // import style from "./createCharacter.module.css"
@@ -21,12 +22,15 @@ import { SelectClass } from "./selectClass";
         const value = event.target.value
         setCharacter(preValue => ({...preValue,"name":value}))
     }
-    function handleClick(event){
+    async function handleClick(event){
         console.log(event);
         const avater = characterBuild(character.name,character.class)
         setCharacter({name:"",class:""})
         props.setAvatar(avater)
         props.setDifficulty(selectDifficulty)
+        navigate("/mainGame")
+        const req = await saveCharacter(avater.toObj())
+        console.log("req",req)
     }
  
     return(

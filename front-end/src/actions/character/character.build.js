@@ -1,8 +1,8 @@
 class Character {
   constructor(name) {
     this.name = name;
-    this.Health = this.maxHealth;
     this.gold = 3;
+    this.level = 1;
   }
 
   toObj() {
@@ -11,7 +11,9 @@ class Character {
       race: this.race,
       shield: this.shield,
       ATK: this.ATK,
-      Health: `${this.Health}/${this.maxHealth}`,
+      Health: this.HP,
+      gold: this.gold,
+      level: this.level,
     };
   }
   attack(enemy) {
@@ -41,6 +43,9 @@ class Character {
   }
   gainATK(num) {
     this.ATK = this.ATK + num;
+  }
+  levelUp() {
+    this.level += 1;
   }
 }
 
