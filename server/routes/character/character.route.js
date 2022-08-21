@@ -1,5 +1,6 @@
 import express from "express";
 import { authMid } from "../users/users.auth.js";
+import { saveCharacter } from "./character.service.js";
 
 export const CharacterRoute = express.Router();
 

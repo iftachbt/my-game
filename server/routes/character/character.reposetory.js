@@ -1,6 +1,6 @@
-import { Character } from "../../mongoDB/DB";
+import { Character } from "../../mongoDB/DB.js";
 
-export function saveCharacter(stats) {
+export function save(stats) {
   const newCharacter = new Character({
     name: stats.name,
     race: stats.race,

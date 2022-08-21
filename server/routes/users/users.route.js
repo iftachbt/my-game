@@ -23,6 +23,5 @@ UsersRoute.get("/logout", (req, res) => {
 });
 
 UsersRoute.get("/user", (req, res) => {
-  console.log("/user | req.user", req.user);
   res.send(req.user);
 });
