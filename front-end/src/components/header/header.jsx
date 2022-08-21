@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
     AppBar,
     Box,
@@ -19,12 +19,20 @@ import { appBarTheme } from "./header.style";
 import { ThemeProvider } from '@mui/material/styles';
 
 
-const pages = [ 'About'];
 
 const Header = (props) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  let pages = [ 'About'];
+  if(props.location === "mainGame"){
+    pages[0] = "pause"
+  }
+  function handlePageClick(event){
+    const val = event.target.getAttribute('value')
+    if(val === "pause") props.setHeaderState("pause")
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -100,7 +108,7 @@ const Header = (props) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography  onClick={handlePageClick} value={page} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

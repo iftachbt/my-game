@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { signIn } from "../../actions/user";
+import { signUp } from "../../actions/user";
 import { useNavigate } from "react-router-dom";
 
 function SignUp(props){
@@ -16,7 +16,7 @@ function SignUp(props){
     }
     async function handleClick(event){
         event.preventDefault()
-        const res = await signIn(user)
+        const res = await signUp(user)
         console.log("res", res);
         if(res !== "err"){
             props.setUser(res);

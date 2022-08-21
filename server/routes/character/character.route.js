@@ -3,8 +3,10 @@ import { authMid } from "../users/users.auth.js";
 
 export const CharacterRoute = express.Router();
 
-CharacterRoute.get("/create", authMid, (req, res) => {
-  console.log(req.user);
-  console.log("hello");
-  res.send("");
+CharacterRoute.post("/save", (req, res) => {
+  saveCharacter(req.body);
+  res.send(req.body);
 });
+// UsersRoute.post("/signUp", (req, res) => {
+//   signUp(req, res);
+// });
