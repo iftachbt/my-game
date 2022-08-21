@@ -15,8 +15,9 @@ class Character {
     };
   }
   attack(enemy) {
-    enemy.damage(this.ATK) === "hit";
-    return enemy.Health <= 0 ? "dead" : "alive";
+    if (enemy.damage(this.ATK) === "hit") {
+      return enemy.Health <= 0 ? "dead" : "alive";
+    } else return null;
   }
   damage(dmg) {
     const chanceToHit = Math.floor(Math.random() * 21);
@@ -79,7 +80,7 @@ class Drgonborn extends Character {
     this.shield = 15;
   }
 }
-export function selectClass(name, race) {
+export function characterBuild(name, race) {
   if (race === "elf") return new Elf(name);
   if (race === "human") return new Human(name);
   if (race === "dwarf") return new Dwarf(name);

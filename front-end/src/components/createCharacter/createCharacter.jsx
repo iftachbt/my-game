@@ -1,25 +1,39 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import style from "./createCharacter.module.css"
+import { characterBuild } from "../../actions/character/character.build";
+import { SelectClass } from "./selectClass";
+// import style from "./createCharacter.module.css"
 
  function CreateCharacter(props){
     const navigate = useNavigate();
-    const [name,setName]=useState("")
+    const classchoice = ["human","elf","dwarf","dragonborn"]
+    const [character , setCharacter] = useState({
+        name:"",
+        class:"elf"
+    })
+    const [selectDifficulty , setSelectDifficulty] = useState("")
+
+    function handleDifficulty(event){
+        setSelectDifficulty(event.target.value)
+    }
 
     function handleChange(event){
         const value = event.target.value
-        setName(value)
+        setCharacter(preValue => ({...preValue,"name":value}))
     }
     function handleClick(event){
-        setName("")
+        console.log(event);
+        const avater = characterBuild(character.name,character.class)
+        setCharacter({name:"",class:""})
+        props.setAvatar(avater)
+        props.setDifficulty(selectDifficulty)
     }
  
     return(
         <div >
             <h1>hello {props.user.username}</h1>
             <button className="btn" onClick={() => navigate(-1)} >back</button>
-            <div className={style.charBox}><p onClick={() => {navigate("/")}}>home page</p></div>
-            <select name="difficulty" >
+            <select onChange={handleDifficulty} name="difficulty" >
                 <option value="" disabled selected>difficulty</option>
                 <option value="easy">easy</option>
                 <option value="medium">medium</option>
@@ -27,12 +41,13 @@ import style from "./createCharacter.module.css"
             </select>
             <div>
                 <h1>select class</h1>
-                <div className={style.charBox}><p>human</p></div>
-                <div className={style.charBox}><p>elf</p></div>
-                <div className={style.charBox}><p>dwarf</p></div>
-                <div className={style.charBox}><p>dragonborn</p></div>
+                {classchoice.map((className, index) => <SelectClass 
+                setCharacter={setCharacter}
+                 value={className}
+                 id={index}
+                 />)}
            </div>
-           <input onChange={handleChange} placeholder="avatar's name" value={name} />
+           <input onChange={handleChange} name="name" placeholder="avatar's name" value={character.name} />
            <button onClick={handleClick}>create</button>
         </div>
     )

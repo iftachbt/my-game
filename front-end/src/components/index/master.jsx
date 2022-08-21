@@ -17,9 +17,14 @@ import { fetchUser } from "../../actions/user";
 
 function Master(){
   const [user, setUser] = useState(false)
+  const [avatar, setAvatar] = useState(false)
+  const [difficulty, setDifficulty] = useState("easy")
 
   const navigate = useNavigate();
   
+  useEffect(() => {
+    console.log(avatar);
+  },[avatar])
   useEffect(() => {
     fetchUserHandler()  
     // eslint-disable-next-line 
@@ -64,6 +69,9 @@ function Master(){
             <Route path="/createCharacter" element={
             <CreateCharacter 
               user={user}
+              setAvatar={setAvatar}
+              setDifficulty={setDifficulty}
+              difficulty={difficulty}
              />} />
             <Route path="/mainGame" element={
             <MainGamePage 
