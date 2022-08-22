@@ -12,8 +12,11 @@ import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
 import Pause from "../../notes/pause/pause";
 import StartPage from "../startPage/startPage";
+import BackgroundSound from "../../sounds/sound";
 import "./master.css"
 import { fetchUser } from "../../actions/user";
+import audio from "./images/home-page-sound/Adventure-320bit.mp3";
+
 
 
 function Master(){
@@ -22,17 +25,25 @@ function Master(){
   const [difficulty, setDifficulty] = useState("easy")
   const [location, setLocation] = useState(false)
   const [headerState, setHeaderState] = useState(false)
+  const [isMute,setMute] = useState(false)
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(location !== "mainGame") setHeaderState(false)
+    if(location !== "mainGame") {
+      setHeaderState(false)
+    }
   },[location])
 
   useEffect(() => {
+    
     fetchUserHandler()  
     // eslint-disable-next-line 
   },[])
+  useEffect(() => {
+    if(!isMute){setMute(false);console.log("false");}
+    if(isMute){setMute(true);console.log("true");}
+  })
   
   const fetchUserHandler = async () => {
     if(!user){
@@ -46,6 +57,11 @@ function Master(){
     
   return(
     <div>
+        <BackgroundSound 
+        url={audio}
+        isMute={isMute}
+        setMute={setMute}
+        />
         <Header 
         user={user} 
         setUser={setUser} 
@@ -54,6 +70,8 @@ function Master(){
         />
         {headerState && <Pause 
         setHeaderState={setHeaderState}
+        isMute={isMute}
+        setMute={setMute}
         /> } 
         <Routes>
             <Route exact path="/" element={
@@ -61,6 +79,8 @@ function Master(){
               setUser ={setUser}
               user ={user}
               setLocation ={setLocation}
+              isMute={isMute}
+              setMute={setMute}
               />}
              />
             <Route path="/login" element={

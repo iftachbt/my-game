@@ -20,6 +20,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 
 
+
 const Header = (props) => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null)
@@ -118,7 +119,7 @@ const Header = (props) => {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate('/')}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
