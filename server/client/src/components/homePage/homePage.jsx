@@ -13,12 +13,14 @@ function HomePage(props){
     return(
         <div className={style.homePage}>
             <div className={style.background}></div>
-            <h1>My-Game</h1>
-            <div>
-                <button className="btn" onClick={handleClick} name="login">start</button>
-            </div>
-            <div>
-                <button className="btn" onClick={handleClick} name="sigup">SignUp</button>
+            <h1 className={style.h1}>BitaIsland</h1>
+            <div className={style.buttonContainer}>
+                <div className={style.btn_div}>
+                    <button className={style.btn} onClick={handleClick} name="login">start</button>
+                </div>
+                <div className={style.btn_div}>
+                    <button className={style.btn} onClick={handleClick} name="sigup">SignUp</button>
+                </div>
             </div>
         </div>
     )
