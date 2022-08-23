@@ -62,6 +62,8 @@ function Master(){
         setUser={setUser} 
         location={location}
         setHeaderState={setHeaderState}
+        isMute={isMute}
+        setMute={setMute}
         />
         {headerState && <Pause 
         setHeaderState={setHeaderState}
