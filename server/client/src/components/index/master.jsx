@@ -1,12 +1,13 @@
 import React, { useState,useEffect } from "react";
+import { fetchUser } from "../../actions/user";
 import {
     Routes,
     Route,
     useNavigate
   } from "react-router-dom";
 import Header from "../header/header";
-import SignUp from "../signup/signup";
-import LogIn from "../login/login";
+import SignUp from "../formFilling/signup/signup";
+import LogIn from "../formFilling/login/Login";
 import CreateCharacter from "../createCharacter/createCharacter";
 import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
@@ -14,7 +15,6 @@ import Pause from "../../notes/pause/pause";
 import StartPage from "../startPage/startPage";
 import BackgroundSound from "../../sounds/sound";
 import "./master.css"
-import { fetchUser } from "../../actions/user";
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
 
 
@@ -36,14 +36,9 @@ function Master(){
   },[location])
 
   useEffect(() => {
-    
     fetchUserHandler()  
     // eslint-disable-next-line 
   },[])
-  useEffect(() => {
-    if(!isMute){setMute(false);console.log("false");}
-    if(isMute){setMute(true);console.log("true");}
-  })
   
   const fetchUserHandler = async () => {
     if(!user){
