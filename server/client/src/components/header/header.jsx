@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
     AppBar,
     Box,
@@ -17,8 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/user";
 import { appBarTheme } from "./header.style";
 import { ThemeProvider } from '@mui/material/styles';
-
-
+import {VolumeUp,VolumeOff} from '@mui/icons-material';
 
 
 const Header = (props) => {
@@ -35,7 +34,9 @@ const Header = (props) => {
     if(val === "pause") props.setHeaderState("pause")
     handleOpenNavMenu(event)
   };
-
+  const handleMute = () =>{
+    props.setMute(!props.isMute)
+}
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -113,6 +114,13 @@ const Header = (props) => {
                   <Typography  onClick={handlePageClick} value={page} textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
+              <IconButton
+                aria-label="toggle background audio"
+                onClick={handleMute}
+                onMouseDown={handleMute}
+              >
+                {!props.isMute ? <VolumeUp /> : <VolumeOff />}
+              </IconButton>
             </Menu>
           </Box>
           <Typography
@@ -144,6 +152,13 @@ const Header = (props) => {
                 {page}
               </Button>
             ))}
+            <IconButton
+                aria-label="toggle background audio"
+                onClick={handleMute}
+                onMouseDown={handleMute}
+              >
+                {!props.isMute ? <VolumeUp /> : <VolumeOff />}
+              </IconButton>
           </Box>
 
           {props.user ?(<Box sx={{ flexGrow: 0 }}>
