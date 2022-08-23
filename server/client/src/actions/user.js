@@ -9,6 +9,7 @@ export function logIn(info) {
 }
 
 export function signUp(info) {
+  console.log("signUp", info);
   return sendPost("signUp", info);
 }
 

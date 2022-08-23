@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "./homepage.module.css"
 import {useNavigate} from "react-router-dom";
 import { soundEffect } from "../../sounds/VFXsounds";
