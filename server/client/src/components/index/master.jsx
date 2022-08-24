@@ -25,7 +25,8 @@ function Master(){
   const [difficulty, setDifficulty] = useState("easy")
   const [location, setLocation] = useState(false)
   const [headerState, setHeaderState] = useState(false)
-  const [isMute,setMute] = useState(false)
+  const [isMute,setMute] = useState(true)
+  const [countOnce,setCountOnce] = useState(0)
 
   const navigate = useNavigate();
 
@@ -78,6 +79,8 @@ function Master(){
               setLocation ={setLocation}
               isMute={isMute}
               setMute={setMute}
+              countOnce={countOnce}
+              setCountOnce={setCountOnce}
               />}
              />
             <Route path="/login" element={
