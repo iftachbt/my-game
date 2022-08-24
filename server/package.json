@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "test": "vitest --run --reporter verbose",
-    "watch": "vitest --reporter verbose"
+    "watch": "vitest --reporter verbose",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
