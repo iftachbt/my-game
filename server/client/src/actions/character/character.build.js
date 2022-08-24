@@ -16,6 +16,21 @@ class Character {
       level: this.level,
     };
   }
+  static_() {
+    return {
+      name: this.name,
+      race: this.race,
+    };
+  }
+  dynamic() {
+    return {
+      shield: this.shield,
+      ATK: this.ATK,
+      Health: this.HP,
+      gold: this.gold,
+      level: this.level,
+    };
+  }
   attack(enemy) {
     if (enemy.damage(this.ATK) === "hit") {
       return enemy.Health <= 0 ? "dead" : "alive";

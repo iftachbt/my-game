@@ -17,20 +17,24 @@ import { SelectClass } from "./selectClass";
     function handleDifficulty(event){
         setSelectDifficulty(event.target.value)
     }
-
+    
     function handleChange(event){
         const value = event.target.value
         setCharacter(preValue => ({...preValue,"name":value}))
     }
-    async function handleClick(event){
-        console.log(event);
-        const avater = characterBuild(character.name,character.class)
+    async function handleClick(){
+        const avatar = characterBuild(character.name,character.class)
         setCharacter({name:"",class:""})
-        props.setAvatar(avater)
+        console.log("avatar",props.avatar);
+        props.setAvatar({
+          static: avatar.static_(), 
+          dynamic: avatar.dynamic()
+        })
+        console.log("avatar",props.avatar);
         props.setDifficulty(selectDifficulty)
         navigate("/mainGame")
-        console.log("avater.toObj()", avater.toObj());
-        const req = await saveCharacter(avater.toObj())
+        console.log("avater.toObj()", avatar.toObj());
+        const req = await saveCharacter(avatar.toObj())
         console.log("req",req)
     }
  
