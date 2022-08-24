@@ -162,9 +162,7 @@ const Header = (props) => {
           </Box>
 
           {props.user ?(<Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="user">
-              <Button onClick={handleOpenUserMenu} sx={{ p: 1 }} color="inherit">USER</Button>
-            </Tooltip>
+              <Button onClick={handleOpenUserMenu} sx={{ p: 1 }} color="inherit">{props.user.username}</Button>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -181,10 +179,9 @@ const Header = (props) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-                <p>{props.user.username}</p>
-                <MenuItem key='Logout' onClick={logoutHandler}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
+              <MenuItem key='Logout' onClick={logoutHandler}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>) :(
             <div>

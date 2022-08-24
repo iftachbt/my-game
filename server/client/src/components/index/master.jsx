@@ -57,22 +57,23 @@ function Master(){
   return(
     <div>
         <BackgroundSound 
-        url={audio}
-        isMute={isMute}
-        setMute={setMute}
+          url={audio}
+          isMute={isMute}
+          setMute={setMute}
         />
         <Header 
-        user={user} 
-        setUser={setUser} 
-        location={location}
-        setHeaderState={setHeaderState}
-        isMute={isMute}
-        setMute={setMute}
+          user={user} 
+          setUser={setUser} 
+          location={location}
+          setHeaderState={setHeaderState}
+          isMute={isMute}
+          setMute={setMute}
         />
-        {headerState && <Pause 
-        setHeaderState={setHeaderState}
-        isMute={isMute}
-        setMute={setMute}
+        {headerState && 
+        <Pause 
+          setHeaderState={setHeaderState}
+          isMute={isMute}
+          setMute={setMute}
         /> } 
         <Routes>
             <Route exact path="/" element={

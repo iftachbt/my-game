@@ -16,25 +16,28 @@ function HomePage(props){
         navigate('/' + event.target.name)
         soundEffect(btnSound)
     }
+
     useEffect(()=>{
       if(oneTime){
         confirmAlert(optionsFn(props.setMute));
         props.setCountOnce(1)
       }
-    },)
+    })
     
-
+    const btnsOptions = [
+                <div className={style.btn_div}>
+                    <button className={style.btn} onClick={handleClick} name="login">LogIn</button>
+                </div>,
+                <div className={style.btn_div}>
+                    <button className={style.btn} onClick={handleClick} name="sigup">SignUp</button>
+                </div>
+    ]
     return(
         <div className={style.homePage}>
             <div className={style.background}></div>
             <h1 className={style.h1}>BitIsland</h1>
             <div className={style.buttonContainer}>
-                <div className={style.btn_div}>
-                    <button className={style.btn} onClick={handleClick} name="login">start</button>
-                </div>
-                <div className={style.btn_div}>
-                    <button className={style.btn} onClick={handleClick} name="sigup">SignUp</button>
-                </div>
+                {btnsOptions}
             </div>
         </div>
     )
