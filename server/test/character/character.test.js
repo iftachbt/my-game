@@ -23,7 +23,7 @@ describe("create character tests", async () => {
     expect(char[0].race).toBe(race);
   });
 
-  it("should fail on name not exist", async () => {
+  it("should fail on name  not exist", async () => {
     const res = null;
     const req = {
       body: {
