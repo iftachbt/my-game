@@ -1,17 +1,27 @@
-import React from "react";
+import React ,{ useEffect }from "react";
 import style from "./homepage.module.css"
 import {useNavigate} from "react-router-dom";
 import { soundEffect } from "../../sounds/VFXsounds";
 import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
+import { confirmAlert } from 'react-confirm-alert'; 
+import { optionsFn } from '../../sounds/confirmAlert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 function HomePage(props){
     props.setLocation("homePage")
     const navigate = useNavigate();
+    const oneTime = props.countOnce === 0
 
     function handleClick(event){
         navigate('/' + event.target.name)
         soundEffect(btnSound)
     }
+    useEffect(()=>{
+      if(oneTime){
+        confirmAlert(optionsFn(props.setMute));
+        props.setCountOnce(1)
+      }
+    },)
     
 
     return(
