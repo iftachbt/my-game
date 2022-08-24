@@ -4,6 +4,7 @@ import { signUp } from "./users.service.js";
 import { NotFoundError } from "../../error_handling/error.class.js";
 
 export const UsersRoute = express.Router();
+export const UserPrefix = "/user";
 
 UsersRoute.post("/signUp", (req, res) => {
   signUp(req, res);
@@ -13,6 +14,7 @@ UsersRoute.post("/logIn", passport.authenticate("local"), (req, res) => {
   if (!req.user) throw new NotFoundError("not found user");
   res.send(req.user);
 });
+
 UsersRoute.get("/logout", (req, res) => {
   req.logout(function (err) {
     if (err) {

@@ -3,6 +3,7 @@ import { authMid } from "../users/users.auth.js";
 import { saveCharacter } from "./character.service.js";
 
 export const CharacterRoute = express.Router();
+export const CharacterPrefix = "/character";
 
 CharacterRoute.post("/save", (req, res) => {
   saveCharacter(req.body);
