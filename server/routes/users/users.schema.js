@@ -15,5 +15,5 @@ export const usersSchema = {
 
   password: String,
 
-  id: Number,
+  id: String,
 };

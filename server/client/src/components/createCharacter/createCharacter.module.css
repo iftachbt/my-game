@@ -3,3 +3,7 @@
     width: 100px;
     background-color: bisque;
 }
+.raceList{
+    display: flex;
+    justify-content: space-evenly;
+}
