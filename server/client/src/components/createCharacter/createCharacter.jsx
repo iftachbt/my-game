@@ -17,7 +17,7 @@ import { SelectClass } from "./selectClass";
     function handleDifficulty(event){
         setSelectDifficulty(event.target.value)
     }
-
+    
     function handleChange(event){
         const value = event.target.value
         setCharacter(preValue => ({...preValue,"name":value}))
@@ -26,7 +26,10 @@ import { SelectClass } from "./selectClass";
         console.log(event);
         const avater = characterBuild(character.name,character.class)
         setCharacter({name:"",class:""})
-        props.setAvatar(avater)
+        props.setAvatar({
+          "static":avater.static_(), 
+          "dynamic":avater.dynamic()
+        })
         props.setDifficulty(selectDifficulty)
         navigate("/mainGame")
         console.log("avater.toObj()", avater.toObj());

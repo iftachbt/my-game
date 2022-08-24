@@ -9,7 +9,7 @@ function Levels(props){
   
   
   switch(props.componentLVL){
-     case 1: return(
+    case 1: return(
       <div>
         <LevelOne 
       setComponentLVL={props.setComponentLVL}
