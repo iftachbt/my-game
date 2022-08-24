@@ -22,8 +22,8 @@ import audio from "./images/home-page-sound/Adventure-320bit.mp3";
 function Master(){
   const [user, setUser] = useState(false)
   const [avatar, setAvatar] = useState({
-    static: false,
-    dynamic: false
+    static: {},
+    dynamic: {}
   })
   const [difficulty, setDifficulty] = useState("easy")
   const [location, setLocation] = useState(false)
@@ -105,16 +105,16 @@ function Master(){
             <CreateCharacter 
               user={user}
               setAvatar={setAvatar}
-              avatar ={avatar}
+              avatar={avatar}
               setDifficulty={setDifficulty}
               difficulty={difficulty}
              />} />
-            <Route path="/mainGame/*" element={
+            <Route path="/mainGame" element={
             <MainGamePage 
               user={user}
               setLocation ={setLocation}
               setAvatar={setAvatar}
-              avatar ={avatar}
+              avatar={avatar}
               headerState ={headerState}
              />} />
         </Routes>
