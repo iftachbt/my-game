@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { signUp } from "../../../actions/user";
+import { signUp,logIn } from "../../../actions/user";
 import { useNavigate } from "react-router-dom";
 import { Formik,Form } from 'formik';
 import { Grid,IconButton,InputAdornment } from '@mui/material';
@@ -16,8 +16,6 @@ function SignUp(props){
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   const navigate = useNavigate();
-
-  useEffect(() => {if(props.user) navigate("/startPage")})
 
   const validationSchema=yup.object().shape({
     fname: yup
@@ -50,8 +48,11 @@ function SignUp(props){
     const res = await signUp(values)
     console.log("res", res);
     if(res !== "err"){
-        props.setUser(res);
+      const resLogin = await logIn({username: values.userName , password: values.password})
+      if(resLogin !== "err") {
+        props.setUser(resLogin);
         navigate('/startPage')
+      }
     }
     else console.log(`res ${res}: something went wrong!`);
   }

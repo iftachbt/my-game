@@ -44,7 +44,7 @@ function Master(){
   const fetchUserHandler = async () => {
     if(!user){
       const user_ = await fetchUser()
-      if(!user_ || user_ === "") navigate("/")
+      if(!user_ || user_ === ""||user_ === "err") navigate("/")
       else{
         setUser(user_)
       }
