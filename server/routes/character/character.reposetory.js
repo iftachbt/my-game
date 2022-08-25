@@ -1,14 +1,4 @@
 import { Character } from "../../mongoDB/DB.js";
+import { v4 as uuid } from "uuid";
 
-export function save(stats) {
-  const newCharacter = new Character({
-    name: stats.name,
-    race: stats.race,
-    shield: stats.shield,
-    ATK: stats.ATK,
-    Health: stats.HP,
-    gold: stats.gold,
-    level: stats.level,
-  });
-  newCharacter.save();
-}
+export const create = (character, userId) => Character.insertMany([{ ...character, userId, id: uuid() }]);

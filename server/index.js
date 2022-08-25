@@ -5,7 +5,6 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
 import { connectRoutes } from "./routes/index.routes.js";
 import { connectDB } from "./mongoDB/DB.js";
 import { sessionConfig } from "./routes/users/users.auth.js";
@@ -26,4 +25,4 @@ const port = process.env.PORT || 4000;
 
 connectRoutes(app);
 
-connectDB().then(() => app.listen(port, () => console.log(`Listening on port ${port}`)));
+connectDB(process.env.DB_URL).then(() => app.listen(port, () => console.log(`Listening on port ${port}`)));

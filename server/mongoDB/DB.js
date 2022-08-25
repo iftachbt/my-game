@@ -8,6 +8,8 @@ export const Character = mongoose.model("character", new mongoose.Schema(charact
 export const User = mongoose.model("user", new mongoose.Schema(usersSchema).plugin(passportLocalMongoose));
 security(User);
 
-export const connectDB = () => {
-  return mongoose.connect("mongodb://localhost:27017/gameDB", { useNewUrlParser: true });
+export const connectDB = (dbUrl) => mongoose.connect(dbUrl, { useNewUrlParser: true });
+
+export const closeConnection = (ms) => {
+  ms.connection.close();
 };

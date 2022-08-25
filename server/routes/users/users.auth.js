@@ -3,6 +3,7 @@ import passport from "passport";
 import { User } from "../../mongoDB/DB.js";
 import { UnAuthriseError } from "../../error_handling/error.class.js";
 import MongoStore from "connect-mongo";
+import { v4 as uuid } from "uuid";
 
 export function security(User) {
   return (
@@ -23,7 +24,7 @@ export function sessionConfig() {
 export function registerUser(user, req, res) {
   const { userName, fname, lname, email, password } = user;
   console.log("user", user);
-  return User.register({ username: userName, fname, lname, email }, password, (err, user) => {
+  return User.register({ username: userName, fname, lname, email, id: uuid() }, password, (err, user) => {
     if (err) throw new UnAuthriseError("error in registerAuthentication");
     res.send(user);
     passport.authenticate("local")(req, res, function () {});

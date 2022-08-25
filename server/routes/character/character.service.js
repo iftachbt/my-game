@@ -1,3 +1,3 @@
-import { save } from "./character.reposetory.js";
+import { create as createRep } from "./character.reposetory.js";
 
-export const saveCharacter = (info) => save(info);
+export const create = (character, userId) => createRep(character, userId);

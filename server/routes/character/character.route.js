@@ -1,14 +1,12 @@
 import express from "express";
 import { authMid } from "../users/users.auth.js";
-import { saveCharacter } from "./character.service.js";
+import { create } from "./character.service.js";
+import { characterCreationValidation } from "./character.validation.js";
 
 export const CharacterRoute = express.Router();
 export const CharacterPrefix = "/character";
 
-CharacterRoute.post("/save", (req, res) => {
-  saveCharacter(req.body);
+CharacterRoute.post("/create", authMid, characterCreationValidation, (req, res) => {
+  create(req.body, req.user.id);
   res.send(req.body);
 });
-// UsersRoute.post("/signUp", (req, res) => {
-//   signUp(req, res);
-// });
