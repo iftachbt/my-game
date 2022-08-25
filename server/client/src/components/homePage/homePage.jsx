@@ -23,21 +23,25 @@ function HomePage(props){
         props.setCountOnce(1)
       }
     })
-    
     const btnsOptions = [
-                <div className={style.btn_div}>
-                    <button className={style.btn} onClick={handleClick} name="login">LogIn</button>
-                </div>,
-                <div className={style.btn_div}>
-                    <button className={style.btn} onClick={handleClick} name="sigup">SignUp</button>
-                </div>
+      <div className={style.btn_div}>
+          <button className={style.btn} onClick={handleClick} name="login">LogIn</button>
+      </div>,
+      <div className={style.btn_div}>
+          <button className={style.btn} onClick={handleClick} name="sigup">SignUp</button>
+      </div>
     ]
     return(
         <div className={style.homePage}>
             <div className={style.background}></div>
             <h1 className={style.h1}>BitIsland</h1>
             <div className={style.buttonContainer}>
-                {btnsOptions}
+              {(props.user)
+                ?<div className={style.btn_div}>
+                  <button className={style.btn} onClick={handleClick} name="startPage">Start</button>
+                </div>
+                :btnsOptions
+              }
             </div>
         </div>
     )

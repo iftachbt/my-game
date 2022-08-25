@@ -19,11 +19,12 @@ import style from "./createCharacter.module.css"
     }
 
     async function handleClick(){
-        setCharacter({name:"",race:""})
-        console.log("character", character);
-        const req = await saveCharacter(character)
-        console.log("req",req)
-        navigate("/mainGame")
+      console.log("character", character);
+      const req = await saveCharacter(character)
+      console.log("req",req)
+      req !== "err"
+      ?navigate("/mainGame")
+      :setCharacter({name:"",race:""})
     }
  
     return(

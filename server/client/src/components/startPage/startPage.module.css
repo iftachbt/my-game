@@ -1,0 +1,13 @@
+.body{
+  text-align: center;
+}
+.characterGrid{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 400px;
+  background-color: azure;
+  border-radius: 8px;
+  margin: 10px auto;
+  border: solid black 1px;
+}
