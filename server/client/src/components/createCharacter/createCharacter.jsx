@@ -23,7 +23,7 @@ import style from "./createCharacter.module.css"
       const req = await saveCharacter(character)
       console.log("req",req)
       req !== "err"
-      ?navigate("/mainGame")
+      ?navigate("/startPage")
       :setCharacter({name:"",race:""})
     }
  
