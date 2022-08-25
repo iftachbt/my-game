@@ -24,15 +24,23 @@ function StartPage(props){
 
     const displayCharacterList =() =>(
       characterList.map(character => (
-        <div 
-        className={style.characterGrid}
-        onClick={() => chooseCharacter(character)}
-        >
+        <div> 
+          <div
+          className={style.characterGrid}
+          onClick={() => chooseCharacter(character)}
+          >
           <div>
-            {character.name}
-          </div>
-          <div>
-            {character.race}
+              {character.name}
+            </div>
+            <div>
+              {character.race}
+            </div>
+            <div>
+              level
+            </div>
+            <div className={style.tooltip}>
+                info
+            </div>
           </div>
         </div>
      ))
@@ -57,12 +65,3 @@ function StartPage(props){
 }
 export default StartPage
 
-// console.log("character",character);
-//         console.log("character.name",character.name);
-//         console.log("character.race",character.race);
-//         return(
-//         <div className={style.characterGrid}>
-//           {character.name}{character.race}
-//         </div>
-//         )
-//       }
