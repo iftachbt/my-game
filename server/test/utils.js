@@ -16,3 +16,4 @@ export const dbMockInit = (beforeAll, beforeEach, afterEach, afterAll) => {
 };
 
 export const randomString = () => (Math.random() + 1).toString(36).substring(7);
+export const randomNumber = () => Math.round(Math.random() * 20);

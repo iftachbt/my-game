@@ -1,6 +1,6 @@
 import { UsersRoute, UserPrefix } from "./users/users.route.js";
 import { CharacterRoute, CharacterPrefix } from "./character/character.route.js";
-import { gameSessionPrefix, gameSessionRoute } from "./gameSessions/session.route";
+import { gameSessionPrefix, gameSessionRoute } from "./gameSessions/session.route.js";
 import { errorMid } from "../error_handling/error.handling.js";
 
 export const connectRoutes = (app) => {

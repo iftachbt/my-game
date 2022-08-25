@@ -1,51 +1,60 @@
 import { it, expect, describe, beforeAll, beforeEach, afterEach, afterAll } from "vitest";
-import { Character } from "../../mongoDB/DB.js";
-import { create } from "../../routes/character/character.service.js";
-import { characterCreationValidation } from "../../routes/character/character.validation.js";
-import { dbMockInit, randomString } from "../utils.js";
+import { GameSession } from "../../mongoDB/DB.js";
+import { create } from "../../routes/gameSessions/session.service.js";
+import { gameSessionCreationValidation } from "../../routes/gameSessions/session.validation.js";
+import { dbMockInit, randomString, randomNumber } from "../utils.js";
 
 dbMockInit(beforeAll, beforeEach, afterEach, afterAll);
+afterEach(async () => {
+  await GameSession.deleteMany({});
+});
 
-describe("create character tests", async () => {
-  it("should create new character", async () => {
-    const userId = randomString();
+describe("create gameSession tests", async () => {
+  it("should create new gameSession", async () => {
+    const characterId = randomString();
     const name = randomString();
-    const race = randomString();
+    const ATK = randomNumber();
+    const shield = randomNumber();
+    const HP = randomNumber();
+    const gold = randomNumber();
+    const level = randomNumber();
+    const kills = randomNumber();
+    const deaths = randomNumber();
 
-    await create({ race, name }, userId);
+    await create({ name, ATK, shield, HP, gold, level, kills, deaths }, characterId);
 
-    const char = await Character.find({});
+    const session = await GameSession.find({});
 
-    expect(char[0]).toBeDefined();
-    expect(char[0].id).toBeDefined();
-    expect(char[0].name).toBe(name);
-    expect(char[0].userId).toBe(userId);
-    expect(char[0].race).toBe(race);
+    expect(session[0]).toBeDefined();
+    expect(session[0].id).toBeDefined();
+    expect(session[0].name).toBe(name);
+    expect(session[0].characterId).toBe(characterId);
+    expect(session[0].ATK).toBe(ATK);
+    expect(session[0].shield).toBe(shield);
+    expect(session[0].HP).toBe(HP);
+    expect(session[0].gold).toBe(gold);
+    expect(session[0].level).toBe(level);
+    expect(session[0].kills).toBe(kills);
+    expect(session[0].deaths).toBe(deaths);
   });
 
   it("should fail on name  not exist", async () => {
     const res = null;
     const req = {
       body: {
-        race: randomString(),
+        characterId: randomString(),
+        ATK: randomNumber(),
+        shield: randomNumber(),
+        HP: randomNumber(),
+        gold: randomNumber(),
+        level: randomNumber(),
+        kills: randomNumber(),
+        deaths: randomNumber(),
       },
     };
 
-    characterCreationValidation(req, res, (err) => {
+    gameSessionCreationValidation(req, res, (err) => {
       expect(err.message).toBe("name is require");
-    });
-  });
-
-  it("should fail on race not exist", async () => {
-    const res = null;
-    const req = {
-      body: {
-        name: randomString(),
-      },
-    };
-
-    characterCreationValidation(req, res, (err) => {
-      expect(err.message).toBe("race is require");
     });
   });
 });

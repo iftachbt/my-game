@@ -1,6 +1,6 @@
 import express from "express";
-import { create, fetchById } from "./session.service";
-import { gameSessionCreationValidation } from "../utils/validation";
+import { create, fetchById } from "./session.service.js";
+import { gameSessionCreationValidation } from "./session.validation.js";
 
 export const gameSessionRoute = express.Router();
 export const gameSessionPrefix = "/gameSession";
