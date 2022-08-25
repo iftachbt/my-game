@@ -9,9 +9,13 @@ function StartPage(props){
     const navigate = useNavigate();
 
     useEffect(() => {
-      const findCharacterList =() => fetchCharacter().then(res => setCharacterList(res))
+      const findCharacterList =() => fetchCharacter().then(res => {
+        if(res.length===0) navigate('/createCharacter')
+        else setCharacterList(res)
+      })
       findCharacterList()
     },[])
+   
     function chooseCharacter(character){
       props.setCharacter(character)
     }
