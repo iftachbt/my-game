@@ -1,0 +1,27 @@
+.body{
+  text-align: center;
+  background-color: #00000059;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+.formContainer{
+  position: relative;
+  top: 30%;
+  display: flex;
+  width: 400px;
+  background-color: azure;
+  border-radius: 8px;
+  margin: 10px auto;
+  border: solid black 1px;
+  justify-content: center;
+  flex-direction: column;
+}
+.btn{
+  
+}
+.btn:hover{
+
+}
