@@ -89,6 +89,6 @@ export function characterBuild(name, race) {
   if (race === "elf") return new Elf(name);
   if (race === "human") return new Human(name);
   if (race === "dwarf") return new Dwarf(name);
-  if (race === "drgonborn") return new Drgonborn(name);
+  if (race === "dragonborn") return new Drgonborn(name);
   else return null;
 }
