@@ -4,7 +4,8 @@ import style from "./createCharacter.module.css"
 export function SelectClass(props){
 
     function handleClick(){
-        props.setCharacter(preValue => ({...preValue, "race": props.value}))
+        props.setRace(props.value)
+        console.log(props.race);
     }
     return (
     <div className={style.charBox} onClick={handleClick} key={props.id}>
