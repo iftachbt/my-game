@@ -18,7 +18,7 @@ export async function sendPost(route, body) {
 }
 
 export async function sendGet(route) {
-  console.log(URL + route);
+  console.log("sendGet: ", URL + route);
   try {
     const res = await axios.get(URL + route, {
       headers: { "Content-Type": "application/json" },

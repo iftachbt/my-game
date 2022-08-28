@@ -10,7 +10,7 @@ class Character {
       name: this.name,
       shield: this.shield,
       ATK: this.ATK,
-      Health: this.HP,
+      HP: this.HP,
       gold: this.gold,
       level: this.level,
     };
