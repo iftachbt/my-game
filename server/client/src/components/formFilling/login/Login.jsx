@@ -43,7 +43,8 @@ function LogIn(props){
       else console.log(`res ${res}: could not found`);
   }
   return(
-      <div>
+      <div className={style.body}>
+      <div className={style.main_container}>
         <div className={style.container}>
           <h1>Login</h1>
           <Formik
@@ -88,6 +89,7 @@ function LogIn(props){
               </Grid>
             </Form>
           </Formik>
+        </div>
         </div>
       </div>
   )

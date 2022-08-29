@@ -59,7 +59,8 @@ function SignUp(props){
   }
 
   return(
-      <div>
+    <div className={style.body}>
+      <div className={style.main_container}>
         <div className={style.container}>
           <h1>register</h1>
           <Formik
@@ -121,6 +122,7 @@ function SignUp(props){
           </Formik>
         </div>
       </div>
+    </div>
   )
 }
 export default SignUp
