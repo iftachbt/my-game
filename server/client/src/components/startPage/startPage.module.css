@@ -1,12 +1,33 @@
 .body{
-  text-align: center;
+  background-image: url("./images/background1.gif");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}
+.h1{
+  margin: 0 auto;
+  width: fit-content;
+  color: #ffffff;
+  font-family: Georgia  
+}
+.mainContiner{
+  position: relative;
+  top: 100px;
+  height: fit-content;
+}
+.characterList{
+  
 }
 .characterGrid{
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   width: 400px;
-  background-color: azure;
+  height: 30px;
+  background-color: rgba(199, 222, 222, 0.54);
   border-radius: 8px;
   margin: 10px auto;
   border: solid black 1px;
@@ -15,6 +36,7 @@
   visibility: hidden;
   position: absolute;
   right: 50px;
+  top:5rem;
   background-color: rgba(0, 0, 0, 0.519);
   margin: 0;
   width: 300px;
@@ -23,4 +45,38 @@
 }
 .characterGrid:hover .tooltip{
   visibility: visible;
+}
+.buttonContainer{
+  display: flex;
+  width: 30%;
+  margin: 0 auto;
+  position: relative;
+  top: 4rem;
+}
+.btn_div{
+  background-image: url("../homePage/style.helper/images/redbtn.png");
+  background-repeat: round;
+  width: 11rem;
+  height: 4rem;
+  margin: 0 auto;
+}
+.btn{
+  background-color: #ffffff00;
+  border-width: 0;
+  position: relative;
+  top: 15px;
+  font-size: initial;
+  color: #292826;
+  width: 150px;
+  height: 31px;
+  font-family: Georgia
+  
+}
+.btn:hover {
+  -webkit-box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68); 
+  box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68);
+  color: #f7c500;
+}
+.sessionInfo{
+  
 }

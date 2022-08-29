@@ -3,6 +3,7 @@ import style from "./startPage.module.css"
 import { useNavigate } from "react-router-dom";
 import { fetchCharacter } from "../../actions/character/character";
 import { fetchSessionById } from "../../actions/gameSession/gameSession";
+import { infoToster } from "../../actions/toastAlert";
 import CreateSession from "../createSession/createSession";
 import SessionInfo from "./sessionInfo";
 
@@ -43,6 +44,10 @@ import SessionInfo from "./sessionInfo";
     const  startGame = () =>{
       (props.characterSession && props.character) && navigate("/mainGame")
     }
+    function newCharacterHandler(){
+      if(characterList.length >= 10) infoToster("10 is the max characters")
+      else navigate('/createCharacter')
+    }
 
     const displayCharacterList =() =>(
       characterList.map((character) => {
@@ -76,7 +81,7 @@ import SessionInfo from "./sessionInfo";
     )
       
     return(
-      <div>
+      <div className={style.body}>
         <div>
         {(noSession && props.character) && <CreateSession 
         setNoSession={setNoSession}
@@ -85,21 +90,22 @@ import SessionInfo from "./sessionInfo";
         setCharacterSession={props.setCharacterSession}
         />}
         </div>
-        <div className={style.body}>
-            <h1>choose character</h1>
+          <div className={style.mainContiner}>
+            <h1 className={style.h1} >choose character</h1>
             <div>
-                <div>
-                    <button onClick={() => navigate('/createCharacter')} >new character</button>
-                </div>
-                <div>
+                <div className={style.characterList}>
                   {displayCharacterList()}
                 </div>
-                <div>
-                    <button 
-                    onClick={() => !props.characterSession 
-                    ?setNoSession(true)
-                    :startGame()}
-                    >PLAY!</button>
+                <div className={style.buttonContainer}>
+                  <div className={style.btn_div}>
+                    <button className={style.btn} onClick={newCharacterHandler}>new character</button>
+                  </div>  
+                  <div className={style.btn_div}>
+                    <button className={style.btn} onClick={() => !props.characterSession 
+                  ?setNoSession(true)
+                  :startGame()}
+                  >PLAY!</button>
+                  </div>
                 </div>
             </div>
         </div>
