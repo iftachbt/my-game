@@ -13,8 +13,6 @@ import style from "./createCharacter.module.css";
 
 function CreateCharacter(props){
 
- 
-
   const raceList = ["human","elf","dwarf","dragonborn"]
     const [race , setRace] = useState("elf")
   const navigate = useNavigate();
