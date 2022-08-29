@@ -7,9 +7,13 @@ import Submit from "../formFilling/submit.btn";
 import { useNavigate } from "react-router-dom";
 import { saveCharacter } from "../../actions/character/character";
 import { SelectClass } from "./selectClass";
+import { awaitToast } from "../../actions/toastAlert";
 import style from "./createCharacter.module.css";
 
+
 function CreateCharacter(props){
+
+ 
 
   const raceList = ["human","elf","dwarf","dragonborn"]
     const [race , setRace] = useState("elf")
@@ -23,7 +27,7 @@ function CreateCharacter(props){
   })
   async function handleClick(name){
     const character = {...name,race: race}
-    const req = await saveCharacter(character)
+    const req = await awaitToast(saveCharacter(character),"creating avater")
     console.log("req",req)
     req !== "err"
     ?navigate("/startPage")
