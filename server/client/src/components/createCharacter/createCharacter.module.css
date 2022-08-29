@@ -1,9 +1,107 @@
+.background{
+  background-image: url("./images/backgrond3.gif");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+}
+.human{
+    height: 150px;
+    width: 150px;
+    background-image: url("./images/human.jpg");
+    background-repeat: round;
+    border-radius: 50%;
+}
+.elf{
+    height: 150px;
+    width: 150px;
+    background-image: url("./images/elf.jpg");
+    background-repeat: round;
+    border-radius: 50%;
+}
+.dragonborn{
+    height: 150px;
+    width: 150px;
+    background-image: url("./images/dragonborn.jpg");
+    background-repeat: round;
+    border-radius: 50%;
+}
+.dwarf{
+    height: 150px;
+    width: 150px;
+    background-image: url("./images/dwarf.jpg");
+    background-repeat: round;
+    border-radius: 50%;
+}
 .charBox{
-    height: 100px;
-    width: 100px;
-    background-color: bisque;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: rgba(240, 248, 255, 0);
+}
+.charBox:hover{
+  box-shadow: 1px 1px 20px 11px #000000;
+}
+.charBox_select{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: rgba(240, 248, 255, 0);
+  box-shadow: inset 0 0 50px 8px  #b3a41d;
+}
+.charBox_label{
+  color: #ffffff;
+  font-family: Georgia  
 }
 .raceList{
     display: flex;
     justify-content: space-evenly;
+    flex-direction: row;
+    width: 70%;
+    margin: 0 auto;
 }
+.h1{
+  margin: 0 auto;
+  width: fit-content;
+  color: #ffffff;
+  font-family: Georgia  
+}
+.mainContiner{
+  position: relative;
+  top: 100px;
+  height: fit-content;
+}
+.grid{
+  position: absolute;
+  top: 230px;
+  right: 42%;
+}
+.btn_div{
+  background-image: url("./images/blackbtn.png");
+  background-repeat: round;
+  width: 11rem;
+  height: 4rem;
+  margin: 0 auto;
+  position: relative;
+  top: 140px;
+}
+.btn{
+  background-color: #ffffff00;
+  border-width: 0;
+  position: relative;
+  top: 15px;
+  font-size: initial;
+  color: #ffffff;
+  width: 150px;
+  height: 31px;
+  font-family: Georgia
+}
+.btn:hover {
+  box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68);
+  color: #f7c500;
+}
+
+  /* background-color: #996220; */
+

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik,Form } from 'formik';
-import { Grid } from '@mui/material';
+import { Grid,Button } from '@mui/material';
 import * as yup from 'yup';
 import TextField  from '../formFilling/TextField.form';
 import Submit from "../formFilling/submit.btn";
@@ -9,7 +9,8 @@ import { saveCharacter } from "../../actions/character/character";
 import { SelectClass } from "./selectClass";
 import { awaitToast } from "../../actions/toastAlert";
 import style from "./createCharacter.module.css";
-
+import { ThemeProvider } from '@mui/material/styles';
+import { Btn,GridBackground } from './create.style';
 
 function CreateCharacter(props){
 
@@ -31,12 +32,12 @@ function CreateCharacter(props){
     ?navigate("/startPage")
     :setRace("elf")
   }
+  
   return(
-      <div>
-        <div >
-          <h1>Login</h1>
+      <div className={style.background}>
+        <div className={style.mainContiner}>
             <div>
-                <h1>select race</h1>
+                <h1 className={style.h1}>select race</h1>
                 <div className={style.raceList}>
                     {raceList.map((className, index) => <SelectClass 
                     setRace={setRace}
@@ -53,14 +54,21 @@ function CreateCharacter(props){
           >            
             <Form>
             <Grid container spacing={4}>
-                <Grid item xs={6}>
+              <div className={style.grid}>
+              <ThemeProvider theme={GridBackground}>
+                <Grid item xs={12} >
                   <TextField 
                     name="name"
                     label="character name"
+                    color="primary"
                   />
                 </Grid>
+                </ThemeProvider>
+              </div>
                 <Grid item xs={12}>
-                  <Submit>submit</Submit>
+                <div className={style.btn_div}>
+                   <button className={style.btn} type="submit">Create</button>
+                </div>
                 </Grid>
               </Grid>
             </Form>

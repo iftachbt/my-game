@@ -11,9 +11,10 @@ function ButtonWrapper({children,...otherProps}){
   }
 
   const configButton ={
+    ...otherProps,
     onClick: handleSubmit,
     color: "primary",
-    variant: "contained"
+    variant: "contained",
   }
 
   return(
