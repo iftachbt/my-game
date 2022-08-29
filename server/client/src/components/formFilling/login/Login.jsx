@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import {Visibility,VisibilityOff} from '@mui/icons-material';
+import {awaitToast} from '../../../actions/toastAlert';
 import style from './login.module.css';
 
 function LogIn(props){
@@ -34,7 +35,7 @@ function LogIn(props){
 
   async function handleClick(values){
     console.log(values);
-      const res = await logIn(values)
+      const res = await awaitToast(logIn(values),"logged in")
       if(res !== "err") {
           props.setUser(res);
           navigate('/startPage')

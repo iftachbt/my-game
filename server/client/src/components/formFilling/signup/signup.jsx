@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import style from "./signup.module.css";
+import {awaitToast} from '../../../actions/toastAlert';
 
 function SignUp(props){
 
@@ -45,7 +46,7 @@ function SignUp(props){
 
   async function handleClick(values){
     console.log(values);
-    const res = await signUp(values)
+    const res = await awaitToast(signUp(values),"signUp")
     console.log("res", res);
     if(res !== "err"){
       const resLogin = await logIn({username: values.userName , password: values.password})

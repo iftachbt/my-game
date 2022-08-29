@@ -16,6 +16,8 @@ import StartPage from "../startPage/startPage";
 import BackgroundSound from "../../sounds/sound";
 import "./master.css"
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -53,6 +55,7 @@ function Master(){
     
   return(
     <div>
+        <ToastContainer />
         <BackgroundSound 
           url={audio}
           isMute={isMute}
