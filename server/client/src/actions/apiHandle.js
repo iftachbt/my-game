@@ -15,9 +15,9 @@ export async function sendPost(route, body) {
     return "err";
   }
 }
-export async function sendDelete(route, body) {
+export async function sendDelete(route) {
   try {
-    const res = await axios.post(URL + route, body, {
+    const res = await axios.delete(URL + route, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });

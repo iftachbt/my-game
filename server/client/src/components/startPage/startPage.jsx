@@ -1,24 +1,26 @@
 import React, { useEffect,useState }from "react";
 import style from "./startPage.module.css"
 import { useNavigate } from "react-router-dom";
-import { fetchCharacter } from "../../actions/character/character";
+import { fetchCharacter,deleteCharacter } from "../../actions/character/character";
 import { fetchSessionById } from "../../actions/gameSession/gameSession";
 import { infoToster } from "../../actions/toastAlert";
 import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
 import { soundEffect } from "../../sounds/VFXsounds";
 import CreateSession from "../createSession/createSession";
 import SessionInfo from "./sessionInfo";
-import { Grid } from '@mui/material';
+import { Grid,IconButton } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
  function StartPage(props){
   const [characterList,setCharacterList] = useState([])
   const [noSession,setNoSession] = useState(false)
+  const [deleted,setDeleted] = useState(false)
     props.setLocation("startPage")
     const navigate = useNavigate();
 
     useEffect(() => {
       fetchCharacterHandler()
-    },[])
+    },[deleted])
 
     useEffect(() => console.log(noSession),["noSession",noSession])
 
@@ -34,6 +36,7 @@ import { Grid } from '@mui/material';
     }
     const  startGame = () =>{
       (props.characterSession && props.character) && navigate("/mainGame")
+      soundEffect(btnSound)
     }
     function newCharacterHandler(){
       if(characterList.length >= 10) infoToster("10 is the max characters")
@@ -41,6 +44,10 @@ import { Grid } from '@mui/material';
         navigate('/createCharacter')
         soundEffect(btnSound)
       }
+    }
+    async function handleDelete(characterId){
+      const res = await deleteCharacter(characterId)
+      if(res.acknowledged) setDeleted(!deleted)
     }
 
     const displayCharacterList =() =>(
@@ -52,6 +59,7 @@ import { Grid } from '@mui/material';
           onClick={() => chooseCharacter(character)}
           className={[style.characterGrid, props.character.id === id ?  style.charItemSelected: null].join(" ")}
           >
+            <div className={style.values}>
             <div className={style.itemValue}>
               {name}
             </div>
@@ -61,6 +69,12 @@ import { Grid } from '@mui/material';
             <div className={style.itemValue}>
               level: {session ?session.level :1}
             </div>
+            </div>
+                <IconButton
+                  onClick={() => handleDelete(id)}
+                >
+                  <DeleteOutlineIcon />
+                </IconButton>
             <div className={style.tooltip}>
               {session 
                 ?<SessionInfo
