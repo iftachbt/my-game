@@ -1,7 +1,8 @@
 import React from "react";
+import style from "./startPage.module.css"
 
  function SessionInfo(props){
-  return <div >
+  return <div className={style.sessionInfo}>
             <div >
             <h1>{props.res.name}</h1>
             <div>
