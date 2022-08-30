@@ -10,6 +10,8 @@ import { awaitToast } from "../../actions/toastAlert";
 import style from "./createCharacter.module.css";
 import { ThemeProvider } from '@mui/material/styles';
 import {GridBackground } from './create.style';
+import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
+import { soundEffect } from "../../sounds/VFXsounds";
 
 function CreateCharacter(props){
 
@@ -29,6 +31,7 @@ function CreateCharacter(props){
     req !== "err"
     ?navigate("/startPage")
     :setRace("elf")
+    soundEffect(btnSound)
   }
   
   return(
@@ -64,8 +67,10 @@ function CreateCharacter(props){
                 </ThemeProvider>
               </div>
                 <Grid item xs={12}>
-                <div className={style.btn_div}>
-                   <button className={style.btn} type="submit">Create</button>
+                  <div className={style.btn_div}>
+                  <p className={style.p}>Create</p>
+                  <div className={style.btn} ></div>
+                  <button className={style.push} type="submit"></button>
                 </div>
                 </Grid>
               </Grid>

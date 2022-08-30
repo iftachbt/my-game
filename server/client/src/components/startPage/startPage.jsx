@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { fetchCharacter } from "../../actions/character/character";
 import { fetchSessionById } from "../../actions/gameSession/gameSession";
 import { infoToster } from "../../actions/toastAlert";
+import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
+import { soundEffect } from "../../sounds/VFXsounds";
 import CreateSession from "../createSession/createSession";
 import SessionInfo from "./sessionInfo";
 import { Grid } from '@mui/material';
 
  function StartPage(props){
   const [characterList,setCharacterList] = useState([])
-  const [userSessions,setUserSessions] = useState([])
   const [noSession,setNoSession] = useState(false)
     props.setLocation("startPage")
     const navigate = useNavigate();
@@ -27,8 +28,7 @@ import { Grid } from '@mui/material';
       if(charList.length === 0) return navigate('/createCharacter')
       setCharacterList(charList)
     }
-   
-    function chooseCharacter(character,session){
+    function chooseCharacter(character){
       props.setCharacter(character)
       props.setCharacterSession(character.session)
     }
@@ -37,7 +37,10 @@ import { Grid } from '@mui/material';
     }
     function newCharacterHandler(){
       if(characterList.length >= 10) infoToster("10 is the max characters")
-      else navigate('/createCharacter')
+      else {
+        navigate('/createCharacter')
+        soundEffect(btnSound)
+      }
     }
 
     const displayCharacterList =() =>(
@@ -98,12 +101,11 @@ import { Grid } from '@mui/material';
                     </div>
                   </Grid>
                   <Grid item xs={12} md={3}>
-                    <div className={style.btn_div}>
-                      <p className={style.p}>PLAY!</p>
-                      <div className={style.btn} onClick={() => !props.characterSession 
+                    <div className={style.btn_div} onClick={() => !props.characterSession 
                       ?setNoSession(true)
-                      :startGame()}
-                      ></div>
+                      :startGame()}>
+                      <p className={style.p}>PLAY!</p>
+                      <div className={style.btn}></div>
                     </div>
                   </Grid>
                   <Grid item xs={0} md={3}>

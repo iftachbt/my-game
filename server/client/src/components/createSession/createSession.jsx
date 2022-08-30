@@ -28,8 +28,9 @@ import { awaitToast } from "../../actions/toastAlert";
     }
     function button(difficulty){
       return (
-      <div className={style.btn_div}>
-        <button className={style.btn} onClick={() => setDifficulty(difficulty)} >{difficulty}</button>
+      <div className={style.btn_div}onClick={() => setDifficulty(difficulty)} >
+        <p className={style.p}>{difficulty}</p>
+        <div className={style.btn}></div>
       </div>)
     }
     return(
