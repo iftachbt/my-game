@@ -1,6 +1,7 @@
 .body{
   background-image: url("./images/background1.gif");
     background-size: cover;
+    background-repeat: repeat;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -96,4 +97,9 @@
 }
 .itemValue{
   height: fit-content;
+}
+.values{
+  display: flex;
+    width: inherit;
+    justify-content: space-around;
 }
