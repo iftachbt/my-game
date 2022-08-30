@@ -14,45 +14,44 @@ import { awaitToast } from "../../actions/toastAlert";
       const race = props.character.race
       const characterId = props.character.id
       const character = characterBuild(name,race)
-      console.log("character",character,"characterId",characterId,difficulty);
-      const res = await createSession({
+      const res = await awaitToast(createSession({
         ...character.toObj(),
         difficulty,
         characterId: characterId,
         kills:0,
         deaths:0
-      })
+      }),"create session")
       if(res !== "err"){
-        console.log("res",res);
         props.setCharacterSession(res)  
         navigate("/mainGame")
       }
     }
     function button(difficulty){
       return (
-      <div className={style.btn_div}>
-        <button className={style.btn} onClick={() => setDifficulty({difficulty})} >{difficulty}</button>
+      <div className={style.btn_div}onClick={() => setDifficulty(difficulty)} >
+        <p className={style.p}>{difficulty}</p>
+        <div className={style.btn}></div>
       </div>)
     }
     return(
-        <div className={style.body}>
-            <div className={style.formContainer}>
-            <h1 className={style.h1}>set Difficulty</h1>
-            <div className={style.middleContainer}>
-              {button("easy")}
-              {button("medium")}
-              {button("hard")}
-            </div>
-            <div className={style.bottomContainer}>
-                <div className={style.bottomBtn}>
-                    <button onClick={Create}>PLAY!</button>
-                </div>
-                <div className={style.bottomBtn}>
-                    <button onClick={() => props.setNoSession(false)}>BACK</button>
-                </div>
-            </div>
-            </div>
+    <div className={style.body}>
+      <div className={style.formContainer}>
+        <h1 className={style.h1}>set Difficulty</h1>
+        <div className={style.middleContainer}>
+          {button("easy")}
+          {button("medium")}
+          {button("hard")}
         </div>
+        <div className={style.bottomContainer}>
+          <div className={style.bottomBtn}>
+            <button onClick={Create}>PLAY!</button>
+          </div>
+          <div className={style.bottomBtn}>
+            <button onClick={() => props.setNoSession(false)}>BACK</button>
+          </div>
+        </div>
+      </div>
+    </div>
     )
 }
 export default CreateSession

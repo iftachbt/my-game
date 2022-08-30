@@ -3,7 +3,32 @@ import axios from "axios";
 const URL = "http://localhost:4000/";
 
 export async function sendPost(route, body) {
-  console.log(URL + route);
+  try {
+    const res = await axios.post(URL + route, body, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return "err";
+  }
+}
+export async function sendDelete(route, body) {
+  try {
+    const res = await axios.post(URL + route, body, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return "err";
+  }
+}
+export async function sendUpdate(route, body) {
   try {
     const res = await axios.post(URL + route, body, {
       headers: { "Content-Type": "application/json" },
@@ -18,7 +43,6 @@ export async function sendPost(route, body) {
 }
 
 export async function sendGet(route) {
-  console.log("sendGet: ", URL + route);
   try {
     const res = await axios.get(URL + route, {
       headers: { "Content-Type": "application/json" },

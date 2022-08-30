@@ -10,16 +10,16 @@
 .h1{
   margin: 0 auto 10px auto;
   width: fit-content;
-  color: #3e3d3d;
+  color: #fffbe0;
   font-family: Georgia  
 }
 .formContainer{
   z-index: 1;
   position: relative;
-  top: 30%;
+  top: 20%;
   display: flex;
   width: 400px;
-  background-color: #effbff;
+  background-color: #383838;
   border-radius: 8px;
   margin: 10px auto;
   border: solid black 1px;
@@ -28,7 +28,7 @@
 }
 .middleContainer{
   display: flex;
-  height: 150px;
+  height: 200px;
   flex-direction: column;
   justify-content: space-around;
 }
@@ -39,26 +39,32 @@
   flex-direction: row;
   margin-bottom: 10px;
 }
+.p{
+  color: #e7e2e2;
+}
 .btn_div{
   background-image: url("./images//grennbtn.png");
   background-repeat: round;
   width: 11rem;
   height: 4rem;
   margin: 0 auto;
+  cursor: pointer;
 }
 .btn{
-  background-color: #ffffff00;
+  background-color: #e5121200;
   border-width: 0;
   position: relative;
-  top: 7px;
-  font-size: initial;
-  color: #212020;
+  top: -40px;
+  left: 16px;
   width: 143px;
   height: 27px;
-  font-family: Georgia
+  z-index: -1;
 }
-.btn:hover {
+.btn_div:hover .p{
   color: #f7c500;
+}
+.btn_div:hover .btn{
+  box-shadow: 3px 3px 30px 7px rgba(255,198,4,0.68);
 }
 .bottomBtn{
   background-image: linear-gradient(to bottom, #614f60, #d9c259);

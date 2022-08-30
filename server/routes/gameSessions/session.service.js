@@ -1,5 +1,5 @@
-import { create as createRep, fetchByUserId } from "./session.reposetory.js";
+import { create as createRep, fetchById as fetchByCharId } from "./session.reposetory.js";
 
-export const create = (character, userId) => createRep(character, userId);
+export const create = (character) => createRep(character);
 
-export const fetchById = (userId) => fetchByUserId(userId);
+export const fetchById = (characterId) => fetchByCharId(characterId);

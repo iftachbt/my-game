@@ -45,9 +45,7 @@ function SignUp(props){
     })
 
   async function handleClick(values){
-    console.log(values);
     const res = await awaitToast(signUp(values),"signUp")
-    console.log("res", res);
     if(res !== "err"){
       const resLogin = await logIn({username: values.userName , password: values.password})
       if(resLogin !== "err") {
