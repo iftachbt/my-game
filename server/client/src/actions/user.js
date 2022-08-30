@@ -9,11 +9,9 @@ export function logIn(info) {
 }
 
 export function signUp(info) {
-  console.log("signUp", info);
   return sendPost("user/signUp", info);
 }
 
 export async function logout() {
-  console.log("test");
   await sendGet("user/logout");
 }

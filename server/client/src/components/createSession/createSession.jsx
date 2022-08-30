@@ -22,7 +22,6 @@ import { awaitToast } from "../../actions/toastAlert";
         deaths:0
       }),"create session")
       if(res !== "err"){
-        console.log("res",res);
         props.setCharacterSession(res)  
         navigate("/mainGame")
       }

@@ -26,7 +26,6 @@ function CreateCharacter(props){
   async function handleClick(name){
     const character = {...name,race: race}
     const req = await awaitToast(saveCharacter(character),"creating avater")
-    console.log("req",req)
     req !== "err"
     ?navigate("/startPage")
     :setRace("elf")

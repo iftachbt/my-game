@@ -6,6 +6,7 @@ import { fetchSessionById } from "../../actions/gameSession/gameSession";
 import { infoToster } from "../../actions/toastAlert";
 import CreateSession from "../createSession/createSession";
 import SessionInfo from "./sessionInfo";
+import { Grid } from '@mui/material';
 
  function StartPage(props){
   const [characterList,setCharacterList] = useState([])
@@ -15,31 +16,21 @@ import SessionInfo from "./sessionInfo";
     const navigate = useNavigate();
 
     useEffect(() => {
-      const findCharacterList =() => fetchCharacter()
-      .then(res => {
-        if(res.length===0) navigate('/createCharacter')
-        else{
-          setCharacterList(res)
-        }})
-        .then(() =>fetchSessionById())
-        .then(res =>{
-          console.log("fetchSessionById",res);
-           if(res ==="err" ||res.length === 0) setUserSessions([])
-           else setUserSessions(res)
-           console.log("userSessions",userSessions);
-          })
-      findCharacterList()
+      fetchCharacterHandler()
     },[])
 
     useEffect(() => console.log(noSession),["noSession",noSession])
+
+    async function fetchCharacterHandler(){
+      const charList = await fetchCharacter()
+      console.log("charList", charList);
+      if(charList.length === 0) return navigate('/createCharacter')
+      setCharacterList(charList)
+    }
    
     function chooseCharacter(character,session){
       props.setCharacter(character)
-      props.setCharacterSession(session)
-    }
-    function findCharacterSession(characterId){
-      const res = userSessions.find(session => session.characterId === characterId)
-      if(res) return res
+      props.setCharacterSession(character.session)
     }
     const  startGame = () =>{
       (props.characterSession && props.character) && navigate("/mainGame")
@@ -50,29 +41,29 @@ import SessionInfo from "./sessionInfo";
     }
 
     const displayCharacterList =() =>(
-      characterList.map((character) => {
-        let res = findCharacterSession(character.id)
+       characterList.map((character) => {
+        const {name, race, session, id} = character
         return(
-        <div> 
+        <div > 
           <div
-          className={style.characterGrid}
-          onClick={() => chooseCharacter(character,res)}
+          onClick={() => chooseCharacter(character)}
+          className={[style.characterGrid, props.character.id === id ?  style.charItemSelected: null].join(" ")}
           >
-          <div>
-              {character.name}
+            <div className={style.itemValue}>
+              {name}
             </div>
-            <div>
-              {character.race}
+            <div className={style.itemValue}>
+              {race}
             </div>
-            <div>
-            level: {res ?res.level :1}
+            <div className={style.itemValue}>
+              level: {session ?session.level :1}
             </div>
             <div className={style.tooltip}>
-              {res 
+              {session 
                 ?<SessionInfo
-                res={res}
-                 />
-                 :"this character haven't played yet"
+                res={session}
+                />
+                :"this character haven't played yet"
               }
             </div>
           </div>
@@ -96,17 +87,29 @@ import SessionInfo from "./sessionInfo";
                 <div className={style.characterList}>
                   {displayCharacterList()}
                 </div>
-                <div className={style.buttonContainer}>
-                  <div className={style.btn_div}>
-                    <button className={style.btn} onClick={newCharacterHandler}>new character</button>
-                  </div>  
-                  <div className={style.btn_div}>
-                    <button className={style.btn} onClick={() => !props.characterSession 
-                  ?setNoSession(true)
-                  :startGame()}
-                  >PLAY!</button>
-                  </div>
-                </div>
+              <div className={style.buttonContainer}>
+                <Grid container spacing={2}>
+                  <Grid item xs={0} md={3}>
+                  </Grid>
+                  <Grid item xs={12} md={3}>
+                    <div className={style.btn_div} onClick={newCharacterHandler}>
+                      <p className={style.p}>new character</p>
+                      <div className={style.btn} ></div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} md={3}>
+                    <div className={style.btn_div}>
+                      <p className={style.p}>PLAY!</p>
+                      <div className={style.btn} onClick={() => !props.characterSession 
+                      ?setNoSession(true)
+                      :startGame()}
+                      ></div>
+                    </div>
+                  </Grid>
+                  <Grid item xs={0} md={3}>
+                  </Grid>
+                </Grid>
+              </div>
             </div>
         </div>
       </div>

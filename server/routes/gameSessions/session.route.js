@@ -5,17 +5,12 @@ import { gameSessionCreationValidation } from "./session.validation.js";
 export const gameSessionRoute = express.Router();
 export const gameSessionPrefix = "/gameSession";
 
-gameSessionRoute.post("/create", gameSessionCreationValidation, (req, res) => {
-  create(req.body, req.user.id);
+gameSessionRoute.post("/session", gameSessionCreationValidation, (req, res) => {
+  create(req.body);
   res.send(req.body);
 });
-// gameSessionRoute.post("/fetchSession", async (req, res) => {
-//   const session = await fetchById(req.body);
-//   console.log(session);
-//   res.send(session);
-// });
+
 gameSessionRoute.get("/session", async (req, res) => {
-  const session = await fetchById(req.user.id);
-  console.log("get", session, req.user.id);
+  const session = await fetchById(req.query.characterId);
   res.send(session);
 });

@@ -8,18 +8,16 @@ dbMockInit(beforeAll, beforeEach, afterEach, afterAll);
 
 describe("create character tests", async () => {
   it("should create new character", async () => {
-    const userId = randomString();
     const name = randomString();
     const race = randomString();
 
-    await create({ race, name }, userId);
+    await create({ race, name });
 
     const char = await Character.find({});
 
     expect(char[0]).toBeDefined();
     expect(char[0].id).toBeDefined();
     expect(char[0].name).toBe(name);
-    expect(char[0].userId).toBe(userId);
     expect(char[0].race).toBe(race);
   });
 

@@ -15,13 +15,14 @@ describe("create gameSession tests", async () => {
     const name = randomString();
     const ATK = randomNumber();
     const shield = randomNumber();
+    const difficulty = "meduim";
     const HP = randomNumber();
     const gold = randomNumber();
     const level = randomNumber();
     const kills = randomNumber();
     const deaths = randomNumber();
 
-    await create({ name, ATK, shield, HP, gold, level, kills, deaths }, characterId);
+    await create({ name, ATK, shield, HP, gold, level, kills, deaths, difficulty, characterId });
 
     const session = await GameSession.find({});
 
@@ -42,6 +43,7 @@ describe("create gameSession tests", async () => {
     const res = null;
     const req = {
       body: {
+        difficulty: "meduim",
         characterId: randomString(),
         ATK: randomNumber(),
         shield: randomNumber(),

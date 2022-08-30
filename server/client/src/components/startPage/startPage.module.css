@@ -6,6 +6,10 @@
     position: absolute;
     z-index: -1;
     top: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    flex-direction: column;
 }
 .h1{
   margin: 0 auto;
@@ -22,16 +26,19 @@
   
 }
 .characterGrid{
+  padding: 7px 0px 0px 0px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   width: 400px;
-  height: 30px;
+  height: 23px;
   background-color: rgba(199, 222, 222, 0.54);
   border-radius: 8px;
   margin: 10px auto;
   border: solid black 1px;
+  cursor: pointer;
 }
+
 .characterGrid .tooltip{
   visibility: hidden;
   position: absolute;
@@ -43,15 +50,16 @@
   height: 300px;
   border-radius: 8px;
 }
+@media (min-width: 1200px){
 .characterGrid:hover .tooltip{
   visibility: visible;
+    
+  }
 }
 .buttonContainer{
   display: flex;
-  width: 30%;
-  margin: 0 auto;
-  position: relative;
-  top: 4rem;
+  width: auto;
+  margin: 10px auto 0 auto;
 }
 .btn_div{
   background-image: url("../homePage/style.helper/images/redbtn.png");
@@ -59,24 +67,44 @@
   width: 11rem;
   height: 4rem;
   margin: 0 auto;
+  cursor: pointer;
 }
 .btn{
   background-color: #ffffff00;
   border-width: 0;
   position: relative;
-  top: 15px;
-  font-size: initial;
+  top: -19px;
+  left: 21px;
   color: #292826;
-  width: 150px;
-  height: 31px;
-  font-family: Georgia
+  width: 139px;
+  height: 26px;
+  z-index: -1;
   
 }
-.btn:hover {
+.btn_div:hover .btn {
   -webkit-box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68); 
-  box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68);
+  box-shadow: 3px 3px 30px 7px rgba(255,198,4,0.68);
   color: #f7c500;
+}
+.btn_div:hover .p{
+  color: #f7c500;
+}
+.p{
+  position: relative;
+  top: 17px;
+  color: #e7e2e2;
 }
 .sessionInfo{
   
+}
+.charItem{
+
+}
+
+.charItemSelected{
+  background-color: #f7c500;
+  box-shadow: 0px 0px 10px 3px #000000;
+}
+.itemValue{
+  height: fit-content;
 }

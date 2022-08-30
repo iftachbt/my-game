@@ -34,7 +34,6 @@ function LogIn(props){
   })
 
   async function handleClick(values){
-    console.log(values);
       const res = await awaitToast(logIn(values),"logged in")
       if(res !== "err") {
           props.setUser(res);
