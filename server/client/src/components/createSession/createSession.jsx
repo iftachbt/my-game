@@ -13,6 +13,7 @@ import { characterBuild } from "../../actions/character/character.build";
       const race = props.character.race
       const characterId = props.character.id
       const character = characterBuild(name,race)
+      console.log(difficulty);
       const res = await createSession({
         ...character.toObj(),
         difficulty: difficulty,
@@ -43,7 +44,7 @@ import { characterBuild } from "../../actions/character/character.build";
             </div>
             <div>
                 <div>
-                    <button onClick={() => Create()}>PLAY!</button>
+                    <button onClick={Create()}>PLAY!</button>
                 </div>
                 <div>
                     <button onClick={() => props.setNoSession(false)}>BACK</button>
