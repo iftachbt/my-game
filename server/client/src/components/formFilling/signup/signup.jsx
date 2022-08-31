@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Formik,Form } from 'formik';
 import { Grid,IconButton,InputAdornment } from '@mui/material';
 import {Visibility,VisibilityOff} from '@mui/icons-material';
-import * as yup from 'yup';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import style from "./signup.module.css";
-import {awaitToast} from '../../../actions/toastAlert';
+import { errToster,toster} from '../../../actions/toastAlert';
+import { validationSchema } from "./signup.validate";
 
 function SignUp(props){
 
@@ -18,42 +18,17 @@ function SignUp(props){
 
   const navigate = useNavigate();
 
-  const validationSchema=yup.object().shape({
-    fname: yup
-      .string()
-      .min(2,"should be of minimum 2 characters")
-      .matches(/^[^!@#$%^&*()\-_=+{};:'/,<.>0-9]+$/, 'only letters')
-      .required("first name require"),
-      lname: yup
-      .string()
-      .required("password require")
-      .min(2,"should be of minimum 2 characters")
-      .matches(/^[^!@#$%^&*()\-_=+{};:'/,<.>0-9]+$/, 'only letters'),
-      userName: yup
-      .string()
-      .required("username require")
-      .matches(/^[aA1-zZ9]+$/, 'only numbers and letters'),
-      password: yup
-      .string()
-      .required("password require")
-      .matches(/^[aA1-zZ9]+$/, 'only numbers and letters')
-      .min(6,"password should be of minimum 6 characters"),
-      email: yup
-      .string()
-      .email("invaild email")
-      .required("email require")
-    })
-
   async function handleClick(values){
-    const res = await awaitToast(signUp(values),"signUp")
+    const res = await signUp(values)
     if(res !== "err"){
       const resLogin = await logIn({username: values.userName , password: values.password})
       if(resLogin !== "err") {
         props.setUser(resLogin);
-        navigate('/startPage')
+        navigate('/choosePage')
+        toster("successfully signUp")
       }
     }
-    else console.log(`res ${res}: something went wrong!`);
+    else errToster("couldn't signUp")
   }
 
   return(

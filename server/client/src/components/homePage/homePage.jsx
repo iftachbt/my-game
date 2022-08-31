@@ -5,6 +5,7 @@ import { soundEffect } from "../../sounds/VFXsounds";
 import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
 import { confirmAlert } from 'react-confirm-alert'; 
 import { optionsFn } from '../../sounds/confirmAlert'; 
+import Button from "../buttons/buttons"; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 function HomePage(props){
@@ -25,14 +26,14 @@ function HomePage(props){
       }
     })
     const btnsOptions = [
-      <div className={style.btn_div} onClick={() => handleClick("login")} >
-        <p className={style.p}>LogIn</p>
-        <div className={style.btn} ></div>
-      </div>,
-      <div className={style.btn_div} onClick={() => handleClick("sigup")} >
-        <p className={style.p}>SignUp</p>
-      <div className={style.btn} ></div>
-      </div>
+      <Button 
+      text="LogIn"
+      handleClick={() => handleClick("login")}
+      />,
+      <Button 
+      text="SignUp"
+      handleClick={() => handleClick("sigup")}
+      />
     ]
     return(
         <div className={style.homePage}>
@@ -40,10 +41,10 @@ function HomePage(props){
             <h1 className={style.h1}>BitIsland</h1>
             <div className={style.buttonContainer}>
               {(props.user)
-              ?<div className={style.btn_div} onClick={() => handleClick("startPage")} >
-              <p className={style.p}>Start</p>
-              <div className={style.btn} ></div>
-              </div>
+              ?<Button 
+              text="Start"
+              handleClick={() => handleClick("choosePage")}
+              />
               :btnsOptions
               }
             </div>

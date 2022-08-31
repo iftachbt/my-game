@@ -7,34 +7,7 @@
   z-index: -1;
   top: 0;
 }
-.human{
-    height: 150px;
-    width: 150px;
-    background-image: url("./images/human.jpg");
-    background-repeat: round;
-    border-radius: 50%;
-}
-.elf{
-    height: 150px;
-    width: 150px;
-    background-image: url("./images/elf.jpg");
-    background-repeat: round;
-    border-radius: 50%;
-}
-.dragonborn{
-    height: 150px;
-    width: 150px;
-    background-image: url("./images/dragonborn.jpg");
-    background-repeat: round;
-    border-radius: 50%;
-}
-.dwarf{
-    height: 150px;
-    width: 150px;
-    background-image: url("./images/dwarf.jpg");
-    background-repeat: round;
-    border-radius: 50%;
-}
+
 .charBox{
   height: 150px;
   width: 150px;
@@ -42,7 +15,7 @@
   background-color: rgba(240, 248, 255, 0);
 }
 .charBox:hover{
-  box-shadow: 1px 1px 20px 11px #000000;
+  box-shadow: 1px 1px 20px 11px #ffffff;
 }
 .charBox_select{
   height: 150px;

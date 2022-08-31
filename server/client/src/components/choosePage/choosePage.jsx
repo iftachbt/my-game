@@ -1,5 +1,5 @@
 import React, { useEffect,useState }from "react";
-import style from "./startPage.module.css"
+import style from "./choosePage.module.css"
 import { useNavigate } from "react-router-dom";
 import { fetchCharacter,deleteCharacter } from "../../actions/character/character";
 import { infoToster } from "../../actions/toastAlert";
@@ -10,22 +10,33 @@ import SessionInfo from "./sessionInfo";
 import { Grid,IconButton } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
- function StartPage(props){
+ function ChoosePage(props){
   const [characterList,setCharacterList] = useState([])
   const [noSession,setNoSession] = useState(false)
   const [deleted,setDeleted] = useState(false)
-    props.setLocation("startPage")
+  const [once,setOnce] = useState(false)
+
+    props.setLocation("choosePage")
     const navigate = useNavigate();
 
     useEffect(() => {
       fetchCharacterHandler()
     },[deleted])
 
-    useEffect(() => console.log(noSession),["noSession",noSession])
+    useEffect(() => {
+      if(!once){
+        props.setCharacter(false)
+        props.setCharacterSession(false)
+        setNoSession(false)
+        setOnce(true)
+      }
+    },[once])
+    useEffect(() => {
+      if(!props.character) setNoSession(false)
+    },[noSession])
 
     async function fetchCharacterHandler(){
       const charList = await fetchCharacter()
-      console.log("charList", charList);
       if(charList.length === 0) return navigate('/createCharacter')
       setCharacterList(charList)
     }
@@ -78,6 +89,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
               {session 
                 ?<SessionInfo
                 res={session}
+                race={race}
                 />
                 :"this character haven't played yet"
               }
@@ -130,5 +142,5 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
       </div>
     )
 }
-export default StartPage
+export default ChoosePage
 

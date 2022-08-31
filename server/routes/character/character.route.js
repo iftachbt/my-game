@@ -7,7 +7,7 @@ import { fetchById as fetchSessionById, deleteById as deleteSessionById } from "
 export const CharacterRoute = express.Router();
 export const CharacterPrefix = "/character";
 
-CharacterRoute.post("/create", authMid, characterCreationValidation, (req, res) => {
+CharacterRoute.post("/character", authMid, characterCreationValidation, (req, res) => {
   create(req.body, req.user.id);
   res.send(req.body);
 });

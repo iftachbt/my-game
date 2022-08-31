@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import style from "./createCharacter.module.css"
+import ProfileImage from "../profileImage/profileImage";
 
 export function SelectClass(props){
 
@@ -21,12 +22,11 @@ export function SelectClass(props){
       </div>
       )
     }
-
-    if(props.value==="human")return <div className={style.human}>{conponent()}</div>
+    return (
+      <ProfileImage 
+        race={props.value}
+        conponent={conponent()}
+      />
+      )
     
-    if(props.value==="dragonborn")return <div className={style.dragonborn}>{conponent()}</div>
-
-    if(props.value==="elf")return <div className={style.elf}>{conponent()}</div>
-
-    return <div className={style.dwarf}>{conponent()}</div>
 }

@@ -12,7 +12,7 @@ import CreateCharacter from "../createCharacter/createCharacter";
 import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
 import Pause from "../../notes/pause/pause";
-import StartPage from "../startPage/startPage";
+import ChoosePage from "../choosePage/choosePage";
 import BackgroundSound from "../../sounds/sound";
 import "./master.css"
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
@@ -24,10 +24,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function Master(){
   const [user, setUser] = useState(false)
   const [character, setCharacter] = useState(false)
+  const [characterSession,setCharacterSession] = useState(false)
   const [location, setLocation] = useState(false)
   const [headerState, setHeaderState] = useState(false)
   const [isMute,setMute] = useState(true)
-  const [characterSession,setCharacterSession] = useState(false)
   const [countOnce,setCountOnce] = useState(0)
 
   const navigate = useNavigate();
@@ -97,8 +97,8 @@ function Master(){
               setUser ={setUser}
               user ={user}/>}
              />
-            <Route path="/startPage" element={
-            <StartPage 
+            <Route path="/choosePage" element={
+            <ChoosePage 
               user={user}
               setCharacter={setCharacter}
               character={character}
