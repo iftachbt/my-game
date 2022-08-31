@@ -3,7 +3,7 @@ import { create, fetchById } from "./session.service.js";
 import { gameSessionCreationValidation } from "./session.validation.js";
 
 export const gameSessionRoute = express.Router();
-export const gameSessionPrefix = "/gameSession";
+export const gameSessionPrefix = "/game";
 
 gameSessionRoute.post("/session", gameSessionCreationValidation, (req, res) => {
   create(req.body);

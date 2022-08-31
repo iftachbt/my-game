@@ -5,7 +5,7 @@ export const fetchCharacter = async () => {
 };
 
 export async function saveCharacter(info) {
-  return await sendPost("character/create", info);
+  return await sendPost("character/character", info);
 }
 
 export async function deleteCharacter(characterId) {
