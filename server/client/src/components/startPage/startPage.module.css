@@ -24,12 +24,11 @@
   height: fit-content;
 }
 .characterGrid{
-  padding: 7px 0px 0px 0px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   width: 400px;
-  height: 23px;
+  height: 28px;
   background-color: rgba(199, 222, 222, 0.54);
   border-radius: 8px;
   margin: 10px auto;
@@ -102,4 +101,5 @@
   display: flex;
     width: inherit;
     justify-content: space-around;
+    padding: 7px 0px 0px 0px;
 }
