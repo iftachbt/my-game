@@ -17,7 +17,7 @@ function Pause(props){
                 <label for="BGAudio"> mute</label><br></br>
             </div>
             <div>
-                <button className="btn" onClick={() => navigate('/startPage')} name="startPage">exit</button>
+                <button className="btn" onClick={() => navigate('/choosePage')}>exit</button>
             </div>
             <div>
                 <button className="btn" onClick={() => props.setHeaderState(false)}>resume</button>

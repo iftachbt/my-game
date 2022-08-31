@@ -43,7 +43,7 @@ function HomePage(props){
               {(props.user)
               ?<Button 
               text="Start"
-              handleClick={() => handleClick("startPage")}
+              handleClick={() => handleClick("choosePage")}
               />
               :btnsOptions
               }

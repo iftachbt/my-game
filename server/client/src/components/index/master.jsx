@@ -12,7 +12,7 @@ import CreateCharacter from "../createCharacter/createCharacter";
 import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
 import Pause from "../../notes/pause/pause";
-import StartPage from "../startPage/startPage";
+import ChoosePage from "../choosePage/choosePage";
 import BackgroundSound from "../../sounds/sound";
 import "./master.css"
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
@@ -97,8 +97,8 @@ function Master(){
               setUser ={setUser}
               user ={user}/>}
              />
-            <Route path="/startPage" element={
-            <StartPage 
+            <Route path="/choosePage" element={
+            <ChoosePage 
               user={user}
               setCharacter={setCharacter}
               character={character}

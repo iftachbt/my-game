@@ -24,7 +24,7 @@ function CreateCharacter(props){
     const character = {...name,race: race}
     const req = await saveCharacter(character)
     if(req !== "err"){
-      navigate("/startPage")
+      navigate("/choosePage")
       toster("successfully created a character")
     }
     else errToster("couldn't create character")

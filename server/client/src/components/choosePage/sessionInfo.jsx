@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./startPage.module.css"
+import style from "./choosePage.module.css"
 import ProfileImage from "../profileImage/profileImage"
 
  function SessionInfo(props){

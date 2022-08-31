@@ -24,7 +24,7 @@ function SignUp(props){
       const resLogin = await logIn({username: values.userName , password: values.password})
       if(resLogin !== "err") {
         props.setUser(resLogin);
-        navigate('/startPage')
+        navigate('/choosePage')
         toster("successfully signUp")
       }
     }
