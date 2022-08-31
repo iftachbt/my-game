@@ -5,4 +5,4 @@ export const create = (character, userId) => Character.insertMany([{ ...characte
 
 export const fetchByUserId = (userId) => Character.find({ userId: userId }).exec();
 
-export const deleteById = (characterId) => Character.deleteOne({ characterId });
+export const deleteById = (id) => Character.deleteOne({ id });

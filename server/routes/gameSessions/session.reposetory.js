@@ -6,4 +6,6 @@ export const create = (character) => GameSession.insertMany([{ ...character, id:
 export const fetchById = (characterId) =>
   GameSession.find({ characterId })
     .exec()
-    .then((r) => (r.length ? r[0] : null));
+    .then((res) => (res.length ? res[0] : null));
+
+export const deleteById = (characterId) => GameSession.deleteOne({ characterId });

@@ -2,7 +2,6 @@ import React, { useEffect,useState }from "react";
 import style from "./startPage.module.css"
 import { useNavigate } from "react-router-dom";
 import { fetchCharacter,deleteCharacter } from "../../actions/character/character";
-import { fetchSessionById } from "../../actions/gameSession/gameSession";
 import { infoToster } from "../../actions/toastAlert";
 import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
 import { soundEffect } from "../../sounds/VFXsounds";
