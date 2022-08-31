@@ -5,7 +5,7 @@ import TextField  from '../formFilling/TextField.form';
 import { useNavigate } from "react-router-dom";
 import { saveCharacter } from "../../actions/character/character";
 import { SelectClass } from "./selectClass";
-import { awaitToast } from "../../actions/toastAlert";
+import { errToster,toster} from '../../actions/toastAlert';
 import style from "./createCharacter.module.css";
 import { ThemeProvider } from '@mui/material/styles';
 import {GridBackground } from './create.style';
@@ -22,10 +22,12 @@ function CreateCharacter(props){
  
   async function handleClick(name){
     const character = {...name,race: race}
-    const req = await awaitToast(saveCharacter(character),"creating avater")
-    req !== "err"
-    ?navigate("/startPage")
-    :setRace("elf")
+    const req = await saveCharacter(character)
+    if(req !== "err"){
+      navigate("/startPage")
+      toster("successfully created a character")
+    }
+    else errToster("couldn't create character")
     soundEffect(btnSound)
   }
   

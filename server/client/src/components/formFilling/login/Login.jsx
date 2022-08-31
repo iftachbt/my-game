@@ -6,7 +6,7 @@ import { Grid,IconButton,InputAdornment } from '@mui/material';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import {Visibility,VisibilityOff} from '@mui/icons-material';
-import {awaitToast} from '../../../actions/toastAlert';
+import { errToster,toster} from '../../../actions/toastAlert';
 import style from './login.module.css';
 import { validationSchema } from "./login.validate";
 
@@ -21,12 +21,13 @@ function LogIn(props){
   useEffect(() => {if(props.user) navigate("/startPage")})
 
   async function handleClick(values){
-      const res = await awaitToast(logIn(values),"logged in")
+      const res = await logIn(values)
       if(res !== "err") {
           props.setUser(res);
           navigate('/startPage')
+          toster("successfully logIn")
           }
-      else console.log(`res ${res}: could not found`);
+      else errToster("couldn't logIn")
   }
   return(
       <div className={style.body}>

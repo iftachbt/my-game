@@ -7,7 +7,7 @@ import {Visibility,VisibilityOff} from '@mui/icons-material';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import style from "./signup.module.css";
-import {awaitToast} from '../../../actions/toastAlert';
+import { errToster,toster} from '../../../actions/toastAlert';
 import { validationSchema } from "./signup.validate";
 
 function SignUp(props){
@@ -19,15 +19,16 @@ function SignUp(props){
   const navigate = useNavigate();
 
   async function handleClick(values){
-    const res = await awaitToast(signUp(values),"signUp")
+    const res = await signUp(values)
     if(res !== "err"){
       const resLogin = await logIn({username: values.userName , password: values.password})
       if(resLogin !== "err") {
         props.setUser(resLogin);
         navigate('/startPage')
+        toster("successfully signUp")
       }
     }
-    else console.log(`res ${res}: something went wrong!`);
+    else errToster("couldn't signUp")
   }
 
   return(
