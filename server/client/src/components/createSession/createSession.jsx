@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { createSession } from "../../actions/gameSession/gameSession";
 import { characterBuild } from "../../actions/character/character.build";
 import { awaitToast } from "../../actions/toastAlert";
+import Button from "../buttons/buttons";
+
 
  function CreateSession(props){
   const [difficulty, setDifficulty] = useState("easy")
@@ -28,10 +30,11 @@ import { awaitToast } from "../../actions/toastAlert";
     }
     function button(difficulty){
       return (
-      <div className={style.btn_div}onClick={() => setDifficulty(difficulty)} >
-        <p className={style.p}>{difficulty}</p>
-        <div className={style.btn}></div>
-      </div>)
+        <Button 
+        text={difficulty}
+        handleClick={() => setDifficulty(difficulty)}
+        color="green"
+        />)
     }
     return(
     <div className={style.body}>

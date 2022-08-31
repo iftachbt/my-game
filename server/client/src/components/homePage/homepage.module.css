@@ -24,38 +24,7 @@
     top: 8rem;
     justify-content: space-around;
 }
-.btn_div{
-  background-image: url("../homePage/style.helper/images/redbtn.png");
-  background-repeat: round;
-  width: 11rem;
-  height: 4rem;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.btn{
-  background-color: #ffffff00;
-  border-width: 0;
-  position: relative;
-  top: -35px;
-    left: 12px;
-  color: #292826;
-  width: 139px;
-  height: 26px;
-  z-index: -1;
-}
-.btn_div:hover .btn {
-  -webkit-box-shadow: 0px 0px 24px 5px rgba(255,198,4,0.68); 
-  box-shadow: 3px 3px 30px 7px rgba(255,198,4,0.68);
-  color: #f7c500;
-}
-.btn_div:hover .p{
-  color: #f7c500;
-}
-.p{
-  position: relative;
-  top: 5px;
-  color: #e7e2e2;
-}
+
 @font-face{
     font-family: 'PressStart2P';
     src: url('./style.helper/font/PressStart2P-Regular.ttf');

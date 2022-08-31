@@ -39,33 +39,6 @@
   flex-direction: row;
   margin-bottom: 10px;
 }
-.p{
-  color: #e7e2e2;
-}
-.btn_div{
-  background-image: url("./images//grennbtn.png");
-  background-repeat: round;
-  width: 11rem;
-  height: 4rem;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.btn{
-  background-color: #e5121200;
-  border-width: 0;
-  position: relative;
-  top: -40px;
-  left: 16px;
-  width: 143px;
-  height: 27px;
-  z-index: -1;
-}
-.btn_div:hover .p{
-  color: #f7c500;
-}
-.btn_div:hover .btn{
-  box-shadow: 3px 3px 30px 7px rgba(255,198,4,0.68);
-}
 .bottomBtn{
   background-image: linear-gradient(to bottom, #614f60, #d9c259);
   border-radius: 10px;

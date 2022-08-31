@@ -18,8 +18,6 @@ function SignUp(props){
 
   const navigate = useNavigate();
 
-  
-
   async function handleClick(values){
     const res = await awaitToast(signUp(values),"signUp")
     if(res !== "err"){
