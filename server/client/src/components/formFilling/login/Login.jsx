@@ -3,12 +3,12 @@ import { logIn } from "../../../actions/user";
 import { useNavigate } from "react-router-dom";
 import { Formik,Form } from 'formik';
 import { Grid,IconButton,InputAdornment } from '@mui/material';
-import * as yup from 'yup';
 import TextField  from '../TextField.form';
 import Button from "../submit.btn";
 import {Visibility,VisibilityOff} from '@mui/icons-material';
 import {awaitToast} from '../../../actions/toastAlert';
 import style from './login.module.css';
+import { validationSchema } from "./login.validate";
 
 function LogIn(props){
 
@@ -19,19 +19,6 @@ function LogIn(props){
   const navigate = useNavigate();
 
   useEffect(() => {if(props.user) navigate("/startPage")})
-
- 
-  const validationSchema=yup.object().shape({
-      username: yup
-      .string()
-      .required("username require")
-      .matches(/^[^!@#$%^&*()\-_=+{};:'/,<.>]+$/, 'only numbers and letters'),
-      password: yup
-      .string()
-      .matches(/^[^!@#$%^&*()\-_=+{};:,<.>]+$/, 'only numbers and letters')
-      .required("password require")
-      .min(6,"password should be of minimum 6 characters")
-  })
 
   async function handleClick(values){
       const res = await awaitToast(logIn(values),"logged in")
