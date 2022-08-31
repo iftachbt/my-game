@@ -8,7 +8,7 @@ import Button from "../buttons/buttons";
 
 
  function CreateSession(props){
-  const [difficulty, setDifficulty] = useState("easy")
+  const [gameDifficulty, setDifficulty] = useState(null)
     const navigate = useNavigate();
 
     async function Create(){
@@ -18,7 +18,7 @@ import Button from "../buttons/buttons";
       const character = characterBuild(name,race)
       const res = await awaitToast(createSession({
         ...character.toObj(),
-        difficulty,
+        difficulty: gameDifficulty,
         characterId: characterId,
         kills:0,
         deaths:0
@@ -29,6 +29,11 @@ import Button from "../buttons/buttons";
       }
     }
     function button(difficulty){
+      if(difficulty === gameDifficulty) return(
+        <Button 
+        text={difficulty}
+        color="black"
+        />)
       return (
         <Button 
         text={difficulty}
@@ -48,7 +53,7 @@ import Button from "../buttons/buttons";
         <div className={style.bottomContainer}>
             <Button 
               text={"PLAY!"}
-              handleClick={Create}
+              handleClick={gameDifficulty && Create}
             />
             <Button 
               text={"BACK"}
