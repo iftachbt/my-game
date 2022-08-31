@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Formik,Form } from 'formik';
 import { Grid } from '@mui/material';
-import * as yup from 'yup';
 import TextField  from '../formFilling/TextField.form';
 import { useNavigate } from "react-router-dom";
 import { saveCharacter } from "../../actions/character/character";
@@ -12,6 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import {GridBackground } from './create.style';
 import  btnSound  from "../index/images/home-page-sound/impact-6291.mp3";
 import { soundEffect } from "../../sounds/VFXsounds";
+import { validationSchema } from "./createChar.validate";
 
 function CreateCharacter(props){
 
@@ -19,12 +19,7 @@ function CreateCharacter(props){
     const [race , setRace] = useState("elf")
   const navigate = useNavigate();
 
-  const validationSchema=yup.object().shape({
-      name: yup
-      .string()
-      .required("name require")
-      .matches(/^[aA1-zZ9]+$/, 'only numbers and letters'),
-  })
+ 
   async function handleClick(name){
     const character = {...name,race: race}
     const req = await awaitToast(saveCharacter(character),"creating avater")

@@ -1,0 +1,24 @@
+.box{
+  height: 150px;
+  width: 150px;
+  background-repeat: round;
+  border-radius: 50%;
+}
+.tiny_box{
+  height: 50px;
+  width: 50px;
+  background-repeat: round;
+  border-radius: 50%;
+}
+.human{
+  background-image: url("./images/human.jpg");
+}
+.elf{
+  background-image: url("./images/elf.jpg");
+}
+.dragonborn{
+  background-image: url("./images/dragonborn.jpg");
+}
+.dwarf{
+  background-image: url("./images/dwarf.jpg");
+}

@@ -78,6 +78,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
               {session 
                 ?<SessionInfo
                 res={session}
+                race={race}
                 />
                 :"this character haven't played yet"
               }

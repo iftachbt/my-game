@@ -1,10 +1,15 @@
 import React from "react";
 import style from "./startPage.module.css"
+import ProfileImage from "../profileImage/profileImage"
 
  function SessionInfo(props){
   return <div className={style.sessionInfo}>
             <div >
             <h1>{props.res.name}</h1>
+            <ProfileImage 
+            race={props.race}
+            size="tiny"
+            />
             <div>
                 <div >
                 level: {props.res.level}

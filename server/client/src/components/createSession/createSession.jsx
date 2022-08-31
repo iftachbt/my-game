@@ -46,12 +46,14 @@ import Button from "../buttons/buttons";
           {button("hard")}
         </div>
         <div className={style.bottomContainer}>
-          <div className={style.bottomBtn}>
-            <button onClick={Create}>PLAY!</button>
-          </div>
-          <div className={style.bottomBtn}>
-            <button onClick={() => props.setNoSession(false)}>BACK</button>
-          </div>
+            <Button 
+              text={"PLAY!"}
+              handleClick={Create}
+            />
+            <Button 
+              text={"BACK"}
+              handleClick={() => props.setNoSession(false)}
+            />
         </div>
       </div>
     </div>
