@@ -38,6 +38,10 @@
 
 .characterGrid .tooltip{
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
   position: absolute;
   right: 50px;
   top:5rem;
@@ -46,6 +50,7 @@
   width: 300px;
   height: 300px;
   border-radius: 8px;
+  color: #ffffff;
 }
 @media (min-width: 1200px){
 .characterGrid:hover .tooltip{
@@ -102,4 +107,43 @@
     width: inherit;
     justify-content: space-around;
     padding: 7px 0px 0px 0px;
+}
+.sessionInfo{
+  display: flex;
+}
+.mainInfo{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  align-content: center;
+  width: 300px;
+  position: relative;
+  left: 53px;
+  bottom: 16px;
+}
+.infoH1{
+  position: relative;
+  bottom: 16px;
+  right: -18px;
+}
+.infoVal{
+  margin: 10px;
+}
+.infoTop{
+  display: flex;
+  width: 300px;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  bottom: 22px;
+}
+.infoMiddle{
+  width: 300px;
+}
+.infoBottom{
+  display: flex;
+  width: 300px;
+  flex-direction: row;
+  justify-content: space-around;
 }
