@@ -24,10 +24,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function Master(){
   const [user, setUser] = useState(false)
   const [character, setCharacter] = useState(false)
+  const [characterSession,setCharacterSession] = useState(false)
   const [location, setLocation] = useState(false)
   const [headerState, setHeaderState] = useState(false)
   const [isMute,setMute] = useState(true)
-  const [characterSession,setCharacterSession] = useState(false)
   const [countOnce,setCountOnce] = useState(0)
 
   const navigate = useNavigate();

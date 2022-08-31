@@ -14,6 +14,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
   const [characterList,setCharacterList] = useState([])
   const [noSession,setNoSession] = useState(false)
   const [deleted,setDeleted] = useState(false)
+  const [once,setOnce] = useState(false)
+
     props.setLocation("choosePage")
     const navigate = useNavigate();
 
@@ -21,11 +23,20 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
       fetchCharacterHandler()
     },[deleted])
 
-    useEffect(() => console.log(noSession),["noSession",noSession])
+    useEffect(() => {
+      if(!once){
+        props.setCharacter(false)
+        props.setCharacterSession(false)
+        setNoSession(false)
+        setOnce(true)
+      }
+    },[once])
+    useEffect(() => {
+      if(!props.character) setNoSession(false)
+    },[noSession])
 
     async function fetchCharacterHandler(){
       const charList = await fetchCharacter()
-      console.log("charList", charList);
       if(charList.length === 0) return navigate('/createCharacter')
       setCharacterList(charList)
     }
