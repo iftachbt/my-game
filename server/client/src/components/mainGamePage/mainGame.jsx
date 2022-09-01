@@ -15,6 +15,8 @@ function MainGamePage(props){
     <div>
       <Header 
       componentLVL={componentLVL}
+      characterSession={props.characterSession}
+      character={props.character}
       />
       <Levels 
       componentLVL={componentLVL}
