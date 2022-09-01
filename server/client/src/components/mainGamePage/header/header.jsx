@@ -4,7 +4,6 @@ import  style  from "./header.module.css";
 
 function Header(props){
   const {name,shield,level,ATK,HP,gold}=props.characterSession
-  console.log(props.character);
   return(
     <div className={style.body}>
       <div>name: {name} </div>

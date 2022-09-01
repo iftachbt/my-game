@@ -1,0 +1,23 @@
+.background{
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}
+.backgroundImage_1{
+  background-image: url(../images/PNG/game_background_1/game_background_1.png);
+}
+.backgroundImage_2{
+  background-image: url(../images/PNG/game_background_2/game_background_2.png);
+}
+.backgroundImage_3{
+  background-image: url(../images/PNG/game_background_3/game_background_3.png);
+}
+.backgroundImage_4{
+  background-image: url(../images/PNG/game_background_4/game_background_4.png);
+}
+.backgroundImage_5{
+  background-image: url(../images/PNG/game_background_2/game_background_2.png);
+}
