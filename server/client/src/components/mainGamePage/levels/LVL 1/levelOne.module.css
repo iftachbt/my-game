@@ -1,9 +1,0 @@
-.background{
-    background-image: url(../images/PNG/game_background_1/game_background_1.png);
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-}

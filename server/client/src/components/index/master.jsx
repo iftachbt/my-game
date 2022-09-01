@@ -116,6 +116,7 @@ function Master(){
               setLocation ={setLocation}
               setCharacter={setCharacter}
               character={character}
+              characterSession={characterSession}
               headerState ={headerState}
              />} />
         </Routes>

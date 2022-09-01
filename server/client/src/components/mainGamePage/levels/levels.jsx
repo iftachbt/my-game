@@ -1,51 +1,26 @@
 import React from "react";
-import LevelOne from "./LVL 1/levelOne";
-import LevelTwo from "./LVL 2/levelTwo";
-import LevelThree from "./LVL 3/levelThree";
-import LevelFour from "./LVL 4/levelFour";
-import LevelFive from "./LVL 5/levelFive";
+import LevelBackground from "./level.BG/level.BG";
+
 
 function Levels(props){
-  
-  
-  switch(props.componentLVL){
-    case 1: return(
-      <div>
-        <LevelOne 
-      setComponentLVL={props.setComponentLVL}
-        />
-      </div>
-      )
-    case 2: return(
-      <div>
-        <LevelTwo 
-      setComponentLVL={props.setComponentLVL}
-      />
-      </div>
-      )
-    case 3: return(
-      <div>
-        <LevelThree 
-      setComponentLVL={props.setComponentLVL}
-      />
-      </div>
-      )
-    case 4: return(
-      <div>
-        <LevelFour 
-      setComponentLVL={props.setComponentLVL}
-        />
-      </div>
-      )
-    case 5: return(
-      <div>
-        <LevelFive 
-      setComponentLVL={props.setComponentLVL}
-      />
-      </div>
-      )
+
+  const level = props.componentLVL
+
+  const BGlevel = () =>{
+    let calcultor = level.toString().slice(-1)
+    if(calcultor === "0") return "5"
+    if(calcultor > 5) calcultor = calcultor-5
+    return calcultor.toString()
   }
-  
+   return(
+      <div>
+        <LevelBackground 
+          BGlevel={BGlevel()}
+          componentLVL={level}
+          setComponentLVL={props.setComponentLVL}
+        />
+      </div>
+      )
 }
 
 export default Levels
