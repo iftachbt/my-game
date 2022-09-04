@@ -1,17 +1,16 @@
 class Monster {
-  constructor(level) {
-    this.level = level;
+  constructor(level, difficulty) {
+    this.level = level / 10;
+    this.difficulty = () => {
+      if (difficulty === "easy") return 1;
+      if (difficulty === "medium") return 1.2;
+      return 1.5;
+    };
   }
 
   toObj() {
     return {
-      name: this.name,
-      shield: this.shield,
-      ATK: this.ATK,
       maxHealth: this.maxHealth,
-      HP: this.HP,
-      gold: this.gold,
-      level: this.level,
     };
   }
 
@@ -27,51 +26,30 @@ class Monster {
       return "hit";
     } else return 0;
   }
-  fillHP(num, conunter = 0) {
-    if (this.HP === this.maxHealth) return;
-    if (conunter === num) return;
-    this.HP++;
-    this.fillHP((num, (conunter += 1)));
-    return;
-  }
-  gainHP(num) {
-    this.maxHealth = this.maxHealth + num;
-  }
-  gainGold(num) {
-    this.gold = this.gold + num;
-  }
-  gainATK(num) {
-    this.ATK = this.ATK + num;
-  }
-  levelUp() {
-    this.level += 1;
-  }
 }
 
 class Boss extends Monster {
   constructor(level) {
     super(level);
-    this.race = "boss";
-    this.maxHealth = 300 * level;
+    this.type = "boss";
+    this.maxHealth = 300 * this.level * this.difficulty();
     this.HP = this.maxHealth;
-    this.ATK = 15 * level;
+    this.ATK = 15 * this.level * this.difficulty();
     this.shield = 17;
   }
 }
 class Regular extends Monster {
   constructor(level) {
     super(level);
-    this.kind = "regular";
-    this.maxHealth = 70 * level;
+    this.type = "regular";
+    this.maxHealth = 70 * this.level * this.difficulty();
     this.HP = this.maxHealth;
-    this.ATK = 12 * level;
+    this.ATK = 12 * this.level * this.difficulty();
     this.shield = 13;
   }
 }
-export function characterBuild(name, race) {
-  if (race === "elf") return new Elf(name);
-  if (race === "human") return new Human(name);
-  if (race === "dwarf") return new Dwarf(name);
-  if (race === "dragonborn") return new Drgonborn(name);
+export function monsterBuild(level, race, difficulty) {
+  if (race === "boss") return new Boss(level, difficulty);
+  if (race === "regular") return new Regular(level, difficulty);
   else return null;
 }
