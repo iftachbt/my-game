@@ -1,0 +1,31 @@
+.imgCon{
+  width: 48px;
+  height: 48px; 
+  overflow: hidden;
+  transform: scale(3);
+}
+@keyframes moveMonster1 {
+  from {left: 50%; top:55%}
+  to {left: 10%; top:75%}
+}
+@keyframes moveMonster2 {
+  from {left: 55%; top:55%}
+  to {left: 10%; top:75%}
+}
+.con{
+  position: absolute;
+  left: 60%;
+  top:55%
+
+}
+.move1{
+  animation-name: moveMonster1;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
+
+.move2{
+  animation-name: moveMonster2;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
