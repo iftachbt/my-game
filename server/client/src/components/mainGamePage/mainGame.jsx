@@ -6,28 +6,30 @@ import HeroFigure from "./animtions/heroAnimations";
 import MonsterFigure from "./animtions/monsterAnimation";
 import { useEffect } from "react";
 import hero from "./animtions/assets/heros/hero";
-import {monster,boss} from "./animtions/assets/monsters/monster";
+import { levelConstructor } from "./gameConstructor/gameConstructor";
 
 
 function MainGamePage(props){
   const [componentLVL,setComponentLVL]=useState(props.characterSession.level||"1")
   const [heroAnimeStatus,setHeroAnimeStatus]=useState("idle")
   const [heroAnime,setHeroAnime]=useState(hero(props.character.race))
-  const [monsterAnime,setMosterAnime]=useState(boss("bloated"))
+  const [monsterArray,setMonsterArray]=useState(levelConstructor(componentLVL,props.characterSession.difficulty))
   const [monsterAnimeStatus,setMosterAnimeStatus]=useState("idle")
+  const [selectedMonster,setSelectedMonster]=useState(null)
   const [moveHero,setMoveHero]=useState(0)
   const [moveMonster,setMoveMonster]=useState(0)
-
   const navigate = useNavigate();
   props.setLocation("mainGame")
 
   useEffect(() => {
     !props.characterSession && navigate("/choosePage")
   })
-  useEffect(() => {
-  })
-  console.log(heroAnime);
   
+  useEffect(() => {
+    setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
+    console.log(monsterArray);
+  },[componentLVL])
+
   return(
     <div>
       <Header 
@@ -38,6 +40,7 @@ function MainGamePage(props){
       <Levels 
       componentLVL={componentLVL}
       setComponentLVL={setComponentLVL}
+      setMonsterArray={setMonsterArray}
       />
       <button onClick={() => setHeroAnimeStatus("attack1")}>attack1</button>
       <button onClick={() => setHeroAnimeStatus("death")}>death</button>
@@ -52,14 +55,19 @@ function MainGamePage(props){
         moveHero={moveHero}
         setMoveHero={setMoveHero}
       />
-      <MonsterFigure 
+      {monsterArray.map((monster, index) =>{
+        return <MonsterFigure 
+        monster={monster}
+        index={index}
+        selectedMonster={selectedMonster}
+        setSelectedMonster={setSelectedMonster}
         setAnimeStatus={setHeroAnimeStatus}
-        anime={monsterAnime}
         monsterStatus={monsterAnimeStatus}
         setMonsterStatus={setMosterAnimeStatus}
         moveMonster={moveMonster}
         setMoveMonster={setMoveMonster}
       />
+        })}
     </div>
     )
 }

@@ -29,13 +29,15 @@ const frameRate = 120
     },frameRate * 6 * 1)
     setTimeout(() => {
       props.setAnimeStatus("attack1")
-      props.setMonsterStatus("hurt")
     },frameRate * 6 * 2)
+    setTimeout(() => {
+      props.setMonsterStatus("hurt")
+    },frameRate * 6 * 3)
     setTimeout(() => {
       props.setMoveHero(false)
       props.setAnimeStatus("idle")
       props.setMonsterStatus("idle")
-    },frameRate * 6 * 3)
+    },frameRate * 6 * 4)
 }, [ props.moveHero])
 
   const conStyle = [style.con]

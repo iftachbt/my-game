@@ -18,6 +18,7 @@ function Levels(props){
           BGlevel={BGlevel()}
           componentLVL={level}
           setComponentLVL={props.setComponentLVL}
+          setMonsterArray={props.setMonsterArray}
         />
       </div>
       )
