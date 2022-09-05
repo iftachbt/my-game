@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import path from "path";
 import bodyParser from "body-parser";
 import cors from "cors";
 import session from "express-session";
@@ -9,6 +10,9 @@ import { connectRoutes } from "./routes/index.routes.js";
 import { connectDB } from "./mongoDB/DB.js";
 import { sessionConfig } from "./routes/users/users.auth.js";
 import { corsOptions } from "./cors.service.js";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
@@ -21,7 +25,10 @@ app.use(session(sessionConfig()));
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (process.env.ENV === "PROD") app.use(express.static(path.join(__dirname, "client", "build")));
+if (process.env.ENV === "PROD") {
+  console.log("PROD");
+  app.use(express.static(path.join(__dirname, "client", "build")));
+}
 
 const port = process.env.PORT || 4000;
 

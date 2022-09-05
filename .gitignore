@@ -19,7 +19,7 @@
 # production
 /server//build
 
-/server/client//build
+/server/client/build
 
 # misc
 /server/.DS_Store
