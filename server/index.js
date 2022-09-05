@@ -21,6 +21,8 @@ app.use(session(sessionConfig()));
 app.use(passport.initialize());
 app.use(passport.session());
 
+if (process.env.ENV === "PROD") app.use(express.static(path.join(__dirname, "client", "build")));
+
 const port = process.env.PORT || 4000;
 
 connectRoutes(app);
