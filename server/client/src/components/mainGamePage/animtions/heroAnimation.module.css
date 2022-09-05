@@ -10,7 +10,7 @@
 }
 @keyframes moveHero2 {
   from {left: 10%; top:75%}
-  to {left: 55%; top:55%}
+  to {left: 45%; top:50%}
 }
 .con{
   position: absolute;

@@ -4,6 +4,13 @@
   overflow: hidden;
   transform: scale(3);
 }
+.imgCon_selected{
+  width: 48px;
+  height: 48px; 
+  overflow: hidden;
+  transform: scale(3);
+  filter: drop-shadow(1px 0px 2px rgb(184, 1, 1))
+}
 @keyframes moveMonster1 {
   from {left: 50%; top:55%}
   to {left: 10%; top:75%}
@@ -12,11 +19,25 @@
   from {left: 55%; top:55%}
   to {left: 10%; top:75%}
 }
-.con{
+.index0{
   position: absolute;
-  left: 60%;
-  top:55%
-
+  left: 55%;
+  top:39%
+}
+.index1{
+  position: absolute;
+  left: 63%;
+  top:47%
+}
+.index2{
+  position: absolute;
+  left: 73%;
+  top:54%
+}
+.index3{
+  position: absolute;
+  left: 50%;
+  top:50%
 }
 .move1{
   animation-name: moveMonster1;

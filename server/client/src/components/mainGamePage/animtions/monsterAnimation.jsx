@@ -1,14 +1,19 @@
 import React, {useEffect} from "react";
 import { useState } from "react";
 import style from "./monsterAnimation.module.css"
+import {monster,boss,randomMonster} from "./assets/monsters/monster";
 
 const frameRate = 120
 
+
  function MonsterFigure(props){
+  const [monsterAnime,setMonsterAnime]=useState(props.monster.type === "regular"
+  ?monster(randomMonster(props.monster.type))
+  :boss(randomMonster(props.monster.type))
+  )
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
-  const anime = props.anime[props.monsterStatus]
-  
+  const anime = monsterAnime[props.monsterStatus]
   useEffect(()=>{
       setTimeout(() => {
         if(props.monsterStatus === "death" && currentIndex >= anime.frames){
@@ -36,13 +41,17 @@ const frameRate = 120
     },frameRate * 6 * 3)
 }, [ props.moveMonster])
 
-  const conStyle = [style.con]
+function handleClick(){
+  props.setSelectedMonster(props.index)
+}
+
+  const conStyle = [style[`index${props.index}`]]
   if(props.moveMonster) conStyle.push(style[`move${props.moveMonster}`])
 
   return (
     <div>
       <div className={conStyle.join(" ")}>
-        <div className={style.imgCon}>
+        <div className={props.selectedMonster === props.index?style.imgCon_selected :style.imgCon} onClick={handleClick}>
           <img   src={anime.img}
             style={{
               width: 47.9 * (anime.frames + 1),

@@ -3,7 +3,11 @@ import style from "./background.module.css"
 
 
 function LevelBackground(props){
-  const handleNext=() => props.setComponentLVL(props.componentLVL+1)
+
+  const handleNext=() => {
+    props.setComponentLVL(props.componentLVL+1)
+    props.setMonsterArray([])
+  }
   const backgroundStyle = () => {
     if(props.BGlevel === "1") return style.backgroundImage_1
     if(props.BGlevel === "2") return style.backgroundImage_2
