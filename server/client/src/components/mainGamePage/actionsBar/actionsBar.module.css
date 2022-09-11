@@ -1,3 +1,9 @@
+.body{
+  cursor: url("./images/target.png"), pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .actionContainer{
   display: flex;
   flex-direction: column;
@@ -8,6 +14,8 @@
   width: 18%;
   height: 63%;
   background-color: rgb(255, 0, 0);
+  
+
 }
 .actionBox{
   margin-left: 17%;

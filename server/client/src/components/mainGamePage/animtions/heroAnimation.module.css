@@ -6,11 +6,19 @@
 }
 @keyframes moveHero1 {
   from {left: 10%; top:75%}
-  to {left: 50%; top:55%}
+  to {left: 46%; top:35%}
 }
 @keyframes moveHero2 {
   from {left: 10%; top:75%}
-  to {left: 45%; top:50%}
+  to {left: 63%; top:43%}
+}
+@keyframes moveHero3 {
+  from {left: 10%; top:75%}
+  to {left: 73%; top:54%}
+}
+@keyframes moveHero4 {
+  from {left: 10%; top:75%}
+  to {left: 47%; top:54%}
 }
 .con{
   position: absolute;
@@ -26,6 +34,16 @@
 
 .move2{
   animation-name: moveHero2;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
+.move3{
+  animation-name: moveHero3;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
+.move4{
+  animation-name: moveHero4;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
   animation-duration: 2160ms;
 }

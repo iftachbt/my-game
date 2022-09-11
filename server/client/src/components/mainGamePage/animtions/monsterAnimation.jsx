@@ -13,7 +13,9 @@ const frameRate = 120
   )
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
-  const anime = monsterAnime[props.monsterStatus]
+  let anime = monsterAnime[props.monsterStatus]
+  anime = monsterAnime["hurt"]
+  
   useEffect(()=>{
       setTimeout(() => {
         if(props.monsterStatus === "death" && currentIndex >= anime.frames){
@@ -58,7 +60,16 @@ function handleClick(){
               height: 48,
               transform: `translateX(${currentIndex * -48}px)`,
             }}
+            usemap="#image_map"
           />
+          <map name="image_map">
+            <area alt="" title="" href="" coords="4,13,22,47" shape="rect" />
+            <area alt="" title="" href="" coords="52,23,70,45" shape="rect" />
+            <area alt="" title="" href="" coords="99,17,122,35" shape="rect" />
+            <area alt="" title="" href="" coords="147,6,170,19" shape="rect" />
+            <area alt="" title="" href="" coords="197,-9,218,2" shape="rect" />
+            <area alt="" title="" href="" coords="245,-25,267,-14" shape="rect" />
+          </map>  
         </div>
       </div>
     </div>
