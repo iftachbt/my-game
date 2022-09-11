@@ -56,7 +56,6 @@ function MainGamePage(props){
   }
 
   const heroDamageHandler = (damage) => {
-    console.log(damage);
     const heroInfo_ = {...heroInfo}
     heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
