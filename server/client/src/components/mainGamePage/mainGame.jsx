@@ -6,6 +6,7 @@ import HeroFigure from "./animtions/heroAnimations";
 import MonsterFigure from "./animtions/monsterAnimation";
 import { useEffect } from "react";
 import hero from "./animtions/assets/heros/hero";
+import ActionsBar from "./actionsBar/actionsBar";
 import { levelConstructor } from "./gameConstructor/gameConstructor";
 
 
@@ -55,6 +56,7 @@ function MainGamePage(props){
         moveHero={moveHero}
         setMoveHero={setMoveHero}
       />
+      <ActionsBar />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
         monster={monster}
