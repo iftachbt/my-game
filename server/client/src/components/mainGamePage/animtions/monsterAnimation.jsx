@@ -13,7 +13,9 @@ const frameRate = 120
   )
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
-  const anime = monsterAnime[props.monsterStatus]
+  let anime = monsterAnime[props.monsterStatus]
+  anime = monsterAnime["hurt"]
+  
   useEffect(()=>{
       setTimeout(() => {
         if(props.monsterStatus === "death" && currentIndex >= anime.frames){

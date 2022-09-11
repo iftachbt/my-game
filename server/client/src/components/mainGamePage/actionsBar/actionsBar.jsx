@@ -11,6 +11,7 @@ function ActionsBar(props){
 
       <div className={style.actionBox} onClick={() => props.setMoveHero(target)}>
         attack
+        
       </div>
       <div className={style.actionBox}>
 
