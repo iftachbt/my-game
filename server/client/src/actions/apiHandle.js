@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:4000/";
+const URL = process.env.REACT_APP_SERVER;
 
 export async function sendPost(route, body) {
   try {
