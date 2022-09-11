@@ -25,13 +25,13 @@
 }
 .index0{
   position: absolute;
-  left: 55%;
-  top:39%
+  left: 46%;
+  top:35%
 }
 .index1{
   position: absolute;
   left: 63%;
-  top:47%
+  top:43%
 }
 .index2{
   position: absolute;
@@ -40,8 +40,8 @@
 }
 .index3{
   position: absolute;
-  left: 50%;
-  top:50%
+  left: 47%;
+  top:54%
 }
 .move1{
   animation-name: moveMonster1;

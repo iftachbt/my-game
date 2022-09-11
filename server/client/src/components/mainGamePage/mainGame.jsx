@@ -56,7 +56,10 @@ function MainGamePage(props){
         moveHero={moveHero}
         setMoveHero={setMoveHero}
       />
-      <ActionsBar />
+      <ActionsBar 
+        setMoveHero={setMoveHero}
+        selectedMonster={selectedMonster}
+        />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
         monster={monster}
