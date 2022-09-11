@@ -1,5 +1,6 @@
 class Monster {
   constructor(level, difficulty) {
+    this.status = "idle";
     this.level = level <= 10 ? 1 : level / 10;
     this.difficulty = () => {
       if (difficulty === "easy") return 1;
@@ -14,13 +15,18 @@ class Monster {
     };
   }
 
+  setStatus(status) {
+    this.status = status;
+  }
+
   attack(enemy) {
     if (enemy.damage(this.ATK) === "hit") {
       return enemy.HP <= 0 ? "dead" : "alive";
     } else return null;
   }
+
   damage(dmg) {
-    const chanceToHit = Math.floor(Math.random() * 21);
+    const chanceToHit = Math.floor(Math.random() * 21 + 10);
     if (chanceToHit > this.shield) {
       this.HP = this.HP - dmg;
       return "hit";

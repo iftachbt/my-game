@@ -6,24 +6,25 @@
 }
 @keyframes moveHero1 {
   from {left: 10%; top:75%}
-  to {left: 46%; top:35%}
+  to {left: 43%; top:35%}
 }
 @keyframes moveHero2 {
   from {left: 10%; top:75%}
-  to {left: 63%; top:43%}
+  to {left: 58%; top:43%}
 }
 @keyframes moveHero3 {
   from {left: 10%; top:75%}
-  to {left: 73%; top:54%}
+  to {left: 70%; top:54%}
 }
 @keyframes moveHero4 {
   from {left: 10%; top:75%}
-  to {left: 47%; top:54%}
+  to {left: 44%; top:54%}
 }
 .con{
   position: absolute;
   left: 10%;
-  top:75%
+  top:75%;
+  z-index: 10;
 }
 
 .move1{

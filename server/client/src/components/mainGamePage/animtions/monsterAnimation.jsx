@@ -1,60 +1,85 @@
-import React, {useEffect} from "react";
+import React, {useEffect,useRef} from "react";
 import { useState } from "react";
 import style from "./monsterAnimation.module.css"
-import {monster,boss,randomMonster} from "./assets/monsters/monster";
+import {monster as monsterClass,boss,randomMonster} from "./assets/monsters/monster";
+import { LinearProgress  } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { appBarTheme } from "./progressBarStyle";
 
 const frameRate = 120
 
 
  function MonsterFigure(props){
-  const [monsterAnime,setMonsterAnime]=useState(props.monster.type === "regular"
-  ?monster(randomMonster(props.monster.type))
-  :boss(randomMonster(props.monster.type))
+  const { monster, index, moveMonster, setMonsterStatus, setMoveMonster, attackMonster, attackMode,setStage,heroDamage } = props
+  const [monsterAnime,setMonsterAnime]=useState(monster.type === "regular"
+  ?monsterClass(randomMonster(monster.type))
+  :boss(randomMonster(monster.type))
   )
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
-  let anime = monsterAnime[props.monsterStatus]
-  anime = monsterAnime["hurt"]
+  const [status,seStatus]=useState("idle")
+  const [changeStatus,setChangeStatus]=useState(false)
+
+  const anime = monsterAnime[monster.status]
   
   useEffect(()=>{
       setTimeout(() => {
-        if(props.monsterStatus === "death" && currentIndex >= anime.frames){
+        if(changeStatus ){
+          setCurrentIndex(0)
+          setChangeStatus(false)
+          return 
+        }
+        if(monster.status === "death" && currentIndex >= anime.frames){
           return setDeath(death + 1)
         }
-        if(props.monsterStatus !== "idle" && currentIndex >= anime.frames){
-          props.setAnimeStatus("idle")
+        if(monster.status !== "idle" && currentIndex >= anime.frames){
+          setMonsterStatus("idle",index)
         }
         setCurrentIndex(currentIndex >= anime.frames ? 0 : currentIndex + 1)
       },frameRate)
-  }, [ currentIndex, death])
+  }, [ currentIndex, death, changeStatus])
 
   useEffect(()=>{
-    if(!props.moveMonster) return
-    props.setMonsterStatus("run")
+    seStatus(monster.status)
+    if(monster.status !== "idle")
+      setChangeStatus(true)
+  }, [ monster.status ])
+
+  useEffect(()=>{
+    if(death || moveMonster !== index) return
+    setMonsterStatus("run",index)
     setTimeout(() => {
-      props.setMonsterStatus("run")
+      setMonsterStatus("run",index)
     },frameRate * 6 * 1)
     setTimeout(() => {
-      props.setMonsterStatus("attack1")
+      setMonsterStatus("attack1",index)
     },frameRate * 6 * 2)
     setTimeout(() => {
-      props.setMoveMonster(false)
-      props.setMonsterStatus("idle")
+      setMoveMonster(-1)
+      setStage(0)
+      setMonsterStatus("idle",index)
+      heroDamage(monster.ATK)
     },frameRate * 6 * 3)
-}, [ props.moveMonster])
+}, [ moveMonster])
 
 function handleClick(){
-  props.setSelectedMonster(props.index)
+  attackMonster(index)
 }
 
-  const conStyle = [style[`index${props.index}`]]
-  if(props.moveMonster) conStyle.push(style[`move${props.moveMonster}`])
+  const conStyle = [style[`index${index}`]]
+  if(moveMonster === index && !death) {
+    conStyle.push(style[`move${moveMonster}`])
+  }
 
   return (
-    <div>
       <div className={conStyle.join(" ")}>
-        <div className={props.selectedMonster === props.index?style.imgCon_selected :style.imgCon} onClick={handleClick}>
-          <img   src={anime.img}
+        <div className={style.barCon}>
+          <ThemeProvider theme={appBarTheme} >
+            <LinearProgress value={((monster.HP * 100) / monster.maxHealth)} variant="determinate"/>
+          </ThemeProvider>
+        </div>
+        <div className={[style.imgCon,(attackMode !== "none" && !death)?style.imgHover:""].join(" ")} onClick={handleClick}>
+          <img src={anime.img}
             style={{
               width: 47.9 * (anime.frames + 1),
               height: 48,
@@ -62,17 +87,8 @@ function handleClick(){
             }}
             usemap="#image_map"
           />
-          <map name="image_map">
-            <area alt="" title="" href="" coords="4,13,22,47" shape="rect" />
-            <area alt="" title="" href="" coords="52,23,70,45" shape="rect" />
-            <area alt="" title="" href="" coords="99,17,122,35" shape="rect" />
-            <area alt="" title="" href="" coords="147,6,170,19" shape="rect" />
-            <area alt="" title="" href="" coords="197,-9,218,2" shape="rect" />
-            <area alt="" title="" href="" coords="245,-25,267,-14" shape="rect" />
-          </map>  
         </div>
       </div>
-    </div>
   );
 }
 export default MonsterFigure

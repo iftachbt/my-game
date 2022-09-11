@@ -8,17 +8,25 @@ import { useEffect } from "react";
 import hero from "./animtions/assets/heros/hero";
 import ActionsBar from "./actionsBar/actionsBar";
 import { levelConstructor } from "./gameConstructor/gameConstructor";
+import style from "./mainGame.module.css"
+import { toster } from "../../actions/toastAlert";
 
+const HERO_ATTACK = 0;
+const MONSTER_ATTACK = 1;
 
 function MainGamePage(props){
-  const [componentLVL,setComponentLVL]=useState(props.characterSession.level||"1")
-  const [heroAnimeStatus,setHeroAnimeStatus]=useState("idle")
-  const [heroAnime,setHeroAnime]=useState(hero(props.character.race))
-  const [monsterArray,setMonsterArray]=useState(levelConstructor(componentLVL,props.characterSession.difficulty))
-  const [monsterAnimeStatus,setMosterAnimeStatus]=useState("idle")
-  const [selectedMonster,setSelectedMonster]=useState(null)
-  const [moveHero,setMoveHero]=useState(0)
-  const [moveMonster,setMoveMonster]=useState(0)
+  const [heroInfo,setHeroInfo ]= useState(props.characterSession||"")
+  const [componentLVL,setComponentLVL ]= useState(props.characterSession.level||"1")
+  const [heroAnimeStatus,setHeroAnimeStatus ]= useState("idle")
+  const [heroAnime,setHeroAnime ]= useState(hero(props.character.race))
+  const [monsterArray,setMonsterArray ]= useState(levelConstructor(componentLVL,props.characterSession.difficulty))
+  const [monsterAnimeStatus,setMosterAnimeStatus ]= useState("idle")
+  const [selectedMonster,setSelectedMonster ]= useState(null)             
+  const [moveHero,setMoveHero ]= useState(0)
+  const [moveMonster,setMoveMonster ]= useState(-1)
+  const [attackMode,setAttackMode] = useState("none")
+  const [store,setStore] = useState(false)
+  const [stage,setStage] = useState(HERO_ATTACK)
   const navigate = useNavigate();
   props.setLocation("mainGame")
 
@@ -28,49 +36,108 @@ function MainGamePage(props){
   
   useEffect(() => {
     setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
-    console.log(monsterArray);
   },[componentLVL])
 
+  useEffect(() => {
+    if(stage === MONSTER_ATTACK){
+      if(monsterArray.filter(m => m.HP > 0).length === 0) return 
+      let randomIndex = Math.floor(Math.random()*monsterArray.length)
+      while(monsterArray[randomIndex].HP <= 0){
+        randomIndex = Math.floor(Math.random()*monsterArray.length)
+      }
+      setMoveMonster(randomIndex)
+    }
+  },[stage])
+
+  const setMonsterStatus = (status,index) => {
+    const monsterArray_ = [...monsterArray]
+    monsterArray_[index].setStatus(status)
+    setMonsterArray(monsterArray_)
+  }
+
+  const heroDamageHandler = (damage) => {
+    console.log(damage);
+    const heroInfo_ = {...heroInfo}
+    heroInfo_.HP = heroInfo_.HP - damage
+    if(heroInfo_.HP <= 0){
+      toster("you dead!")
+    }
+    setHeroInfo(heroInfo_)
+    
+  }
+
+  const monsterDamageHandler = () => {
+    const monsterArray_ = [...monsterArray]
+    monsterArray_[selectedMonster].damage(props.characterSession.ATK+100)
+    if(monsterArray_[selectedMonster].HP <= 0){
+      monsterArray_[selectedMonster].setStatus("death")
+    }
+    if(monsterArray_.filter(m => m.HP > 0).length === 0){
+      setTimeout(() => {setStore(true)},1500)
+    }
+    setMonsterArray(monsterArray_)
+    setTimeout(() => {
+      setStage(MONSTER_ATTACK)
+    }, 1000);
+  }
+
+  const attackMonsterHandler = (index) => {
+    if(attackMode !== "none"){
+      setSelectedMonster(index)
+      setMoveHero(index+1)
+    }
+  }
+
+  const next = () => {
+    setMonsterArray([])
+    setComponentLVL(componentLVL+1)
+    setStore(false)
+    setStage(HERO_ATTACK)
+  }
+  
+  if(store){
+    return (
+      <div>
+        store
+        <button onClick={() => {next()}}>next</button>
+      </div>
+    )
+  }
   return(
-    <div>
+    <div className={(attackMode !== "none") ? style.curserTarget : null}>
       <Header 
-      componentLVL={componentLVL}
-      characterSession={props.characterSession}
-      character={props.character}
+        componentLVL={componentLVL}
+        characterSession={heroInfo}
+        character={props.character}
       />
-      <Levels 
-      componentLVL={componentLVL}
-      setComponentLVL={setComponentLVL}
-      setMonsterArray={setMonsterArray}
-      />
-      <button onClick={() => setHeroAnimeStatus("attack1")}>attack1</button>
-      <button onClick={() => setHeroAnimeStatus("death")}>death</button>
-      <button onClick={() => setHeroAnimeStatus("hurt")}>hurt</button>
-      <button onClick={() => setMoveHero(1)}>move1</button>
-      <button onClick={() => setMoveHero(2)}>move2</button>
+      <Levels componentLVL={componentLVL}/>
       <HeroFigure 
         anime={heroAnime}
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
-        setMonsterStatus={setMosterAnimeStatus}
+        setMonsterStatus={(status) => {setMonsterStatus(status,selectedMonster)}}
+        monsterDamage={monsterDamageHandler}
         moveHero={moveHero}
         setMoveHero={setMoveHero}
+        setAttackMode={setAttackMode}
       />
       <ActionsBar 
-        setMoveHero={setMoveHero}
-        selectedMonster={selectedMonster}
+        isActive={stage === HERO_ATTACK}
+        setAttackMode={setAttackMode}
         />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
         monster={monster}
         index={index}
-        selectedMonster={selectedMonster}
-        setSelectedMonster={setSelectedMonster}
         setAnimeStatus={setHeroAnimeStatus}
         monsterStatus={monsterAnimeStatus}
-        setMonsterStatus={setMosterAnimeStatus}
+        setMonsterStatus={(status,index) => {setMonsterStatus(status,index)}}
         moveMonster={moveMonster}
         setMoveMonster={setMoveMonster}
+        attackMonster={() => {attackMonsterHandler(index)}}
+        attackMode={attackMode}
+        setStage={setStage}
+        heroDamage={heroDamageHandler}
       />
         })}
     </div>

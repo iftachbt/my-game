@@ -4,10 +4,6 @@ import style from "./background.module.css"
 
 function LevelBackground(props){
 
-  const handleNext=() => {
-    props.setComponentLVL(props.componentLVL+1)
-    props.setMonsterArray([])
-  }
   const backgroundStyle = () => {
     if(props.BGlevel === "1") return style.backgroundImage_1
     if(props.BGlevel === "2") return style.backgroundImage_2
@@ -19,7 +15,6 @@ function LevelBackground(props){
  return(
     <div>
       <div className={[style.background,backgroundStyle()].join(" ")}></div>
-      <button onClick={handleNext}>next</button>
     </div>
   )
 }

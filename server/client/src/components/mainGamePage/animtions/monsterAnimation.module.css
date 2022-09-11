@@ -3,16 +3,18 @@
   height: 48px; 
   overflow: hidden;
   transform: scale(3);
-  cursor: pointer;
 
 }
-.imgCon_selected{
+.imgHover{
+
+}
+
+.imgHover :hover{
   width: 48px;
   height: 48px; 
   overflow: hidden;
   transform: scale(3);
   filter: drop-shadow(1px 0px 2px rgb(184, 1, 1));
-  cursor: pointer;
 
 }
 @keyframes moveMonster1 {
@@ -43,8 +45,14 @@
   left: 47%;
   top:54%
 }
-.move1{
+.move0{
   animation-name: moveMonster1;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
+
+.move1{
+  animation-name: moveMonster2;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
   animation-duration: 2160ms;
 }
@@ -53,4 +61,16 @@
   animation-name: moveMonster2;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
   animation-duration: 2160ms;
+}
+
+.move3{
+  animation-name: moveMonster2;
+  animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+  animation-duration: 2160ms;
+}
+
+.barCon{
+  position: absolute;
+  width: 200%;
+  top: -20px;
 }

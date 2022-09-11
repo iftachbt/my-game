@@ -5,6 +5,7 @@ import style from "./heroAnimation.module.css"
 const frameRate = 120
 
  function HeroFigure(props){
+  const { attackMode } = props
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
   const anime = props.anime[props.animeStatus]
@@ -32,11 +33,12 @@ const frameRate = 120
     },frameRate * 6 * 2)
     setTimeout(() => {
       props.setMonsterStatus("hurt")
+      props.monsterDamage()
     },frameRate * 6 * 3)
     setTimeout(() => {
       props.setMoveHero(false)
       props.setAnimeStatus("idle")
-      props.setMonsterStatus("idle")
+      props.setAttackMode("none")
     },frameRate * 6 * 4)
 }, [ props.moveHero])
 
