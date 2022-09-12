@@ -19,3 +19,10 @@ export class UnAuthriseError extends Error {
     this.message = message;
   }
 }
+export class InternalServerError extends Error {
+  code = 500;
+  constructor(message) {
+    super(message);
+    this.message = message;
+  }
+}

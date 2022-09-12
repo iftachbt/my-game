@@ -21,11 +21,12 @@ export function sessionConfig() {
   };
 }
 
-export function registerUser(user, req, res) {
-  const { userName, fname, lname, email, password } = user;
-  console.log("user", user);
+export function registerUser(req, res, next) {
+  const { userName, fname, lname, email, password } = req.body;
   return User.register({ username: userName, fname, lname, email, id: uuid() }, password, (err, user) => {
-    if (err) throw new UnAuthriseError("error in registerAuthentication");
+    if (err) {
+      return next(new UnAuthriseError(err.message));
+    }
     res.send(user);
     passport.authenticate("local")(req, res, function () {});
   });

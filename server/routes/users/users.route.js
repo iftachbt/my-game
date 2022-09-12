@@ -6,8 +6,8 @@ import { NotFoundError } from "../../error_handling/error.class.js";
 export const UsersRoute = express.Router();
 export const UserPrefix = "/user";
 
-UsersRoute.post("/signUp", (req, res) => {
-  signUp(req, res);
+UsersRoute.post("/signUp", (req, res, next) => {
+  signUp(req, res, next);
 });
 
 UsersRoute.post("/logIn", passport.authenticate("local"), (req, res) => {
