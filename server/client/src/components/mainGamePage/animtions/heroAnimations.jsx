@@ -32,7 +32,6 @@ const frameRate = 120
       setAnimeStatus("attack1")
     },frameRate * 6 * 2)
     setTimeout(() => {
-      
       monsterDamage()
     },frameRate * 6 * 3)
     setTimeout(() => {

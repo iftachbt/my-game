@@ -100,8 +100,6 @@ function MainGamePage(props){
       monsterArray.forEach((monster,index) =>
         monsterDamageHandler(index))
     ,500)
-
-    
     setSkillOne(6)
   }
 
