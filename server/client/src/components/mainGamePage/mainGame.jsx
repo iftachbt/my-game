@@ -92,6 +92,7 @@ function MainGamePage(props){
     monsterArray_.forEach(monster => {
       monster.damage(props.characterSession.ATK)
       monster.setStatus("hurt")
+      setHeroAnimeStatus("attack1")
       if(monster.HP <= 0) monster.setStatus("death")
       })
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
@@ -149,6 +150,7 @@ function MainGamePage(props){
         isActive={stage === HERO_ATTACK}
         setAttackMode={setAttackMode}
         attackAllMonsters={attackAllMonsters}
+        skillOneCount={skillOneCount}
         />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
