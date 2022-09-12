@@ -1,5 +1,5 @@
 import express from "express";
-import { create, fetchById, deleteOne } from "./session.service.js";
+import { create, fetchById, deleteOne, update } from "./session.service.js";
 import { gameSessionCreationValidation } from "./session.validation.js";
 
 export const gameSessionRoute = express.Router();
@@ -9,8 +9,11 @@ gameSessionRoute.post("/session", gameSessionCreationValidation, (req, res) => {
   create(req.body);
   res.send(req.body);
 });
+gameSessionRoute.put("/session", gameSessionCreationValidation, (req, res) => {
+  const result = update(req.body);
+  res.send(result);
+});
 gameSessionRoute.delete("/session", async (req, res) => {
-  console.log("first del " + req.query.characterId);
   const result = await deleteOne(req.query.characterId);
   res.send(result);
 });

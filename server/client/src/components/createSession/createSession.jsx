@@ -3,14 +3,15 @@ import style from "./createSession.module.css";
 import { useNavigate } from "react-router-dom";
 import { createSession } from "../../actions/gameSession/gameSession";
 import { characterBuild } from "../../actions/character/character.build";
-import { awaitToast } from "../../actions/toastAlert";
+import { awaitToast, toster,errToster } from "../../actions/toastAlert";
 import Button from "../buttons/buttons";
+
 
 
  function CreateSession(props){
   const [gameDifficulty, setDifficulty] = useState(null)
     const navigate = useNavigate();
-
+    
     async function Create(){
       const name = props.character.name
       const race = props.character.race

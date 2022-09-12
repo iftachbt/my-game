@@ -30,7 +30,7 @@ export async function sendDelete(route) {
 }
 export async function sendUpdate(route, body) {
   try {
-    const res = await axios.post(URL + route, body, {
+    const res = await axios.put(URL + route, body, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
