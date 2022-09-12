@@ -9,3 +9,7 @@ export const fetchById = (characterId) =>
     .then((res) => (res.length ? res[0] : null));
 
 export const deleteById = (characterId) => GameSession.deleteOne({ characterId });
+
+export const updateById = async (session) => {
+  return await GameSession.findOneAndUpdate({ id: session.id, ...session });
+};

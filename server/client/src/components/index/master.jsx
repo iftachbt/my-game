@@ -18,6 +18,8 @@ import "./master.css"
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateSession } from "../../actions/gameSession/gameSession";
+import { errToster, toster } from "../../actions/toastAlert";
 
 
 
@@ -29,6 +31,7 @@ function Master(){
   const [headerState, setHeaderState] = useState(false)
   const [isMute,setMute] = useState(true)
   const [countOnce,setCountOnce] = useState(0)
+  const [pushSave,setPushSave] = useState(false)
 
   const navigate = useNavigate();
 
@@ -52,6 +55,12 @@ function Master(){
       }
     }
   }
+  async function saveSession(session){
+    const res = await updateSession(session)
+    if(res !== "err") return toster("save session")
+    return errToster("can't save")
+  }
+  
     
   return(
     <div>
@@ -68,6 +77,7 @@ function Master(){
           setHeaderState={setHeaderState}
           isMute={isMute}
           setMute={setMute}
+          setPushSave={setPushSave}
         />
         {headerState && 
         <Pause 
@@ -118,6 +128,9 @@ function Master(){
               character={character}
               characterSession={characterSession}
               headerState ={headerState}
+              pushSave ={pushSave}
+              setPushSave ={setPushSave}
+              saveSession ={saveSession}
              />} />
         </Routes>
     </div>

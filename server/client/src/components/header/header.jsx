@@ -24,13 +24,14 @@ const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  let pages = [ 'About'];
+  let pages = [];
   if(props.location === "mainGame"){
-    pages[0] = "pause"
+    pages.push("save","menu")
   }
   function handlePageClick(event){
     const val = event.target.getAttribute('value')
-    if(val === "pause") props.setHeaderState("pause")
+    if(val === "save") props.setPushSave(true)
+    if(val === "menu") navigate("/choosePage")
     handleOpenNavMenu(event)
   };
   const handleMute = () =>{

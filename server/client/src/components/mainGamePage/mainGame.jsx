@@ -47,6 +47,12 @@ function MainGamePage(props){
   },[stage])
 
   useEffect(() => {
+    if(!props.pushSave)return
+    props.saveSession(heroInfo)
+    props.setPushSave(false)
+  },[props.pushSave])
+
+  useEffect(() => {
     if(stage === MONSTER_ATTACK){
       if(monsterArray.filter(m => m.HP > 0).length === 0) return 
       let randomIndex = Math.floor(Math.random()*monsterArray.length)
@@ -116,7 +122,7 @@ function MainGamePage(props){
       setMoveHero(index+1)
     }
   }
-
+  
   const next = () => {
     setMonsterArray([])
     setComponentLVL(componentLVL+1)
