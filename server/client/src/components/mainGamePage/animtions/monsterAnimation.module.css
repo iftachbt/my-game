@@ -18,12 +18,20 @@
 
 }
 @keyframes moveMonster1 {
-  from {left: 50%; top:55%}
-  to {left: 10%; top:75%}
+  from {left: 46%; top:35%}
+  to {left: 15%; top:75%}
 }
 @keyframes moveMonster2 {
-  from {left: 55%; top:55%}
-  to {left: 10%; top:75%}
+  from {left: 63%; top:43%}
+  to {left: 15%; top:75%}
+}
+@keyframes moveMonster3 {
+  from {left: 73%; top:54%}
+  to {left: 15%; top:75%}
+}
+@keyframes moveMonster4 {
+  from {left: 47%; top:54%}
+  to {left: 15%; top:75%}
 }
 .index0{
   position: absolute;
@@ -58,13 +66,13 @@
 }
 
 .move2{
-  animation-name: moveMonster2;
+  animation-name: moveMonster3;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
   animation-duration: 2160ms;
 }
 
 .move3{
-  animation-name: moveMonster2;
+  animation-name: moveMonster4;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
   animation-duration: 2160ms;
 }

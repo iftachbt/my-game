@@ -55,6 +55,7 @@ const frameRate = 120
       setMonsterStatus("attack1",index)
     },frameRate * 6 * 2)
     setTimeout(() => {
+      props.setHeroStatus("hurt")
       setMoveMonster(-1)
       setStage(0)
       setMonsterStatus("idle",index)

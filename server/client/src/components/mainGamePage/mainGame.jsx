@@ -35,7 +35,6 @@ function MainGamePage(props){
   useEffect(() => {
     !props.characterSession && navigate("/choosePage")
   })
-  console.log(props.character.id);
   useEffect(() => {
     setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
   },[componentLVL])
@@ -61,7 +60,8 @@ function MainGamePage(props){
     const heroInfo_ = {...heroInfo}
     heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
-      setIsHeroDead(true)
+      setHeroAnimeStatus("death")
+      setTimeout(() => {setIsHeroDead(true)},1500)
     }
     setHeroInfo(heroInfo_)
   }
@@ -133,6 +133,7 @@ function MainGamePage(props){
         setAnimeStatus={setHeroAnimeStatus}
         monsterStatus={monsterAnimeStatus}
         setMonsterStatus={(status,index) => {setMonsterStatus(status,index)}}
+        setHeroStatus={setHeroAnimeStatus}
         moveMonster={moveMonster}
         setMoveMonster={setMoveMonster}
         attackMonster={() => {attackMonsterHandler(index)}}

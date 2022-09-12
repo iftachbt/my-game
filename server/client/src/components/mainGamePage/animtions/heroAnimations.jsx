@@ -43,7 +43,7 @@ const frameRate = 120
 }, [ moveHero])
 
   const conStyle = [style.con]
-  if(moveHero) conStyle.push(style[`move${moveHero}`])
+  if(moveHero && !death) conStyle.push(style[`move${moveHero}`])
 
   return (
     <div>
