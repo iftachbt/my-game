@@ -9,7 +9,8 @@ import hero from "./animtions/assets/heros/hero";
 import ActionsBar from "./actionsBar/actionsBar";
 import { levelConstructor } from "./gameConstructor/gameConstructor";
 import style from "./mainGame.module.css"
-import { toster } from "../../actions/toastAlert";
+import GameOver from "./gameOver/gameOver";
+
 
 const HERO_ATTACK = 0;
 const MONSTER_ATTACK = 1;
@@ -23,6 +24,7 @@ function MainGamePage(props){
   const [monsterAnimeStatus,setMosterAnimeStatus ]= useState("idle")
   const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
+  const [isHeroDead,setIsHeroDead ]= useState(false)
   const [moveMonster,setMoveMonster ]= useState(-1)
   const [attackMode,setAttackMode] = useState("none")
   const [store,setStore] = useState(false)
@@ -59,10 +61,9 @@ function MainGamePage(props){
     const heroInfo_ = {...heroInfo}
     heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
-      toster("you dead!")
+      setIsHeroDead(true)
     }
     setHeroInfo(heroInfo_)
-    
   }
 
   const monsterDamageHandler = () => {
@@ -104,6 +105,7 @@ function MainGamePage(props){
   }
   return(
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
+      {isHeroDead && <GameOver />}
       <Header 
         componentLVL={componentLVL}
         characterSession={heroInfo}
