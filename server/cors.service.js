@@ -1,4 +1,4 @@
-const whitelist = ["http://localhost:3000"];
+const whitelist = ["http://localhost:3000", "http://localhost", "http://184.72.203.73"];
 export const corsOptions = {
   credentials: true,
   origin: (origin, callback) => {
