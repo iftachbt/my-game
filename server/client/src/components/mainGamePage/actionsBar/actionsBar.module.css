@@ -17,17 +17,30 @@
 }
 .actionBox{
   width: 100px;
-  height: 27px;
-  background-color: #bc2525;
-  margin: 15px;
-  font-size: 21px;
-  color: white;
-  border-radius: 5px;
+  height: 70px;
+  background-repeat: round;
   cursor: pointer;
 }
+.actionBox h1{
+  font-size: 19px;
+  position: relative;
+  top: 33px;
+}
+.gray{
+  width: 100px;
+  height: 70px;
+  background-repeat: round;
+  filter: grayscale(78%);
+}
+.gray h1{
+  font-size: 19px;
+  position: relative;
+  top: 12px;
+  color: #fffcfc;
+}
 .attack{
-  margin-left: 17%;
-  width: 10%;
-  height: 10%;
-  background-color: rgb(0, 255, 55);
+  background-image: url("./images/attackIcon.png");
+}
+.attackAll{
+  background-image: url("./images/attackAllIcon.png");
 }
