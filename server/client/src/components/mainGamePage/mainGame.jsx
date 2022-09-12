@@ -77,12 +77,13 @@ function MainGamePage(props){
     setHeroInfo(heroInfo_)
   }
 
-  const monsterDamageHandler = () => {
+  const monsterDamageHandler = (target) => {
     const monsterArray_ = [...monsterArray]
-    monsterArray_[selectedMonster].damage(props.characterSession.ATK+100)
-    if(monsterArray_[selectedMonster].HP <= 0){
-      setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[selectedMonster].gold}})
-      monsterArray_[selectedMonster].setStatus("death")
+    setMonsterStatus("hurt",target)
+    monsterArray_[target].damage(props.characterSession.ATK)
+    if(monsterArray_[target].HP <= 0){
+      setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[target].gold}})
+      monsterArray_[target].setStatus("death")
     }
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
       setTimeout(() => {setStore(true)},1500)
@@ -92,26 +93,16 @@ function MainGamePage(props){
       setStage(MONSTER_ATTACK)
     }, 1000);
   }
-  function attackAllMonsters(){
+  const attackAllMonsters = () => {
     if(skillOneCount !== 0) return;
-    let monsterArray_ = [...monsterArray]
-    monsterArray_.forEach(monster => {
-      monster.damage(props.characterSession.ATK)
-      monster.setStatus("hurt")
-      setHeroAnimeStatus("attack1")
-      if(monster.HP <= 0) {
-        setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monster.gold}})
-        monster.setStatus("death")
-      }
-      })
-    if(monsterArray_.filter(m => m.HP > 0).length === 0){
-      setTimeout(() => {setStore(true)},1500)
-    }
+    setHeroAnimeStatus("attack1")
+    setTimeout(() => 
+      monsterArray.forEach((monster,index) =>
+        monsterDamageHandler(index))
+    ,500)
+
+    
     setSkillOne(6)
-    setMonsterArray(monsterArray_)
-    setTimeout(() => {
-      setStage(MONSTER_ATTACK)
-    }, 1000);
   }
 
   const attackMonsterHandler = (index) => {
@@ -150,7 +141,7 @@ function MainGamePage(props){
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
         setMonsterStatus={(status) => {setMonsterStatus(status,selectedMonster)}}
-        monsterDamage={monsterDamageHandler}
+        monsterDamage={() => monsterDamageHandler(selectedMonster)}
         moveHero={moveHero}
         setMoveHero={setMoveHero}
         setAttackMode={setAttackMode}
