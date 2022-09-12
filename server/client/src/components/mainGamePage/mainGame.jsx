@@ -60,7 +60,8 @@ function MainGamePage(props){
     const heroInfo_ = {...heroInfo}
     heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
-      setIsHeroDead(true)
+      setHeroAnimeStatus("death")
+      setTimeout(() => {setIsHeroDead(true)},1500)
     }
     setHeroInfo(heroInfo_)
   }
