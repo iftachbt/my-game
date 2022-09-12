@@ -21,9 +21,10 @@ function MainGamePage(props){
   const [heroAnimeStatus,setHeroAnimeStatus ]= useState("idle")
   const [heroAnime,setHeroAnime ]= useState(hero(props.character.race))
   const [monsterArray,setMonsterArray ]= useState(levelConstructor(componentLVL,props.characterSession.difficulty))
-  const [monsterAnimeStatus,setMosterAnimeStatus ]= useState("idle")
   const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
+  const [skillOneCount,setSkillOne ]= useState(0)
+  const [skillTwoCount,setSkillTwo ]= useState(0)
   const [isHeroDead,setIsHeroDead ]= useState(false)
   const [moveMonster,setMoveMonster ]= useState(-1)
   const [attackMode,setAttackMode] = useState("none")
@@ -38,6 +39,11 @@ function MainGamePage(props){
   useEffect(() => {
     setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
   },[componentLVL])
+
+  useEffect(() => {
+    if(skillOneCount > 0)setSkillOne(skillOneCount-1) 
+    if(skillTwoCount > 0)setSkillTwo(skillTwoCount-1) 
+  },[stage])
 
   useEffect(() => {
     if(stage === MONSTER_ATTACK){
@@ -68,13 +74,30 @@ function MainGamePage(props){
 
   const monsterDamageHandler = () => {
     const monsterArray_ = [...monsterArray]
-    monsterArray_[selectedMonster].damage(props.characterSession.ATK+100)
+    monsterArray_[selectedMonster].damage(props.characterSession.ATK)
     if(monsterArray_[selectedMonster].HP <= 0){
       monsterArray_[selectedMonster].setStatus("death")
     }
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
       setTimeout(() => {setStore(true)},1500)
     }
+    setMonsterArray(monsterArray_)
+    setTimeout(() => {
+      setStage(MONSTER_ATTACK)
+    }, 1000);
+  }
+  function attackAllMonsters(){
+    if(skillOneCount !== 0) return;
+    let monsterArray_ = [...monsterArray]
+    monsterArray_.forEach(monster => {
+      monster.damage(props.characterSession.ATK)
+      monster.setStatus("hurt")
+      if(monster.HP <= 0) monster.setStatus("death")
+      })
+    if(monsterArray_.filter(m => m.HP > 0).length === 0){
+      setTimeout(() => {setStore(true)},1500)
+    }
+    setSkillOne(6)
     setMonsterArray(monsterArray_)
     setTimeout(() => {
       setStage(MONSTER_ATTACK)
@@ -125,13 +148,13 @@ function MainGamePage(props){
       <ActionsBar 
         isActive={stage === HERO_ATTACK}
         setAttackMode={setAttackMode}
+        attackAllMonsters={attackAllMonsters}
         />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
         monster={monster}
         index={index}
         setAnimeStatus={setHeroAnimeStatus}
-        monsterStatus={monsterAnimeStatus}
         setMonsterStatus={(status,index) => {setMonsterStatus(status,index)}}
         setHeroStatus={setHeroAnimeStatus}
         moveMonster={moveMonster}

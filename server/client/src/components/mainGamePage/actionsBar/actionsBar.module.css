@@ -17,13 +17,15 @@
 }
 .actionBox{
   width: 100px;
-  height: 27px;
-  background-color: #bc2525;
-  margin: 15px;
-  font-size: 21px;
-  color: white;
-  border-radius: 5px;
+  height: 70px;
+  background-image: url("./images/attackIcon.png");
+  background-repeat: round;
   cursor: pointer;
+}
+.actionBox h1{
+  font-size: 19px;
+  position: relative;
+  top: 33px;
 }
 .attack{
   margin-left: 17%;

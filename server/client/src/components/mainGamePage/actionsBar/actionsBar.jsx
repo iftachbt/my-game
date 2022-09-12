@@ -3,16 +3,22 @@ import style from "./actionsBar.module.css";
 
 
 function ActionsBar(props){
+  const {attackAllMonsters,setAttackMode} = props
+  
+  function handleAttack(action){
+    if(action === "attackAll") return attackAllMonsters()
+    setAttackMode(action)
+  }
   return(
     <div>
       <div className={style.actionContainer}>
-        {["attack"].map((action) => {
+        {["attack","attackAll"].map((action) => {
           return (
             <div 
             style={{pointerEvents: props.isActive?"":"none"}}
-            onClick={() => props.setAttackMode(action)}
+            onClick={() => handleAttack(action)}
             className={style.actionBox}
-            >{action}</div>
+            ><h1>{action}</h1></div>
           )
         })}
       </div>
