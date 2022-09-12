@@ -1,9 +1,20 @@
 import React, {useState,useEffect} from "react";
 import Button from "../../buttons/buttons";
 import style from "./gameOver.module.css";
+import {  useNavigate } from "react-router-dom";
+import {  deleteSession } from "../../../actions/gameSession/gameSession";
+
 
 
 function GameOver(props){
+  const { character } = props
+  const navigate = useNavigate();
+
+  async function endSessionHandler(){
+    navigate("/choosePage")
+    const del = await deleteSession(props.character.id)
+  }
+
   return(
     <div className={style.body}>      
       <div className={style.formContainer}>
@@ -12,10 +23,8 @@ function GameOver(props){
         </div>
         <div className={style.bottomContainer}>
             <Button 
-              text={"RESTART"}
-            />
-            <Button 
               text={"MENU"}
+              handleClick={endSessionHandler}
             />
         </div>      
       </div>

@@ -35,7 +35,7 @@ function MainGamePage(props){
   useEffect(() => {
     !props.characterSession && navigate("/choosePage")
   })
-  
+  console.log(props.character.id);
   useEffect(() => {
     setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
   },[componentLVL])
@@ -105,7 +105,7 @@ function MainGamePage(props){
   }
   return(
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
-      {isHeroDead && <GameOver />}
+      {isHeroDead && <GameOver character={props.character}/>}
       <Header 
         componentLVL={componentLVL}
         characterSession={heroInfo}
