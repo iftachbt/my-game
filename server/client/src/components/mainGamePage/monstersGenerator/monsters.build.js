@@ -50,7 +50,7 @@ class Regular extends Monster {
     this.type = "regular";
     this.maxHealth = 70 * this.level * this.difficulty();
     this.HP = this.maxHealth;
-    this.ATK = 12 * this.level * this.difficulty();
+    this.ATK = 12 * 10 * this.level * this.difficulty();
     this.shield = 13;
   }
 }

@@ -7,8 +7,8 @@ export async function fetchSessionById(characterId) {
 export async function createSession(info) {
   return await sendPost("game/session", info);
 }
-export async function deleteSession(info) {
-  return await sendDelete("game/session", info);
+export async function deleteSession(characterId) {
+  return await sendDelete("game/session?characterId=" + characterId);
 }
 export async function updateSession(info) {
   return await sendUpdate("game/session", info);
