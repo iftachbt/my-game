@@ -17,10 +17,9 @@ const MONSTER_ATTACK = 1;
 
 function MainGamePage(props){
   const [heroInfo,setHeroInfo ]= useState(props.characterSession||"")
-  const [componentLVL,setComponentLVL ]= useState(props.characterSession.level||"1")
   const [heroAnimeStatus,setHeroAnimeStatus ]= useState("idle")
   const [heroAnime,setHeroAnime ]= useState(hero(props.character.race))
-  const [monsterArray,setMonsterArray ]= useState(levelConstructor(componentLVL,props.characterSession.difficulty))
+  const [monsterArray,setMonsterArray ]= useState(levelConstructor(heroInfo.level,heroInfo.difficulty))
   const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
   const [skillOneCount,setSkillOne ]= useState(0)
@@ -37,9 +36,8 @@ function MainGamePage(props){
     !props.characterSession && navigate("/choosePage")
   })
   useEffect(() => {
-    setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
-    console.log(monsterArray[0]);
-  },[componentLVL])
+    setMonsterArray(levelConstructor(heroInfo.level,heroInfo.difficulty))
+  },[heroInfo.level])
 
   useEffect(() => {
     if(skillOneCount > 0)setSkillOne(skillOneCount-1) 
@@ -81,7 +79,7 @@ function MainGamePage(props){
 
   const monsterDamageHandler = () => {
     const monsterArray_ = [...monsterArray]
-    monsterArray_[selectedMonster].damage(props.characterSession.ATK)
+    monsterArray_[selectedMonster].damage(props.characterSession.ATK+100)
     if(monsterArray_[selectedMonster].HP <= 0){
       setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[selectedMonster].gold}})
       monsterArray_[selectedMonster].setStatus("death")
@@ -125,7 +123,7 @@ function MainGamePage(props){
   
   const next = () => {
     setMonsterArray([])
-    setComponentLVL(componentLVL+1)
+    setHeroInfo(preVal => {return{...preVal, level: heroInfo.level +1}})
     setStore(false)
     setStage(HERO_ATTACK)
   }
@@ -142,11 +140,11 @@ function MainGamePage(props){
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
       {isHeroDead && <GameOver character={props.character}/>}
       <Header 
-        componentLVL={componentLVL}
+        componentLVL={heroInfo.level}
         characterSession={heroInfo}
         character={props.character}
       />
-      <Levels componentLVL={componentLVL}/>
+      <Levels componentLVL={heroInfo.level}/>
       <HeroFigure 
         anime={heroAnime}
         animeStatus={heroAnimeStatus}
