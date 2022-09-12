@@ -38,6 +38,7 @@ function MainGamePage(props){
   })
   useEffect(() => {
     setMonsterArray(levelConstructor(componentLVL,props.characterSession.difficulty))
+    console.log(monsterArray[0]);
   },[componentLVL])
 
   useEffect(() => {
@@ -76,6 +77,7 @@ function MainGamePage(props){
     const monsterArray_ = [...monsterArray]
     monsterArray_[selectedMonster].damage(props.characterSession.ATK)
     if(monsterArray_[selectedMonster].HP <= 0){
+      setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[selectedMonster].gold}})
       monsterArray_[selectedMonster].setStatus("death")
     }
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
@@ -93,7 +95,10 @@ function MainGamePage(props){
       monster.damage(props.characterSession.ATK)
       monster.setStatus("hurt")
       setHeroAnimeStatus("attack1")
-      if(monster.HP <= 0) monster.setStatus("death")
+      if(monster.HP <= 0) {
+        setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monster.gold}})
+        monster.setStatus("death")
+      }
       })
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
       setTimeout(() => {setStore(true)},1500)

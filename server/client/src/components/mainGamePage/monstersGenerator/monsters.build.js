@@ -26,7 +26,7 @@ class Monster {
   }
 
   damage(dmg) {
-    const chanceToHit = Math.floor(Math.random() * 21 + 10);
+    const chanceToHit = Math.floor(Math.random() * 21 + 10 + this.luck);
     if (chanceToHit > this.shield) {
       this.HP = this.HP - dmg;
       return "hit";
@@ -35,27 +35,31 @@ class Monster {
 }
 
 class Boss extends Monster {
-  constructor(level) {
-    super(level);
+  constructor(level, difficulty, luck) {
+    super(level, difficulty, luck);
     this.type = "boss";
-    this.maxHealth = 300 * this.level * this.difficulty();
+    this.maxHealth = Math.floor(70 * this.level * this.difficulty());
     this.HP = this.maxHealth;
-    this.ATK = 15 * this.level * this.difficulty();
+    this.ATK = Math.floor(12 * this.level * this.difficulty());
     this.shield = 17;
+    this.gold = 15;
+    this.luck = luck;
   }
 }
 class Regular extends Monster {
-  constructor(level) {
-    super(level);
+  constructor(level, difficulty, luck) {
+    super(level, difficulty, luck);
     this.type = "regular";
-    this.maxHealth = 70 * this.level * this.difficulty();
+    this.maxHealth = Math.floor(70 * this.level * this.difficulty());
     this.HP = this.maxHealth;
-    this.ATK = 12 * this.level * this.difficulty();
+    this.ATK = Math.floor(12 * this.level * this.difficulty());
     this.shield = 13;
+    this.gold = 4;
+    this.luck = luck;
   }
 }
-export function monsterBuild(level, race, difficulty) {
-  if (race === "boss") return new Boss(level, difficulty);
-  if (race === "regular") return new Regular(level, difficulty);
+export function monsterBuild(level, race, difficulty, luck = 0) {
+  if (race === "boss") return new Boss(level, difficulty, luck);
+  if (race === "regular") return new Regular(level, difficulty, luck);
   else return null;
 }
