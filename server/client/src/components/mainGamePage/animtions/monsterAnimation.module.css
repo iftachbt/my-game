@@ -19,19 +19,19 @@
 }
 @keyframes moveMonster1 {
   from {left: 46%; top:35%}
-  to {left: 10%; top:75%}
+  to {left: 15%; top:75%}
 }
 @keyframes moveMonster2 {
   from {left: 63%; top:43%}
-  to {left: 10%; top:75%}
+  to {left: 15%; top:75%}
 }
 @keyframes moveMonster3 {
   from {left: 73%; top:54%}
-  to {left: 10%; top:75%}
+  to {left: 15%; top:75%}
 }
 @keyframes moveMonster4 {
   from {left: 47%; top:54%}
-  to {left: 10%; top:75%}
+  to {left: 15%; top:75%}
 }
 .index0{
   position: absolute;
