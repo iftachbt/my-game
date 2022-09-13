@@ -10,6 +10,7 @@ import ActionsBar from "./actionsBar/actionsBar";
 import { levelConstructor } from "./gameConstructor/gameConstructor";
 import style from "./mainGame.module.css"
 import GameOver from "./gameOver/gameOver";
+import Shop from "./shop/shop";
 
 
 const HERO_ATTACK = 0;
@@ -117,17 +118,10 @@ function MainGamePage(props){
     setStage(HERO_ATTACK)
   }
   
-  if(store){
-    return (
-      <div>
-        store
-        <button onClick={() => {next()}}>next</button>
-      </div>
-    )
-  }
   return(
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
       {isHeroDead && <GameOver character={props.character}/>}
+      {store && <Shop next={next} hero={heroInfo} />}
       <Header 
         componentLVL={heroInfo.level}
         characterSession={heroInfo}

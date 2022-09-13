@@ -1,0 +1,84 @@
+.body{
+  background-color: aliceblue;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.actionContainer{
+  display: flex;
+  position: absolute;
+  bottom: 28px;
+  left: 25%;
+  width: 50%;
+  height: 87%;
+  background-image: url("./images/shelf.png");
+  background-repeat: round;
+  background-size: cover;
+  flex-direction: column;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+  z-index: 20;
+}
+.actCon{
+  width: fit-content;
+  
+}
+
+.health_potion{
+  display: flex;
+  background-color: blueviolet;
+}
+.max_health_potion{
+  background-color: rgb(43, 226, 61);
+  display: flex;
+}
+.power_potion{
+  background-color: rgb(226, 46, 43);
+  display: flex;
+}
+.luck_potion{
+  background-color: rgb(43, 134, 226);
+  display: flex;
+}
+.actionBox{
+  width: 50px;
+  height: 65px;
+  background-repeat: round;
+  cursor: pointer;
+}
+.actionBox:hover{
+  filter: drop-shadow(1px 0px 2px rgb(238, 180, 21));
+}
+.actionBox h1{
+  font-size: 19px;
+  position: relative;
+  top: 33px;
+}
+.gray{
+  width: 50px;
+  height: 65px;
+  background-repeat: round;
+  filter: grayscale(78%);
+}
+.gray h1{
+  font-size: 19px;
+  position: relative;
+  top: 33px;
+}
+.red{
+  background-image: url("./images/health.png");
+}
+.green{
+  background-image: url("./images/maxHealth.png");
+}
+.gold{
+  background-image: url("./images/luck.png");
+}
+.brown{
+  background-image: url("./images/attackPotion.png");
+}

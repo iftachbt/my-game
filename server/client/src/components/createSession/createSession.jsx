@@ -17,14 +17,15 @@ import Button from "../buttons/buttons";
       const race = props.character.race
       const characterId = props.character.id
       const character = characterBuild(name,race)
-      const res = await awaitToast(createSession({
+      const res = await createSession({
         ...character.toObj(),
         difficulty: gameDifficulty,
         characterId: characterId,
         kills:0,
         deaths:0
-      }),"create session")
+      })
       if(res !== "err"){
+        toster("create session")
         props.setCharacterSession(res)  
         navigate("/mainGame")
       }
