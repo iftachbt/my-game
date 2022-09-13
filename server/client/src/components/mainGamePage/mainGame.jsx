@@ -117,11 +117,30 @@ function MainGamePage(props){
     setStore(false)
     setStage(HERO_ATTACK)
   }
-  
+  if(!store) return (
+    <>
+    <Header 
+        componentLVL={heroInfo.level}
+        characterSession={heroInfo}
+        character={props.character}
+      />
+      <Levels componentLVL={heroInfo.level} isStore={true}/>
+      <Shop next={next} hero={heroInfo}  />
+      <HeroFigure 
+        anime={heroAnime}
+        animeStatus={heroAnimeStatus}
+        setAnimeStatus={setHeroAnimeStatus}
+        setMonsterStatus={(status) => {setMonsterStatus(status,selectedMonster)}}
+        monsterDamage={() => monsterDamageHandler(selectedMonster)}
+        moveHero={moveHero}
+        setMoveHero={setMoveHero}
+        setAttackMode={setAttackMode}
+      />
+    </>
+  )
   return(
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
       {isHeroDead && <GameOver character={props.character}/>}
-      {store && <Shop next={next} hero={heroInfo} />}
       <Header 
         componentLVL={heroInfo.level}
         characterSession={heroInfo}

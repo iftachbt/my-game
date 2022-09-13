@@ -2,42 +2,49 @@ import React, {useState,useEffect} from "react";
 import style from "./shop.module.css";
 import { items } from "./items";
 import  Button  from "../../buttons/buttons";
+import {Tooltip} from '@mui/material';
+ 
 
 
 function Shop(props){
-  const [state , setState]=useState("health_potion")
 
   const handleStyle = (cost) => {
-    if(cost > props.hero.gold) return style["gray"]
-    return style["actionBox"]
+    const potionStyle = [style.potion]
+    if(cost > props.hero.gold+100) potionStyle.push(style.gray)
+    else potionStyle.push(style.actionBox)
+    return potionStyle.join(" ")
   }
   const drinkPotion = (item) =>{}
 
   return(
     <div className={style.body}>
       <div className={style.actionContainer}>
-      <div className={style[state]}>
-        {items.map((item) => {
-          console.log(item.name);
-          return (
-            <div className={style[item.name]}>
-              <div 
-              onClick={() => drinkPotion(item)}
-              className={[handleStyle(item.cost),style[item.color]].join(" ")}
-              ><h1>{item.action}</h1>
+        <div className={style.potionCon}>
+          {items.map((item) => {
+            console.log(item.name);
+            return (
+              <div className={[style.potionItem,style[item.name]].join(" ")}>
+                <Tooltip title={` +${item.action}  ${item.name} | ${item.cost}G`}>
+                  <div 
+                    onClick={() => drinkPotion(item)}
+                    className={[handleStyle(item.cost),style[item.color]].join(" ")}>
+                    <h1>{item.action}</h1>
+                  </div>
+
+                </Tooltip>
               </div>
-              <h1>{item.cost}$</h1>
-            </div>
-          )
-        })}
-        
+            )
+          })}
+          
+        </div>
       </div>
-      </div>
+      <div className={style.btnCon}>
         <Button 
-        text="next"
-        handleClick={() => props.next()}
-        color="red"
-        />
+          text="next"
+          handleClick={() => props.next()}
+          color="red"
+          />
+      </div>
     </div>
     )
 }

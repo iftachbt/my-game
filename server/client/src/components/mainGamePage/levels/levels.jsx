@@ -16,6 +16,7 @@ function Levels(props){
       <div>
         <LevelBackground 
           BGlevel={BGlevel()}
+          isStore={props.isStore}
         />
       </div>
       )

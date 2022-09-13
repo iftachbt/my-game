@@ -1,4 +1,10 @@
 .body{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+.body_{
   background-color: aliceblue;
   background-size: cover;
   position: absolute;
@@ -6,6 +12,27 @@
   height: 100%;
 }
 .actionContainer{
+  background-image: url("./images/shelf.png");
+  background-repeat: round;
+  background-size: cover;
+  overflow: hidden;
+  width: 45vw;
+  height: 80vh;
+  margin: 3vh auto 0px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+}
+.potionCon{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 12vh 5vw 1vh 4vw;
+  height: 77%;
+}
+.actionContainer_{
   display: flex;
   position: absolute;
   bottom: 28px;
@@ -29,49 +56,33 @@
   
 }
 
-.health_potion{
-  display: flex;
-  background-color: blueviolet;
-}
-.max_health_potion{
-  background-color: rgb(43, 226, 61);
-  display: flex;
-}
-.power_potion{
-  background-color: rgb(226, 46, 43);
-  display: flex;
-}
-.luck_potion{
-  background-color: rgb(43, 134, 226);
-  display: flex;
-}
 .actionBox{
-  width: 50px;
-  height: 65px;
   background-repeat: round;
+  margin: auto;
   cursor: pointer;
 }
 .actionBox:hover{
   filter: drop-shadow(1px 0px 2px rgb(238, 180, 21));
 }
 .actionBox h1{
-  font-size: 19px;
+  font-size: 1rem;
   position: relative;
-  top: 33px;
+  top: 4vh;
 }
 .gray{
-  width: 50px;
-  height: 65px;
   background-repeat: round;
   filter: grayscale(78%);
+  margin: auto;
+  cursor: no-drop;
 }
 .gray h1{
-  font-size: 19px;
+  font-size: 1rem;
   position: relative;
-  top: 33px;
+  top: 4vh;
 }
 .red{
   background-image: url("./images/health.png");
+  height: 9vh !important;
 }
 .green{
   background-image: url("./images/maxHealth.png");
@@ -81,4 +92,19 @@
 }
 .brown{
   background-image: url("./images/attackPotion.png");
+}
+.potionItem{
+  width: 10vw;
+  height: 14vh;
+}
+.potion{
+  width: 4vw;
+  height: 8vh;
+  margin-top: 7vh;
+}
+.btnCon{
+  width: 20vw;
+  position: absolute;
+  top: 75vh;
+  right: 7vw;
 }
