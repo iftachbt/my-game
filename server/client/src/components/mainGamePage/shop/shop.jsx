@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React from "react";
 import style from "./shop.module.css";
 import { items } from "./items";
 import  Button  from "../../buttons/buttons";
@@ -7,15 +7,23 @@ import {Tooltip} from '@mui/material';
 
 
 function Shop(props){
+  const {hero,setHero,next}=props
 
   const handleStyle = (cost) => {
     const potionStyle = [style.potion]
-    if(cost > props.hero.gold+100) potionStyle.push(style.gray)
+    if(cost > hero.gold) potionStyle.push(style.gray)
     else potionStyle.push(style.actionBox)
     return potionStyle.join(" ")
   }
-  const drinkPotion = (item) =>{}
-
+  const drinkPotion = (item) =>{
+    setHero(preVal => {
+      return{
+        ...preVal, 
+        [item.type]: hero[item.type]+item.action,
+        ["gold"]: hero["gold"]-item.cost
+      }
+    })
+  }
   return(
     <div className={style.body}>
       <div className={style.actionContainer}>
@@ -26,11 +34,10 @@ function Shop(props){
               <div className={[style.potionItem,style[item.name]].join(" ")}>
                 <Tooltip title={` +${item.action}  ${item.name} | ${item.cost}G`}>
                   <div 
-                    onClick={() => drinkPotion(item)}
-                    className={[handleStyle(item.cost),style[item.color]].join(" ")}>
-                    <h1>{item.action}</h1>
+                    onClick={(item.cost < hero.gold) ?() => drinkPotion(item) :null}
+                    className={[handleStyle(item.cost),style[item.type]].join(" ")}>
+                    <h1 className={style.h1}>+{item.action}</h1>
                   </div>
-
                 </Tooltip>
               </div>
             )
@@ -41,8 +48,7 @@ function Shop(props){
       <div className={style.btnCon}>
         <Button 
           text="next"
-          handleClick={() => props.next()}
-          color="red"
+          handleClick={() => next()}
           />
       </div>
     </div>

@@ -62,35 +62,32 @@
   cursor: pointer;
 }
 .actionBox:hover{
-  filter: drop-shadow(1px 0px 2px rgb(238, 180, 21));
+  filter: drop-shadow(1px 0px 10px rgb(238, 180, 21));
 }
-.actionBox h1{
-  font-size: 1rem;
-  position: relative;
-  top: 4vh;
-}
+
 .gray{
   background-repeat: round;
   filter: grayscale(78%);
   margin: auto;
   cursor: no-drop;
 }
-.gray h1{
+
+.h1{
   font-size: 1rem;
   position: relative;
   top: 4vh;
 }
-.red{
+.HP{
   background-image: url("./images/health.png");
   height: 9vh !important;
 }
-.green{
+.maxHP{
   background-image: url("./images/maxHealth.png");
 }
-.gold{
+.luck{
   background-image: url("./images/luck.png");
 }
-.brown{
+.ATK{
   background-image: url("./images/attackPotion.png");
 }
 .potionItem{
@@ -107,4 +104,10 @@
   position: absolute;
   top: 75vh;
   right: 7vw;
+}
+.btnCon p{
+  top: 20px
+}
+.btnCon .btn{
+  top: -23px
 }
