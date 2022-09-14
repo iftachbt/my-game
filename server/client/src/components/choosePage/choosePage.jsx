@@ -62,7 +62,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
     const displayCharacterList =() =>(
        characterList.map((character) => {
-        const {name, race, session, id} = character
+        const {name, race, session, id,death,kills} = character
         return(
         <div > 
           <div
@@ -89,9 +89,15 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
               {session 
                 ?<SessionInfo
                 res={session}
-                race={race}
+                character={character}
                 />
-                :"this character haven't played yet"
+                :<div>
+                  this character have no session yet
+                  <div className={style.infoBottom}>
+                    <div>kills: {kills}</div>
+                    <div>death: {death}</div>
+                  </div>
+                </div>
               }
             </div>
           </div>

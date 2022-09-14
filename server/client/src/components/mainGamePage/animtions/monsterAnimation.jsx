@@ -2,7 +2,7 @@ import React, {useEffect,useRef} from "react";
 import { useState } from "react";
 import style from "./monsterAnimation.module.css"
 import {monster as monsterClass,boss,randomMonster} from "./assets/monsters/monster";
-import { LinearProgress  } from '@mui/material';
+import { LinearProgress,Box,Typography  } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { appBarTheme } from "./progressBarStyle";
 
@@ -76,6 +76,9 @@ function handleClick(){
       <div className={conStyle.join(" ")}>
         <div className={style.barCon}>
           <ThemeProvider theme={appBarTheme} >
+            <Typography >
+              {`${monster.HP<=0?0:monster.HP}/${monster.maxHealth}`}
+            </Typography>
             <LinearProgress value={((monster.HP * 100) / monster.maxHealth)} variant="determinate"/>
           </ThemeProvider>
         </div>
