@@ -117,15 +117,17 @@ function MainGamePage(props){
     setStore(false)
     setStage(HERO_ATTACK)
   }
-  if(!store) return (
+  if(store) return (
     <>
     <Header 
-        componentLVL={heroInfo.level}
         characterSession={heroInfo}
         character={props.character}
       />
       <Levels componentLVL={heroInfo.level} isStore={true}/>
-      <Shop next={next} hero={heroInfo}  />
+      <Shop 
+        next={next} 
+        hero={heroInfo} 
+        setHero={setHeroInfo}  />
       <HeroFigure 
         anime={heroAnime}
         animeStatus={heroAnimeStatus}
@@ -142,7 +144,6 @@ function MainGamePage(props){
     <div className={(attackMode !== "none") ? style.curserTarget : null}>
       {isHeroDead && <GameOver character={props.character}/>}
       <Header 
-        componentLVL={heroInfo.level}
         characterSession={heroInfo}
         character={props.character}
       />
