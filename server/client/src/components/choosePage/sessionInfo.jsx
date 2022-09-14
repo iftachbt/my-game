@@ -8,7 +8,7 @@ import ProfileImage from "../profileImage/profileImage"
               <div className={style.mainInfo}>
               <h1 className={style.infoH1}>{props.res.name}</h1>
               <ProfileImage 
-              race={props.race}
+              race={props.character.race}
               size="tiny"
               />
             </div>
@@ -25,7 +25,7 @@ import ProfileImage from "../profileImage/profileImage"
               ATK: {props.res.ATK}
               </div>
               <div className={style.infoVal}>
-              HP: {props.res.HP}
+              HP: {props.res.HP}/{props.res.maxHP}
               </div>
               <div className={style.infoVal}>
               shield: {props.res.shield}
@@ -36,10 +36,10 @@ import ProfileImage from "../profileImage/profileImage"
             </div>
             <div className={style.infoBottom}>
                 <div>
-                death: {props.res.deaths}
+                death: {props.character.death}
                 </div>
                 <div>
-                kills: {props.res.kills}
+                kills: {props.character.kills}
                 </div>
             </div>
             </div>

@@ -20,38 +20,6 @@ class Character {
       level: this.level,
     };
   }
-
-  attack(enemy) {
-    if (enemy.damage(this.ATK) === "hit") {
-      return enemy.Health <= 0 ? "dead" : "alive";
-    } else return null;
-  }
-  damage(dmg) {
-    const chanceToHit = Math.floor(Math.random() * 21);
-    if (chanceToHit > this.shield) {
-      this.Health = this.Health - dmg;
-      return "hit";
-    } else return 0;
-  }
-  fillHP(num, conunter = 0) {
-    if (this.Health === this.maxHealth) return;
-    if (conunter === num) return;
-    this.Health++;
-    this.fillHP((num, (conunter += 1)));
-    return;
-  }
-  gainHP(num) {
-    this.maxHealth = this.maxHealth + num;
-  }
-  gainGold(num) {
-    this.gold = this.gold + num;
-  }
-  gainATK(num) {
-    this.ATK = this.ATK + num;
-  }
-  levelUp() {
-    this.level += 1;
-  }
 }
 
 class Human extends Character {

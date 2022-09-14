@@ -5,6 +5,8 @@ export const gameSessionSchema = {
   difficulty: String,
   ATK: Number,
   shield: Number,
+  maxHP: Number,
+  luck: Number,
   HP: Number,
   gold: Number,
   level: Number,

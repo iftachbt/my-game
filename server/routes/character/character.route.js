@@ -1,6 +1,6 @@
 import express from "express";
 import { authMid } from "../users/users.auth.js";
-import { create, fetchById, deleteOne } from "./character.service.js";
+import { create, fetchById, deleteOne, increment } from "./character.service.js";
 import { characterCreationValidation } from "./character.validation.js";
 import { fetchById as fetchSessionById, deleteById as deleteSessionById } from "../gameSessions/session.reposetory.js";
 
@@ -9,6 +9,10 @@ export const CharacterPrefix = "/character";
 
 CharacterRoute.post("/character", authMid, characterCreationValidation, (req, res) => {
   create(req.body, req.user.id);
+  res.send(req.body);
+});
+CharacterRoute.put("/character", (req, res) => {
+  increment(req.body);
   res.send(req.body);
 });
 CharacterRoute.delete("/character", (req, res) => {

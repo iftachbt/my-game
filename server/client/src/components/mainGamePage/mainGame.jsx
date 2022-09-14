@@ -11,6 +11,7 @@ import { levelConstructor } from "./gameConstructor/gameConstructor";
 import style from "./mainGame.module.css"
 import GameOver from "./gameOver/gameOver";
 import Shop from "./shop/shop";
+import { updateCharacter } from "../../actions/character/character";
 
 
 const HERO_ATTACK = 0;
@@ -20,7 +21,7 @@ function MainGamePage(props){
   const [heroInfo,setHeroInfo ]= useState(props.characterSession||"")
   const [heroAnimeStatus,setHeroAnimeStatus ]= useState("idle")
   const [heroAnime,setHeroAnime ]= useState(hero(props.character.race))
-  const [monsterArray,setMonsterArray ]= useState(levelConstructor(heroInfo.level,heroInfo.difficulty))
+  const [monsterArray,setMonsterArray ]= useState(levelConstructor(heroInfo))
   const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
   const [skillOneCount,setSkillOne ]= useState(0)
@@ -37,7 +38,7 @@ function MainGamePage(props){
     !props.characterSession && navigate("/choosePage")
   })
   useEffect(() => {
-    setMonsterArray(levelConstructor(heroInfo.level,heroInfo.difficulty))
+    setMonsterArray(levelConstructor(heroInfo))
   },[heroInfo.level])
 
   useEffect(() => {
@@ -61,7 +62,7 @@ function MainGamePage(props){
       setMoveMonster(randomIndex)
     }
   },[stage])
-
+console.log(stage);
   const setMonsterStatus = (status,index) => {
     const monsterArray_ = [...monsterArray]
     monsterArray_[index].setStatus(status)
@@ -70,10 +71,12 @@ function MainGamePage(props){
 
   const heroDamageHandler = (damage) => {
     const heroInfo_ = {...heroInfo}
-    heroInfo_.HP = heroInfo_.HP - damage
+    const chanceToHit = Math.floor(Math.random() * 21 + heroInfo_.luck)
+    if(chanceToHit > heroInfo_.shield) heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
       setHeroAnimeStatus("death")
       setTimeout(() => {setIsHeroDead(true)},1500)
+      updateCharacter({...props.character,inc:"death"})
     }
     setHeroInfo(heroInfo_)
   }
@@ -81,10 +84,12 @@ function MainGamePage(props){
   const monsterDamageHandler = (target) => {
     const monsterArray_ = [...monsterArray]
     setMonsterStatus("hurt",target)
-    monsterArray_[target].damage(props.characterSession.ATK)
+    monsterArray_[target].damage(heroInfo.ATK)
+    console.log("monsterDamageHandler",heroInfo.ATK);
     if(monsterArray_[target].HP <= 0){
       setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[target].gold}})
       monsterArray_[target].setStatus("death")
+      updateCharacter({...props.character,inc:"kills"})
     }
     if(monsterArray_.filter(m => m.HP > 0).length === 0){
       setTimeout(() => {setStore(true)},1500)

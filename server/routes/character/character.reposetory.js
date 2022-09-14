@@ -6,3 +6,7 @@ export const create = (character, userId) => Character.insertMany([{ ...characte
 export const fetchByUserId = (userId) => Character.find({ userId }).exec();
 
 export const deleteById = (id) => Character.deleteOne({ id });
+
+export const incrementById = async (character) => {
+  return await Character.findOneAndUpdate({ id: character.id }, { $inc: { [character.inc]: 1 } }).exec();
+};

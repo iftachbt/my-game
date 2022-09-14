@@ -3,4 +3,6 @@ export const characterSchema = {
   userId: String,
   name: String,
   race: String,
+  death: Number,
+  kills: Number,
 };
