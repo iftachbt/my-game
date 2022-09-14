@@ -1,7 +1,7 @@
 class Monster {
   constructor(level, difficulty, luck) {
     this.status = "idle";
-    this.level = level <= 10 ? 1 : level / 10;
+    this.level = level <= 10 ? 1 : level / 5;
     this.difficulty = () => {
       if (difficulty === "easy") return 1;
       if (difficulty === "medium") return 1.2;

@@ -77,7 +77,7 @@ function handleClick(){
         <div className={style.barCon}>
           <ThemeProvider theme={appBarTheme} >
             <Typography >
-              {`${monster.HP}/${monster.maxHealth}`}
+              {`${monster.HP<=0?0:monster.HP}/${monster.maxHealth}`}
             </Typography>
             <LinearProgress value={((monster.HP * 100) / monster.maxHealth)} variant="determinate"/>
           </ThemeProvider>

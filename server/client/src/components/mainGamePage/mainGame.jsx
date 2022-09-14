@@ -71,7 +71,8 @@ console.log(stage);
 
   const heroDamageHandler = (damage) => {
     const heroInfo_ = {...heroInfo}
-    const chanceToHit = Math.floor(Math.random() * 21 + heroInfo_.luck)
+    console.log("damage",damage);
+    const chanceToHit = Math.floor(Math.random() * (100))
     if(chanceToHit > heroInfo_.shield) heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
       setHeroAnimeStatus("death")
@@ -85,9 +86,8 @@ console.log(stage);
     const monsterArray_ = [...monsterArray]
     setMonsterStatus("hurt",target)
     monsterArray_[target].damage(heroInfo.ATK)
-    console.log("monsterDamageHandler",heroInfo.ATK);
     if(monsterArray_[target].HP <= 0){
-      setHeroInfo(pre => {return{...pre, gold: heroInfo.gold + monsterArray_[target].gold}})
+      setHeroInfo(pre => {return{...pre, gold: pre.gold + monsterArray_[target].gold}})
       monsterArray_[target].setStatus("death")
       updateCharacter({...props.character,inc:"kills"})
     }

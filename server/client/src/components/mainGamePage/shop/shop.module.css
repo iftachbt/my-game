@@ -108,6 +108,7 @@
 .btnCon p{
   top: 20px
 }
-.btnCon .btn{
-  top: -23px
-}
+.btnCon div{ 
+  top: -21px;
+  left: 17px;
+ } /*important to fix the div inside the Button component */
