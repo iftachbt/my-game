@@ -10,7 +10,7 @@ const frameRate = 120
 
 
  function MonsterFigure(props){
-  const { monster, index, moveMonster, setMonsterStatus, setMoveMonster, attackMonster, attackMode,setStage,heroDamage } = props
+  const { monster, index, moveMonster, setMonsterStatus, setMoveMonster, attackMonster, attackMode,setStage,heroDamage,thieve } = props
   const [monsterAnime,setMonsterAnime]=useState(monster.type === "regular"
   ?monsterClass(randomMonster(monster.type))
   :boss(randomMonster(monster.type))
@@ -64,6 +64,7 @@ const frameRate = 120
 }, [ moveMonster])
 
 function handleClick(){
+  if(attackMode === "thieve") return thieve(index)
   attackMonster(index)
 }
 
@@ -82,14 +83,14 @@ function handleClick(){
             <LinearProgress value={((monster.HP * 100) / monster.maxHealth)} variant="determinate"/>
           </ThemeProvider>
         </div>
-        <div className={[style.imgCon,(attackMode !== "none" && !death)?style.imgHover:""].join(" ")} onClick={handleClick}>
+        <div className={[style.imgCon,(attackMode !== "none" && !death)?style.imgHover:""].join(" ")}
+         onClick={() => handleClick()}>
           <img src={anime.img}
             style={{
               width: 47.9 * (anime.frames + 1),
               height: 48,
               transform: `translateX(${currentIndex * -48}px)`,
             }}
-            usemap="#image_map"
           />
         </div>
       </div>

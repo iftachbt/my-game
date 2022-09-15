@@ -24,8 +24,8 @@ function MainGamePage(props){
   const [monsterArray,setMonsterArray ]= useState(levelConstructor(heroInfo))
   const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
-  const [skillOneCount,setSkillOne ]= useState(0)
-  const [skillTwoCount,setSkillTwo ]= useState(0)
+  const [attackAllTimeOut,setAttackAllTimeOut ]= useState(0)
+  const [thieveTimeOut,setThieveTimeOut ]= useState(0)
   const [isHeroDead,setIsHeroDead ]= useState(false)
   const [moveMonster,setMoveMonster ]= useState(-1)
   const [attackMode,setAttackMode] = useState("none")
@@ -42,8 +42,8 @@ function MainGamePage(props){
   },[heroInfo.level])
 
   useEffect(() => {
-    if(skillOneCount > 0)setSkillOne(skillOneCount-1) 
-    if(skillTwoCount > 0)setSkillTwo(skillTwoCount-1) 
+    if(attackAllTimeOut > 0)setAttackAllTimeOut(attackAllTimeOut-1) 
+    if(thieveTimeOut > 0)setThieveTimeOut(thieveTimeOut-1) 
   },[stage])
 
   useEffect(() => {
@@ -87,7 +87,7 @@ console.log(stage);
     setMonsterStatus("hurt",target)
     monsterArray_[target].damage(heroInfo.ATK)
     if(monsterArray_[target].HP <= 0){
-      setHeroInfo(pre => {return{...pre, gold: pre.gold + monsterArray_[target].gold}})
+      takeMonsterGold(target)
       monsterArray_[target].setStatus("death")
       updateCharacter({...props.character,inc:"kills"})
     }
@@ -100,13 +100,13 @@ console.log(stage);
     }, 1000);
   }
   const attackAllMonsters = () => {
-    if(skillOneCount !== 0) return;
+    if(attackAllTimeOut !== 0) return;
     setHeroAnimeStatus("attack1")
     setTimeout(() => 
       monsterArray.forEach((monster,index) =>
         monsterDamageHandler(index))
     ,500)
-    setSkillOne(6)
+    setAttackAllTimeOut(6)
   }
 
   const attackMonsterHandler = (index) => {
@@ -114,6 +114,17 @@ console.log(stage);
       setSelectedMonster(index)
       setMoveHero(index+1)
     }
+  }
+  const takeMonsterGold =(target) => {
+    setHeroInfo(pre => {return{...pre, gold: pre.gold + monsterArray[target].gold}})
+  }
+  const thieve = index => {
+    takeMonsterGold(index)
+    setTimeout(() => {
+      setStage(MONSTER_ATTACK)
+    }, 1000);
+    setAttackMode("none")
+    setThieveTimeOut(10)
   }
   
   const next = () => {
@@ -167,7 +178,9 @@ console.log(stage);
         isActive={stage === HERO_ATTACK}
         setAttackMode={setAttackMode}
         attackAllMonsters={attackAllMonsters}
-        skillOneCount={skillOneCount}
+        attackAllTimeOut={attackAllTimeOut}
+        takeMonsterGold={takeMonsterGold}
+        thieveTimeOut={thieveTimeOut}
         />
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
@@ -182,6 +195,7 @@ console.log(stage);
         attackMode={attackMode}
         setStage={setStage}
         heroDamage={heroDamageHandler}
+        thieve={() => thieve(index)}
       />
         })}
     </div>
