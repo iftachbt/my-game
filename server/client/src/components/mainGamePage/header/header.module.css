@@ -1,6 +1,20 @@
 .body{
-  color: azure;
+  color: rgb(255 237 237);;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
+  line-height: 6vh;
+  text-align: center;
+  background-color: rgba(148, 155, 161, 0.311);
+}
+.shield{
+  background-image: url("./assets/shield.png");
+  background-repeat: round;
+  width: 3vw;
+  height: 5vh;
+}
+.shield p{
+  position: relative;
+  bottom: 3vh;
+  font-size: 2vh;
 }

@@ -1,11 +1,8 @@
 .imgCon{
-  width: 48px;
-  height: 48px; 
+  width: 53px;
+  height: 49px; 
   overflow: hidden;
   transform: scale(3);
-
-}
-.imgHover{
 
 }
 

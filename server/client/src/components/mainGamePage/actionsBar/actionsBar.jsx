@@ -3,17 +3,19 @@ import style from "./actionsBar.module.css";
 
 
 function ActionsBar(props){
-  const {attackAllMonsters,setAttackMode,skillOneCount,isActive} = props
+  const {attackAllMonsters,setAttackMode,attackAllTimeOut,isActive,thieveTimeOut} = props
 
-  // if(skillOneCount>0)
+
   function handleStyle(action){
-    if(action === "attack") return style["actionBox"]
-    if(skillOneCount > 0) return style["gray"]
-    return style["actionBox"]
+    if(action === "attack") return 
+    if(action === "attackAll" && attackAllTimeOut > 0) return style["gray"]
+    if(action === "thieve" && thieveTimeOut > 0) return style["gray"]
+    return 
   }
   function handleH1(action){
     if(action === "attack") return action
-    if(skillOneCount > 0) return Math.floor(skillOneCount/2)
+    if(action === "attackAll" && attackAllTimeOut > 0) return Math.floor(attackAllTimeOut/2)
+    if(action === "thieve" && thieveTimeOut > 0) return Math.floor(thieveTimeOut/2)
     return action
   }
 
@@ -24,12 +26,13 @@ function ActionsBar(props){
   return(
     <div>
       <div className={style.actionContainer}>
-        {["attack","attackAll"].map((action) => {
+        {["attack","attackAll","thieve"].map((action) => {
+          handleStyle(action)
           return (
             <div 
             style={{pointerEvents: isActive?"":"none"}}
             onClick={() => handleAttack(action)}
-            className={[handleStyle(action),style[action]].join(" ")}
+            className={[style.actionBox,handleStyle(action),style[action]].join(" ")}
             ><h1>{handleH1(action)}</h1></div>
           )
         })}
