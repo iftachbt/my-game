@@ -5,7 +5,7 @@
   bottom: 10px;
   left: 20%;
   width: 75%;
-  height: 10%;
+  height: 11vh;
   background-color: rgb(127 116 116 / 73%);
   flex-direction: row-reverse;
   margin: auto;
@@ -47,4 +47,9 @@
   width: 70px;
   height: 54px;
   margin-top: 5px;
+}
+@media (max-height: 550px){
+  .actionContainer{
+    height: 17vh;
+  }
 }

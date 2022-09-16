@@ -12,6 +12,7 @@ import style from "./mainGame.module.css"
 import GameOver from "./gameOver/gameOver";
 import Shop from "./shop/shop";
 import { updateCharacter } from "../../actions/character/character";
+import { sleep } from "../utils";
 
 
 const HERO_ATTACK = 0;
@@ -22,7 +23,6 @@ function MainGamePage(props){
   const [heroAnimeStatus,setHeroAnimeStatus ]= useState("idle")
   const [heroAnime,setHeroAnime ]= useState(hero(props.character.race))
   const [monsterArray,setMonsterArray ]= useState(levelConstructor(heroInfo))
-  const [selectedMonster,setSelectedMonster ]= useState(null)             
   const [moveHero,setMoveHero ]= useState(0)
   const [attackAllTimeOut,setAttackAllTimeOut ]= useState(0)
   const [thieveTimeOut,setThieveTimeOut ]= useState(0)
@@ -33,6 +33,7 @@ function MainGamePage(props){
   const [stage,setStage] = useState(HERO_ATTACK)
   const navigate = useNavigate();
   props.setLocation("mainGame")
+  const frameRate = 120
 
   useEffect(() => {
     !props.characterSession && navigate("/choosePage")
@@ -53,16 +54,30 @@ function MainGamePage(props){
   },[props.pushSave])
 
   useEffect(() => {
-    if(stage === MONSTER_ATTACK){
-      if(monsterArray.filter(m => m.HP > 0).length === 0) return 
-      let randomIndex = Math.floor(Math.random()*monsterArray.length)
-      while(monsterArray[randomIndex].HP <= 0){
-        randomIndex = Math.floor(Math.random()*monsterArray.length)
-      }
-      setMoveMonster(randomIndex)
-    }
+    if(stage === MONSTER_ATTACK)
+      monsterTurnHandler()
   },[stage])
-console.log(stage);
+
+  const monsterTurnHandler = async () => {
+    if(monsterArray.filter(m => m.HP > 0).length === 0) return 
+    let randomIndex = Math.floor(Math.random()*monsterArray.length)
+    while(monsterArray[randomIndex].HP <= 0){
+      randomIndex = Math.floor(Math.random()*monsterArray.length)
+    }
+    setMoveMonster(randomIndex)
+    const ml2wait = frameRate * 6
+    setMonsterStatus("run",randomIndex)
+    await sleep(ml2wait)
+    setMonsterStatus("run",randomIndex)
+    await sleep(ml2wait)
+    setMonsterStatus("attack1",randomIndex)
+    await sleep(ml2wait)
+    setHeroAnimeStatus("hurt")
+    setMoveMonster(-1)
+    endTurn()
+    heroDamageHandler(monsterArray[randomIndex].ATK)
+  }
+
   const setMonsterStatus = (status,index) => {
     const monsterArray_ = [...monsterArray]
     monsterArray_[index].setStatus(status)
@@ -82,6 +97,33 @@ console.log(stage);
     setHeroInfo(heroInfo_)
   }
 
+  const onMonsterClick = (index) => {
+    attackMonsterHandler(index)
+  }
+
+  const attackMonsterHandler = async (index) => {
+    if(attackMode !== "none"){
+      const ml2wait = frameRate * 6
+      setAttackMode("none")
+      setMoveHero(index+1)
+      setHeroAnimeStatus("run")
+      await sleep(ml2wait)
+      setHeroAnimeStatus("run")
+      await sleep(ml2wait)
+      if(attackMode === "thieve"){
+        takeMonsterGold(index)
+        setThieveTimeOut(10)
+      }
+      else{
+        setHeroAnimeStatus("attack1")
+        monsterDamageHandler(index)
+      }
+      await sleep(ml2wait)
+      setMoveHero(false)
+      endTurn()
+    }
+  }
+
   const monsterDamageHandler = (target) => {
     const monsterArray_ = [...monsterArray]
     setMonsterStatus("hurt",target)
@@ -95,9 +137,6 @@ console.log(stage);
       setTimeout(() => {setStore(true)},1500)
     }
     setMonsterArray(monsterArray_)
-    setTimeout(() => {
-      setStage(MONSTER_ATTACK)
-    }, 1000);
   }
   const attackAllMonsters = () => {
     if(attackAllTimeOut !== 0) return;
@@ -107,24 +146,18 @@ console.log(stage);
         monsterDamageHandler(index))
     ,500)
     setAttackAllTimeOut(6)
+    endTurn()
   }
 
-  const attackMonsterHandler = (index) => {
-    if(attackMode !== "none"){
-      setSelectedMonster(index)
-      setMoveHero(index+1)
-    }
-  }
+ 
   const takeMonsterGold =(target) => {
     setHeroInfo(pre => {return{...pre, gold: pre.gold + monsterArray[target].gold}})
   }
-  const thieve = index => {
-    takeMonsterGold(index)
+ 
+  const endTurn = () => {
     setTimeout(() => {
-      setStage(MONSTER_ATTACK)
+      setStage(stage === HERO_ATTACK?MONSTER_ATTACK:HERO_ATTACK)
     }, 1000);
-    setAttackMode("none")
-    setThieveTimeOut(10)
   }
   
   const next = () => {
@@ -148,11 +181,7 @@ console.log(stage);
         anime={heroAnime}
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
-        setMonsterStatus={(status) => {setMonsterStatus(status,selectedMonster)}}
-        monsterDamage={() => monsterDamageHandler(selectedMonster)}
-        moveHero={moveHero}
         setMoveHero={setMoveHero}
-        setAttackMode={setAttackMode}
       />
     </>
   )
@@ -168,11 +197,7 @@ console.log(stage);
         anime={heroAnime}
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
-        setMonsterStatus={(status) => {setMonsterStatus(status,selectedMonster)}}
-        monsterDamage={() => monsterDamageHandler(selectedMonster)}
         moveHero={moveHero}
-        setMoveHero={setMoveHero}
-        setAttackMode={setAttackMode}
       />
       <ActionsBar 
         isActive={stage === HERO_ATTACK}
@@ -186,16 +211,10 @@ console.log(stage);
         return <MonsterFigure 
         monster={monster}
         index={index}
-        setAnimeStatus={setHeroAnimeStatus}
         setMonsterStatus={(status,index) => {setMonsterStatus(status,index)}}
-        setHeroStatus={setHeroAnimeStatus}
         moveMonster={moveMonster}
-        setMoveMonster={setMoveMonster}
-        attackMonster={() => {attackMonsterHandler(index)}}
         attackMode={attackMode}
-        setStage={setStage}
-        heroDamage={heroDamageHandler}
-        thieve={() => thieve(index)}
+        onMonsterClick={() =>  onMonsterClick(index)}
       />
         })}
     </div>

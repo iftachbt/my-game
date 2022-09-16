@@ -5,12 +5,13 @@ import {monster as monsterClass,boss,randomMonster} from "./assets/monsters/mons
 import { LinearProgress,Box,Typography  } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { appBarTheme } from "./progressBarStyle";
+import { sleep } from "../../utils";
 
 const frameRate = 120
 
 
  function MonsterFigure(props){
-  const { monster, index, moveMonster, setMonsterStatus, setMoveMonster, attackMonster, attackMode,setStage,heroDamage,thieve } = props
+  const { monster, index, moveMonster, setMonsterStatus, attackMonster, attackMode,thieve, onMonsterClick } = props
   const [monsterAnime,setMonsterAnime]=useState(monster.type === "regular"
   ?monsterClass(randomMonster(monster.type))
   :boss(randomMonster(monster.type))
@@ -45,29 +46,6 @@ const frameRate = 120
       setChangeStatus(true)
   }, [ monster.status ])
 
-  useEffect(()=>{
-    if(death || moveMonster !== index) return
-    setMonsterStatus("run",index)
-    setTimeout(() => {
-      setMonsterStatus("run",index)
-    },frameRate * 6 * 1)
-    setTimeout(() => {
-      setMonsterStatus("attack1",index)
-    },frameRate * 6 * 2)
-    setTimeout(() => {
-      props.setHeroStatus("hurt")
-      setMoveMonster(-1)
-      setStage(0)
-      setMonsterStatus("idle",index)
-      heroDamage(monster.ATK)
-    },frameRate * 6 * 3)
-}, [ moveMonster])
-
-function handleClick(){
-  if(attackMode === "thieve") return thieve(index)
-  attackMonster(index)
-}
-
   const conStyle = [style[`index${index}`]]
   if(moveMonster === index && !death) {
     conStyle.push(style[`move${moveMonster}`])
@@ -78,13 +56,13 @@ function handleClick(){
         <div className={style.barCon}>
           <ThemeProvider theme={appBarTheme} >
             <Typography >
-              {`${monster.HP<=0?0:monster.HP}/${monster.maxHealth}`}
+              <span className={style.barConSpan}>{`${monster.HP<=0?0:monster.HP}/${monster.maxHealth}`}</span>
             </Typography>
             <LinearProgress value={((monster.HP * 100) / monster.maxHealth)} variant="determinate"/>
           </ThemeProvider>
         </div>
         <div className={[style.imgCon,(attackMode !== "none" && !death)?style.imgHover:""].join(" ")}
-         onClick={() => handleClick()}>
+         onClick={() => onMonsterClick()}>
           <img src={anime.img}
             style={{
               width: 47.9 * (anime.frames + 1),

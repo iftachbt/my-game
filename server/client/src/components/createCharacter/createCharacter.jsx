@@ -60,6 +60,9 @@ function CreateCharacter(props){
                     name="name"
                     label="character name"
                     color="primary"
+                    InputProps={{
+                      className: style.characterNameCon,
+                    }}
                   />
                 </Grid>
                 </ThemeProvider>

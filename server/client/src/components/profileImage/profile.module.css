@@ -1,6 +1,7 @@
 .box{
-  height: 150px;
-  width: 150px;
+  height: 14vw;
+  width: 14vw;
+
   background-repeat: round;
   border-radius: 50%;
 }

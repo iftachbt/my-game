@@ -9,15 +9,9 @@ export function SelectClass(props){
         props.setRace(props.value)
     }
     function conponent(){
-      if(props.race===props.value)return (
-        <div>
-          <div className={style.charBox_select} onClick={handleClick} key={props.id}></div>
-          <div className={style.charBox_label}>{props.value}</div>
-        </div>
-          )
       return (
       <div>
-        <div className={style.charBox} onClick={handleClick} key={props.id}></div>
+        <div className={props.race===props.value?style.charBox_select:style.charBox} onClick={handleClick} key={props.id}></div>
         <div className={style.charBox_label}>{props.value}</div>
       </div>
       )

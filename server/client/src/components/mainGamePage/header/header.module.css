@@ -1,20 +1,33 @@
 .body{
-  color: rgb(255 237 237);;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   line-height: 6vh;
   text-align: center;
-  background-color: rgba(148, 155, 161, 0.311);
+  background: #d0d0d0b3;
+    color: black;
+    font-weight: bold;
 }
 .shield{
   background-image: url("./assets/shield.png");
   background-repeat: round;
   width: 3vw;
   height: 5vh;
+  margin: 6px 0 0 0;
+  color: white;
 }
 .shield p{
   position: relative;
   bottom: 3vh;
   font-size: 2vh;
+}
+.profileImage div{
+  position: absolute;
+}
+
+@media (max-width: 800px){
+  .profileImage div{
+    top: 22vh;
+    filter: drop-shadow(0px 0px 20px white);
+  }
 }
