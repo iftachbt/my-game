@@ -53,25 +53,21 @@
 .move0{
   animation-name: moveMonster1;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 
 .move1{
   animation-name: moveMonster2;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 
 .move2{
   animation-name: moveMonster3;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 
 .move3{
   animation-name: moveMonster4;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 
 .barCon{
@@ -84,4 +80,18 @@
     background: #ffffff70;
     border-radius: 5px;
     padding: 0px 4px;
+}
+.speedx120{
+  animation-duration: 2160ms;
+}
+
+.speedx90{
+  animation-duration: 1620ms;
+}
+
+.speedx60{
+  animation-duration: 1080ms;
+}
+.speedx30{
+  animation-duration: 540ms;
 }

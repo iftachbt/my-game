@@ -7,11 +7,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import { appBarTheme } from "./progressBarStyle";
 import { sleep } from "../../utils";
 
-const frameRate = 120
 
 
  function MonsterFigure(props){
-  const { monster, index, moveMonster, setMonsterStatus, attackMonster, attackMode,thieve, onMonsterClick } = props
+  const { frameRate,monster, index, moveMonster, setMonsterStatus, attackMonster, attackMode,thieve, onMonsterClick } = props
   const [monsterAnime,setMonsterAnime]=useState(monster.type === "regular"
   ?monsterClass(randomMonster(monster.type))
   :boss(randomMonster(monster.type))
@@ -49,6 +48,7 @@ const frameRate = 120
   const conStyle = [style[`index${index}`]]
   if(moveMonster === index && !death) {
     conStyle.push(style[`move${moveMonster}`])
+    conStyle.push(style[`speedx${frameRate}`])
   }
 
   return (

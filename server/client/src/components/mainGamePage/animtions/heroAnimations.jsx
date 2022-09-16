@@ -3,10 +3,9 @@ import { useState } from "react";
 import { sleep } from "../../utils";
 import style from "./heroAnimation.module.css"
 
-const frameRate = 120
 
  function HeroFigure(props){
-  const { moveHero, setAnimeStatus, animeStatus } = props
+  const { frameRate, moveHero, setAnimeStatus, animeStatus } = props
   const [currentIndex,setCurrentIndex]=useState(0)
   const [death,setDeath]=useState(0)
   const anime = props.anime[props.animeStatus]
@@ -24,7 +23,10 @@ const frameRate = 120
   }, [ currentIndex, death])
 
   const conStyle = [style.con]
-  if(moveHero && !death) conStyle.push(style[`move${moveHero}`])
+  if(moveHero && !death) {
+    conStyle.push(style[`move${moveHero}`])
+    conStyle.push(style[`speedx${frameRate}`])
+  }
 
   return (
     <div>

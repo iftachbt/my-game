@@ -31,9 +31,9 @@ function MainGamePage(props){
   const [attackMode,setAttackMode] = useState("none")
   const [store,setStore] = useState(false)
   const [stage,setStage] = useState(HERO_ATTACK)
+  const [frameRate,setFrameRate] = useState(120)
   const navigate = useNavigate();
   props.setLocation("mainGame")
-  const frameRate = 120
 
   useEffect(() => {
     !props.characterSession && navigate("/choosePage")
@@ -157,7 +157,7 @@ function MainGamePage(props){
   const endTurn = () => {
     setTimeout(() => {
       setStage(stage === HERO_ATTACK?MONSTER_ATTACK:HERO_ATTACK)
-    }, 1000);
+    }, frameRate*3);
   }
   
   const next = () => {
@@ -166,11 +166,13 @@ function MainGamePage(props){
     setStore(false)
     setStage(HERO_ATTACK)
   }
+  console.log(frameRate);
   if(store) return (
     <>
     <Header 
         characterSession={heroInfo}
         character={props.character}
+        setFrameRate={setFrameRate}
       />
       <Levels componentLVL={heroInfo.level} isStore={true}/>
       <Shop 
@@ -179,6 +181,7 @@ function MainGamePage(props){
         setHero={setHeroInfo}  />
       <HeroFigure 
         anime={heroAnime}
+        frameRate={frameRate}
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
         setMoveHero={setMoveHero}
@@ -191,10 +194,12 @@ function MainGamePage(props){
       <Header 
         characterSession={heroInfo}
         character={props.character}
+        setFrameRate={setFrameRate}
       />
       <Levels componentLVL={heroInfo.level}/>
       <HeroFigure 
         anime={heroAnime}
+        frameRate={frameRate}
         animeStatus={heroAnimeStatus}
         setAnimeStatus={setHeroAnimeStatus}
         moveHero={moveHero}
@@ -210,6 +215,7 @@ function MainGamePage(props){
       {monsterArray.map((monster, index) =>{
         return <MonsterFigure 
         monster={monster}
+        frameRate={frameRate}
         index={index}
         setMonsterStatus={(status,index) => {setMonsterStatus(status,index)}}
         moveMonster={moveMonster}

@@ -30,21 +30,32 @@
 .move1{
   animation-name: moveHero1;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 
 .move2{
   animation-name: moveHero2;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 .move3{
   animation-name: moveHero3;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
-  animation-duration: 2160ms;
 }
 .move4{
   animation-name: moveHero4;
   animation-timing-function: cubic-bezier(0.610, 1.130, 0.000, 1.000);
+}
+
+.speedx120{
   animation-duration: 2160ms;
+}
+
+.speedx90{
+  animation-duration: 1620ms;
+}
+
+.speedx60{
+  animation-duration: 1080ms;
+}
+.speedx30{
+  animation-duration: 540ms;
 }
