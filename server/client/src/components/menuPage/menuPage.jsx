@@ -1,5 +1,5 @@
 import React, { useEffect,useState }from "react";
-import style from "./choosePage.module.css"
+import style from "./menuPage.module.css"
 import { useNavigate } from "react-router-dom";
 import { fetchCharacter,deleteCharacter } from "../../actions/character/character";
 import { infoToster } from "../../actions/toastAlert";
@@ -10,13 +10,13 @@ import SessionInfo from "./sessionInfo";
 import { Grid,IconButton } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
- function ChoosePage(props){
+ function MenuPage(props){
   const [characterList,setCharacterList] = useState([])
   const [noSession,setNoSession] = useState(false)
   const [deleted,setDeleted] = useState(false)
   const [once,setOnce] = useState(false)
 
-    props.setLocation("choosePage")
+    props.setLocation("menuPage")
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -148,5 +148,5 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
       </div>
     )
 }
-export default ChoosePage
+export default MenuPage
 

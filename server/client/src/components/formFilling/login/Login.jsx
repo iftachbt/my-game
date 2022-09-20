@@ -18,13 +18,13 @@ function LogIn(props){
 
   const navigate = useNavigate();
 
-  useEffect(() => {if(props.user) navigate("/choosePage")})
+  useEffect(() => {if(props.user) navigate("/menuPage")})
 
   async function handleClick(values){
       const res = await logIn(values)
       if(res !== "err") {
           props.setUser(res);
-          navigate('/choosePage')
+          navigate('/menuPage')
           toster("successfully logIn")
           }
       else errToster("couldn't logIn")

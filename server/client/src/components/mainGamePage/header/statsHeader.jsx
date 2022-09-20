@@ -1,7 +1,7 @@
 import { MenuItem, Select } from "@mui/material";
-import React, {useState} from "react";
+import React from "react";
 import ProfileImage from "../../profileImage/profileImage";
-import  style  from "./header.module.css";
+import  style  from "./statsHeader.module.css";
 
 function Header(props){
   const {name,shield,level,ATK,HP,gold,maxHP,luck,frameRate}=props.characterSession

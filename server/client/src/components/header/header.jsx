@@ -31,7 +31,7 @@ const Header = (props) => {
   function handlePageClick(event){
     const val = event.target.getAttribute('value')
     if(val === "save") props.setPushSave(true)
-    if(val === "menu") navigate("/choosePage")
+    if(val === "menu") navigate("/menuPage")
     handleOpenNavMenu(event)
   };
   const handleMute = () =>{

@@ -25,7 +25,7 @@ function CreateCharacter(props){
     const req = await saveCharacter(character)
     console.log(req);
     if(req !== "err"){
-      navigate("/choosePage")
+      navigate("/menuPage")
       toster("successfully created a character")
     }
     else errToster("couldn't create character")

@@ -6,10 +6,13 @@ export const create = (character) => GameSession.insertMany([{ ...character, id:
 export const fetchById = (characterId) =>
   GameSession.find({ characterId })
     .exec()
-    .then((res) => (res.length ? res[0] : null));
+    .then((res) => {
+      return res.length ? res[0] : null;
+    });
 
 export const deleteById = (characterId) => GameSession.deleteOne({ characterId });
 
 export const updateById = async (session) => {
+  console.log(session);
   return await GameSession.findOneAndUpdate({ id: session.id, ...session });
 };

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Levels from "./levels/levels";
-import Header from "./header/header";
-import HeroFigure from "./animtions/heroAnimations";
-import MonsterFigure from "./animtions/monsterAnimation";
+import Header from "./header/statsHeader";
+import HeroFigure from "./animation/heroAnimations";
+import MonsterFigure from "./animation/monsterAnimation";
 import { useEffect } from "react";
-import hero from "./animtions/assets/heros/hero";
+import hero from "./animation/assets/heros/hero";
 import ActionsBar from "./actionsBar/actionsBar";
 import { levelConstructor } from "./gameConstructor/gameConstructor";
 import style from "./mainGame.module.css"
@@ -36,7 +36,7 @@ function MainGamePage(props){
   props.setLocation("mainGame")
 
   useEffect(() => {
-    !props.characterSession && navigate("/choosePage")
+    !props.characterSession && navigate("/menuPage")
   })
   useEffect(() => {
     setMonsterArray(levelConstructor(heroInfo))
@@ -74,8 +74,8 @@ function MainGamePage(props){
     await sleep(ml2wait)
     setHeroAnimeStatus("hurt")
     setMoveMonster(-1)
-    endTurn()
     heroDamageHandler(monsterArray[randomIndex].ATK)
+    endTurn()
   }
 
   const setMonsterStatus = (status,index) => {
@@ -142,9 +142,9 @@ function MainGamePage(props){
     if(attackAllTimeOut !== 0) return;
     setHeroAnimeStatus("attack1")
     setTimeout(() => 
-      monsterArray.forEach((monster,index) =>
+      monsterArray.map((monster,index) =>
         monsterDamageHandler(index))
-    ,500)
+    ,frameRate*3)
     setAttackAllTimeOut(6)
     endTurn()
   }
@@ -154,10 +154,9 @@ function MainGamePage(props){
     setHeroInfo(pre => {return{...pre, gold: pre.gold + monsterArray[target].gold}})
   }
  
-  const endTurn = () => {
-    setTimeout(() => {
-      setStage(stage === HERO_ATTACK?MONSTER_ATTACK:HERO_ATTACK)
-    }, frameRate*3);
+  const endTurn = async() => {
+    await sleep(frameRate*4)
+    setStage(stage === HERO_ATTACK?MONSTER_ATTACK:HERO_ATTACK)
   }
   
   const next = () => {

@@ -11,7 +11,7 @@ function GameOver(props){
   const navigate = useNavigate();
 
   async function endSessionHandler(){
-    navigate("/choosePage")
+    navigate("/menuPage")
     const del = await deleteSession(props.character.id)
   }
 

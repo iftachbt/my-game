@@ -10,8 +10,6 @@ const gameSessionCreationYupSchema = yup.object().shape({
   HP: yup.number().typeError("HP is require"),
   gold: yup.number().typeError("gold is require"),
   level: yup.number().typeError("level is require"),
-  kills: yup.number().typeError("kills is require"),
-  deaths: yup.number().typeError("deaths is require"),
 });
 
 export const gameSessionCreationValidation = validationMidFactory(gameSessionCreationYupSchema);
