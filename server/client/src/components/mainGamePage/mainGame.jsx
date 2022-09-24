@@ -86,7 +86,6 @@ function MainGamePage(props){
 
   const heroDamageHandler = (damage) => {
     const heroInfo_ = {...heroInfo}
-    console.log("damage",damage);
     const chanceToHit = Math.floor(Math.random() * (100))
     if(chanceToHit > heroInfo_.shield) heroInfo_.HP = heroInfo_.HP - damage
     if(heroInfo_.HP <= 0){
@@ -165,7 +164,6 @@ function MainGamePage(props){
     setStore(false)
     setStage(HERO_ATTACK)
   }
-  console.log(frameRate);
   if(store) return (
     <>
     <Header 

@@ -45,8 +45,6 @@ function Master(){
     // eslint-disable-next-line 
   },[])
 
-  console.log("characterSession",characterSession);
-  
   const fetchUserHandler = async () => {
     if(!user){
       const user_ = await fetchUser()

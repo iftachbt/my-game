@@ -62,7 +62,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
     const displayCharacterList =() =>(
        characterList.map((character) => {
-        const {name, race, session, id,death,kills} = character
+         const {name, race, session, id,death,kills} = character
         return(
         <div > 
           <div
@@ -88,6 +88,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
             <div className={style.tooltip}>
               {session 
                 ?<SessionInfo
+                key ={id}
                 res={session}
                 character={character}
                 />

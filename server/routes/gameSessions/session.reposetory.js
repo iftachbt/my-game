@@ -14,6 +14,5 @@ export const fetchById = (characterId) =>
 export const deleteById = (characterId) => GameSession.deleteOne({ characterId });
 
 export const updateById = async (session) => {
-  console.log(session);
   return await GameSession.findOneAndUpdate({ id: session.id, ...session });
 };

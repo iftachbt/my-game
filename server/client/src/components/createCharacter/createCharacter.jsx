@@ -23,7 +23,6 @@ function CreateCharacter(props){
   async function handleClick(name){
     const character = {...name,race: race,kills:0,death:0}
     const req = await saveCharacter(character)
-    console.log(req);
     if(req !== "err"){
       navigate("/menuPage")
       toster("successfully created a character")

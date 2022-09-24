@@ -22,7 +22,6 @@ function Shop(props){
       action = fillHP(action)
       if(HP === maxHP) return
     }
-    console.log("drinkPotion",action);
     setHero(preVal => {
       return{
         ...preVal, 
@@ -41,7 +40,6 @@ function Shop(props){
       <div className={style.actionContainer}>
         <div className={style.potionCon}>
           {items.map((item) => {
-            console.log(item.name);
             return (
               <div className={[style.potionItem,style[item.name]].join(" ")}>
                 <Tooltip title={` +${item.action}  ${item.name} | ${item.cost}G`}>

@@ -14,7 +14,6 @@ function HomePage(props){
     const oneTime = props.countOnce === 0
 
     function handleClick(navi){
-      console.log("event.target",navi);
         navigate('/' + navi)
         soundEffect(btnSound)
     }

@@ -11,7 +11,6 @@ UsersRoute.post("/signUp", (req, res, next) => {
 });
 
 UsersRoute.post("/logIn", passport.authenticate("local"), (req, res) => {
-  console.log("?");
   if (!req.user) throw new NotFoundError("not found user");
   res.send(req.user);
 });
