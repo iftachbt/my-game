@@ -27,6 +27,7 @@ CharacterRoute.get("/character", authMid, (req, res) =>
       Promise.all(
         characterList.map(async (char) => {
           const session = await fetchSessionById(char.id);
+          console.log(session);
           return { ...char._doc, session };
         })
       )

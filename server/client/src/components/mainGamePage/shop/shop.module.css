@@ -112,3 +112,29 @@
   top: -21px;
   left: 17px;
  } /*important to fix the div inside the Button component */
+
+ @media (max-width: 500px){
+    .potionItem{
+      width: 21vw;
+      height: 12vh;
+    }
+    .potion{
+      width: 13vw;
+      height: 7vh;
+      margin-top: 1vh;
+    }
+    .btnCon{
+      width: 20vw;
+      position: absolute;
+      top: 70vh;
+      right: 50vw;
+    }
+      .potionCon{
+      margin: 5vh 5vw 1vh 4vw;
+      height: 77%;
+    }
+    .actionContainer{
+      width: 80vw;
+      height: 50vh;
+    }
+  }

@@ -10,6 +10,4 @@ export const gameSessionSchema = {
   HP: Number,
   gold: Number,
   level: Number,
-  kills: Number,
-  deaths: Number,
 };

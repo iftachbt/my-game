@@ -11,8 +11,7 @@ import LogIn from "../formFilling/login/Login";
 import CreateCharacter from "../createCharacter/createCharacter";
 import MainGamePage from "../mainGamePage/mainGame";
 import HomePage from "../homePage/homePage";
-import Pause from "../../notes/pause/pause";
-import ChoosePage from "../choosePage/choosePage";
+import MenuPage from "../menuPage/menuPage";
 import BackgroundSound from "../../sounds/sound";
 import "./master.css"
 import audio from "./images/home-page-sound/Adventure-320bit.mp3";
@@ -45,6 +44,8 @@ function Master(){
     fetchUserHandler()  
     // eslint-disable-next-line 
   },[])
+
+  console.log("characterSession",characterSession);
   
   const fetchUserHandler = async () => {
     if(!user){
@@ -60,8 +61,6 @@ function Master(){
     if(res !== "err") return toster("save session")
     return errToster("can't save")
   }
-  
-    
   return(
     <div>
         <ToastContainer />
@@ -79,12 +78,6 @@ function Master(){
           setMute={setMute}
           setPushSave={setPushSave}
         />
-        {headerState && 
-        <Pause 
-          setHeaderState={setHeaderState}
-          isMute={isMute}
-          setMute={setMute}
-        /> } 
         <Routes>
             <Route exact path="/" element={
             <HomePage 
@@ -107,8 +100,8 @@ function Master(){
               setUser ={setUser}
               user ={user}/>}
              />
-            <Route path="/choosePage" element={
-            <ChoosePage 
+            <Route path="/menuPage" element={
+            <MenuPage 
               user={user}
               setCharacter={setCharacter}
               character={character}
