@@ -5,6 +5,7 @@ export const create = (character) => GameSession.insertMany([{ ...character, id:
 
 export const fetchById = (characterId) =>
   GameSession.find({ characterId })
+    .select("-_id -__v")
     .exec()
     .then((res) => {
       return res.length ? res[0] : null;
