@@ -3,10 +3,14 @@
   "scripts": {
     "test": "vitest --run --reporter verbose",
     "watch": "vitest --reporter verbose",
-    "dev": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "dependencies": {
     "body-parser": "^1.20.0",
+    "concurrently": "^7.6.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
